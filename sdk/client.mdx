@@ -21,16 +21,14 @@ client = TapKitClient()
 
 ```python
 client = TapKitClient(
-    api_key="your-api-key",      # Your TapKit API key
-    base_url="https://api.tapkit.ai",  # API endpoint (default)
-    timeout=65.0                  # Request timeout in seconds (default: 65)
+    api_key="your-api-key",  # Your TapKit API key
+    timeout=65.0              # Request timeout in seconds (default: 65)
 )
 ```
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `api_key` | `str \| None` | `None` | Your API key. Falls back to `TAPKIT_API_KEY` env var |
-| `base_url` | `str \| None` | `https://api.tapkit.ai` | API endpoint. Falls back to `TAPKIT_BASE_URL` env var |
 | `timeout` | `float` | `65.0` | Request timeout in seconds |
 
 ## Context Manager

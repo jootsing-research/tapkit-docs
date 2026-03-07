@@ -3,66 +3,55 @@ title: Introduction
 description: Programmatically control iPhones with TapKit
 ---
 
-TapKit enables you to control real iPhones programmatically through a simple API. Execute touch gestures, launch apps, type text, and capture screenshots - all from your code.
+{/* TODO: Add demo video here */}
+<Frame>
+  <div style={{ padding: "56.25% 0 0 0", position: "relative", background: "#111", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "#666", fontSize: "14px" }}>
+      Demo video coming soon
+    </div>
+  </div>
+</Frame>
 
-## What is TapKit?
+## Overview
 
-TapKit provides infrastructure for iPhone automation:
+TapKit lets you control real iPhones programmatically through a simple API. Build AI agents, automate workflows, and test mobile apps — all on actual hardware.
 
-- **REST API** - Control phones via HTTP requests
-- **Python SDK** - High-level client library with intuitive methods
-- **Real-time streaming** - View phone screens via WebRTC
+- **Real iPhone control**: Execute touch gestures, launch apps, type text, and capture screenshots on physical devices — not simulators.
+- **Simple API**: Run a task in just a few lines of code, making it easy to integrate into any workflow.
+- **AI-native**: Built for AI agents with MCP support, OpenAI CUA integration, and vision-based control out of the box.
+- **Real-time streaming**: View live phone screens via WebRTC for monitoring and debugging.
+- **Python SDK**: High-level client library with intuitive methods for every phone interaction.
+- **Persistent sessions**: Maintain state across multiple tasks to preserve cookies and authentication.
 
-## Core Capabilities
+## Getting started
 
 <CardGroup cols={2}>
-  <Card title="Touch Actions" icon="hand-pointer" href="/sdk/gestures">
-    Tap, swipe, drag, and pinch - all the gestures you need
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Step-by-step instructions to control your first iPhone.
   </Card>
-  <Card title="Device Control" icon="mobile" href="/sdk/device">
-    Navigate home, lock/unlock, adjust volume, and more
-  </Card>
-  <Card title="App Control" icon="grid-2" href="/sdk/apps">
-    Launch apps, type text, and run Shortcuts
-  </Card>
-  <Card title="Screenshots" icon="camera" href="/sdk/screenshots">
-    Capture high-resolution screenshots on demand
+  <Card title="API Reference" icon="terminal" href="/api-reference/introduction">
+    Explore the full API for advanced integration.
   </Card>
 </CardGroup>
 
-## Quick Example
+## Need inspiration?
 
-```python
-from tapkit import TapKitClient
+Browse our step-by-step tutorials and guides.
 
-# Connect to TapKit
-client = TapKitClient(api_key="your-api-key")
-
-# Get your phone
-phone = client.get_phone()
-
-# Tap the center of the screen
-phone.tap(phone.screen.center)
-
-# Take a screenshot
-screenshot = phone.screenshot()
-```
-
-## Getting Started
-
-<Steps>
-  <Step title="Get your API key">
-    Sign up at [tapkit.ai](https://tapkit.ai) and get your API key from the dashboard.
-  </Step>
-  <Step title="Install the SDK">
-    Install the TapKit Python SDK using pip:
-    ```bash
-    pip install tapkit
-    ```
-  </Step>
-  <Step title="Control your phone">
-    Start automating with just a few lines of code.
-  </Step>
-</Steps>
-
-Ready to dive in? Check out the [Quickstart guide](/quickstart).
+<CardGroup cols={2}>
+  <Card title="Book a Flight" icon="plane" href="/use-cases/book-a-flight">
+    Automate flight searches and bookings on mobile travel apps.
+  </Card>
+  <Card title="Book a Haircut" icon="scissors" href="/use-cases/book-a-haircut">
+    Automate appointment booking on salon and barbershop apps.
+  </Card>
+  <Card title="Order Dinner" icon="utensils" href="/use-cases/order-dinner">
+    Automate food delivery orders on apps like Uber Eats and DoorDash.
+  </Card>
+  <Card title="Dating Apps" icon="heart" href="/use-cases/dating-apps">
+    Automate swiping, matching, and messaging on dating apps.
+  </Card>
+  <Card title="QA Testing" icon="vial" href="/use-cases/qa-testing">
+    Run automated end-to-end tests on real iPhones.
+  </Card>
+</CardGroup>

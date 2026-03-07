@@ -1,6 +1,105 @@
 ---
 title: Claude MCP
-description: Control iPhones directly from Claude Code via the TapKit MCP
+description: Control iPhones directly from Claude Code or Claude Desktop via the TapKit MCP
 ---
 
-Coming soon.
+The TapKit MCP server connects Claude to a physical iPhone — letting Claude see the screen, tap, swipe, type, and navigate apps using visual coordinates. No accessibility tree, no DOM, no jailbreak required.
+
+The MCP server runs as a hosted endpoint. You don't need to run anything locally beyond the [TapKit Mac app](/setup/mac-app) with a connected iPhone.
+
+## Setup
+
+<Tabs>
+  <Tab title="Claude Code">
+    See the full [Claude Code setup guide](/setup/claude-code) for step-by-step instructions.
+
+    ```
+    /plugin marketplace add jootsing-research/jootsing-plugins
+    /plugin install tapkit@jootsing-plugins
+    ```
+
+    This installs the MCP server connection and a skill file that teaches Claude how to use the tools effectively.
+  </Tab>
+  <Tab title="Claude Desktop / Other MCP Clients">
+    Add to your MCP config:
+
+    ```json
+    {
+      "mcpServers": {
+        "tapkit": {
+          "type": "http",
+          "url": "https://mcp.tapkit.ai/mcp"
+        }
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Tools
+
+### Navigation
+
+| Tool | Description |
+|------|-------------|
+| `open_app(app_name)` | Open any app by name (e.g. "Settings", "Safari") or bundle ID |
+| `press_home` | Go to home screen |
+| `escape` | Dismiss keyboards, alerts, popups, or go back |
+| `spotlight(query?)` | Open Spotlight search, optionally type a query |
+
+### Touch Gestures
+
+| Tool | Description |
+|------|-------------|
+| `tap(x, y)` | Single tap at coordinates |
+| `double_tap(x, y)` | Double tap (zoom, text selection) |
+| `long_press(x, y, duration?)` | Tap and hold for context menus. Default 1000ms |
+| `swipe(x, y, direction)` | Fast flick gesture — up, down, left, or right |
+| `drag(from_x, from_y, to_x, to_y)` | Drag between two points (sliders, precise scrolling) |
+| `hold_and_drag(from_x, from_y, to_x, to_y)` | Long press then drag (reordering, drag-and-drop) |
+
+### Input
+
+| Tool | Description |
+|------|-------------|
+| `type_text(text)` | Type into the currently focused text field |
+| `activate_siri` | Trigger Siri |
+
+### Device
+
+| Tool | Description |
+|------|-------------|
+| `screenshot` | Capture the current screen as an image |
+| `get_phone_info` | Get screen dimensions and device name |
+| `list_phones` | List all connected phones |
+| `select_phone(phone_id)` | Select which phone to control (multi-phone setups) |
+| `lock` / `unlock` | Lock or unlock the device |
+| `volume_up` / `volume_down` | Volume controls |
+| `run_shortcut(index)` | Run an iOS Shortcut by index |
+
+## How It Works
+
+Claude follows a **screenshot → look → act → verify** loop:
+
+1. `screenshot` — see the current screen
+2. Visually identify UI elements and their coordinates
+3. `tap(300, 672)` — interact at the identified position
+4. `screenshot` — verify the action worked
+
+All coordinates map 1:1 with screenshot pixels. Screenshots are scaled so the longest edge is 1344px, and the MCP handles native-to-scaled coordinate conversion transparently.
+
+## Examples
+
+Ask Claude naturally:
+
+- "Open Settings and turn on Dark Mode"
+- "Take a screenshot and tell me what's on screen"
+- "Send a message to John on iMessage"
+- "Go to Uber Eats and order me a coffee"
+- "Open Safari and search for the weather"
+
+## Notes
+
+- **Auto phone selection** — if only one phone is connected, it's selected automatically. No need to call `list_phones` first.
+- **Multi-phone** — every tool accepts an optional `phone_id` for setups with multiple phones.
+- **Text input requires focus** — tap a text field before calling `type_text`.
