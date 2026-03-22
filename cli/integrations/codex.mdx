@@ -1,0 +1,38 @@
+---
+title: Codex CLI
+description: Use TapKit with Codex CLI via npx skills and Bash commands
+---
+
+Codex uses the TapKit CLI via Bash and loads skills for app knowledge.
+
+## Setup
+
+Install TapKit skills for Codex:
+
+```bash
+npx skills add tapkit
+
+# ? Select skills to install:
+#   ✓ tapkit        (core — device control)
+#   ✓ hinge         (app — Hinge dating)
+#   ✓ telegram      (app — Telegram messaging)
+#   ✓ tiktok        (app — TikTok video)
+#   ✓ linkedin      (app — LinkedIn professional)
+#   ✓ uber-eats     (app — Uber Eats delivery)
+#
+# Installed 6 skills to .agents/skills/
+```
+
+## Usage
+
+Codex calls TapKit via Bash commands. The skill teaches it the screenshot → look → act → verify workflow:
+
+```
+you: Take a screenshot of my phone and tell me what app is open
+
+codex: Running: tapkit screenshot --base64
+        I can see Twitter is open on the Home feed. The top tweet is from
+        @elonmusk about... Would you like me to interact with anything?
+```
+
+The core skill teaches Codex how to use the coordinate system, chain commands, and verify actions — so it knows the workflow without you having to explain it.

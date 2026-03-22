@@ -7,7 +7,7 @@
     "light": "#60A5FA",
     "dark": "#2563EB"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.png",
   "navigation": {
     "tabs": [
       {
@@ -46,6 +46,47 @@
               "use-cases/order-dinner",
               "use-cases/dating-apps",
               "use-cases/qa-testing"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "CLI",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "cli/introduction",
+              "cli/installation",
+              "cli/authentication",
+              "cli/phone-setup",
+              "cli/quickstart"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "cli/commands",
+              "cli/configuration"
+            ]
+          },
+          {
+            "group": "Skills",
+            "pages": [
+              "cli/skills/overview",
+              "cli/skills/app-skills",
+              "cli/skills/task-skills",
+              "cli/skills/installing"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "cli/integrations/overview",
+              "cli/integrations/claude-code",
+              "cli/integrations/codex",
+              "cli/integrations/openclaw",
+              "cli/integrations/cursor"
             ]
           }
         ]
