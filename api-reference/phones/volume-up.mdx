@@ -1,0 +1,22 @@
+---
+title: Volume Up
+description: Increase device volume
+api: POST /v1/phones/{phone_id}/volume-up
+---
+
+Increase the device volume by one step.
+
+## Request
+
+```bash
+curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/volume-up \
+  -H "X-API-Key: TK_your_api_key"
+```
+
+### Path Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `phone_id` | `string` | The phone identifier |
+
+No request body required.

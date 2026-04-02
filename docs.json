@@ -28,10 +28,15 @@
             ]
           },
           {
-            "group": "Reference",
+            "group": "Apps",
             "pages": [
               "mac-app",
-              "dashboard",
+              "dashboard"
+            ]
+          },
+          {
+            "group": "Resources",
+            "pages": [
               "security"
             ]
           },
@@ -57,13 +62,13 @@
             ]
           },
           {
-            "group": "Claude",
+            "group": "Anthropic",
             "pages": [
               "integrations/claude"
             ]
           },
           {
-            "group": "Codex",
+            "group": "OpenAI",
             "pages": [
               "integrations/codex"
             ]
@@ -94,46 +99,57 @@
             ]
           },
           {
-            "group": "Status",
+            "group": "Endpoints",
             "pages": [
-              "api-reference/status/get-status"
-            ]
-          },
-          {
-            "group": "Devices",
-            "pages": [
-              "api-reference/phones/list-phones",
-              "api-reference/phones/get-info",
-              "api-reference/phones/get-settings",
-              "api-reference/phones/update-settings"
-            ]
-          },
-          {
-            "group": "Actions",
-            "pages": [
-              "api-reference/phones/tap",
-              "api-reference/phones/double-tap",
-              "api-reference/phones/tap-and-hold",
-              "api-reference/phones/flick",
-              "api-reference/phones/pan",
-              "api-reference/phones/drag",
-              "api-reference/phones/hold-and-drag",
-              "api-reference/phones/pinch",
-              "api-reference/phones/screenshot",
-              "api-reference/phones/open-app",
-              "api-reference/phones/type-text",
-              "api-reference/phones/shortcut",
-              "api-reference/phones/home",
-              "api-reference/phones/escape",
-              "api-reference/phones/lock",
-              "api-reference/phones/unlock",
-              "api-reference/phones/rotate",
-              "api-reference/phones/volume",
-              "api-reference/phones/spotlight",
-              "api-reference/phones/siri",
-              "api-reference/phones/app-switcher",
-              "api-reference/phones/control-center",
-              "api-reference/phones/action-button"
+              {
+                "group": "Status",
+                "pages": [
+                  "api-reference/status/get-status"
+                ]
+              },
+              {
+                "group": "Devices",
+                "pages": [
+                  "api-reference/phones/list-phones",
+                  "api-reference/phones/get-info",
+                  "api-reference/phones/get-settings",
+                  "api-reference/phones/update-settings"
+                ]
+              },
+              {
+                "group": "Gestures",
+                "pages": [
+                  "api-reference/phones/tap",
+                  "api-reference/phones/double-tap",
+                  "api-reference/phones/tap-and-hold",
+                  "api-reference/phones/flick",
+                  "api-reference/phones/pan",
+                  "api-reference/phones/drag",
+                  "api-reference/phones/hold-and-drag",
+                  "api-reference/phones/pinch"
+                ]
+              },
+              {
+                "group": "Actions",
+                "pages": [
+                  "api-reference/phones/screenshot",
+                  "api-reference/phones/open-app",
+                  "api-reference/phones/type-text",
+                  "api-reference/phones/shortcut",
+                  "api-reference/phones/home",
+                  "api-reference/phones/escape",
+                  "api-reference/phones/lock",
+                  "api-reference/phones/unlock",
+                  "api-reference/phones/rotate",
+                  "api-reference/phones/volume-up",
+                  "api-reference/phones/volume-down",
+                  "api-reference/phones/spotlight",
+                  "api-reference/phones/siri",
+                  "api-reference/phones/app-switcher",
+                  "api-reference/phones/control-center",
+                  "api-reference/phones/action-button"
+                ]
+              }
             ]
           }
         ]

@@ -1,0 +1,22 @@
+---
+title: Volume Down
+description: Decrease device volume
+api: POST /v1/phones/{phone_id}/volume-down
+---
+
+Decrease the device volume by one step.
+
+## Request
+
+```bash
+curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/volume-down \
+  -H "X-API-Key: TK_your_api_key"
+```
+
+### Path Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `phone_id` | `string` | The phone identifier |
+
+No request body required.
