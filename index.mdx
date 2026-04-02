@@ -3,7 +3,7 @@ title: Introduction
 description: Programmatically control iPhones with TapKit
 ---
 
-{/* TODO: Add demo video here */}
+{/* TODO: Add hero video (60-90 sec) — prompt → phone moves → montage of tasks → setup flash → end card */}
 <Frame>
   <div style={{ padding: "56.25% 0 0 0", position: "relative", background: "#111", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
     <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "#666", fontSize: "14px" }}>
@@ -14,44 +14,56 @@ description: Programmatically control iPhones with TapKit
 
 ## Overview
 
-TapKit lets you control real iPhones programmatically through a simple API. Build AI agents, automate workflows, and test mobile apps — all on actual hardware.
+TapKit gives AI agents and automation tools direct control over real iPhones. Your agent sees the screen, taps buttons, types text, and navigates apps — on a physical device with your real accounts and data. No simulators, no jailbreaking, no sideloaded apps.
 
-- **Real iPhone control**: Execute touch gestures, launch apps, type text, and capture screenshots on physical devices — not simulators.
-- **Simple API**: Run a task in just a few lines of code, making it easy to integrate into any workflow.
-- **AI-native**: Built for AI agents with MCP support, OpenAI CUA integration, and vision-based control out of the box.
-- **Real-time streaming**: View live phone screens via WebRTC for monitoring and debugging.
-- **Python SDK**: High-level client library with intuitive methods for every phone interaction.
-- **Persistent sessions**: Maintain state across multiple tasks to preserve cookies and authentication.
+It connects to Claude, Codex, and any MCP-compatible platform, so you can start automating in minutes without learning new tools.
 
-## Getting started
+## Why TapKit
+
+<CardGroup cols={2}>
+  <Card title="Real iPhones" icon="mobile">
+    Physical devices, real apps, real accounts. Not a simulator, not a screenshot — your agent operates an actual phone.
+  </Card>
+  <Card title="Real work" icon="briefcase">
+    Book appointments, manage accounts, place orders, run tests. Your AI agent operates the phone the way you would.
+  </Card>
+  <Card title="Works with your AI tools" icon="plug">
+    Connects to Claude, Codex, or any MCP-compatible platform. No new tools to learn.
+  </Card>
+  <Card title="Live visibility" icon="eye">
+    Watch everything happen on the phone screen in real-time. Never in the dark about what your agent is doing.
+  </Card>
+</CardGroup>
+
+## Get started
 
 <CardGroup cols={2}>
   <Card title="Quickstart" icon="rocket" href="/quickstart">
-    Step-by-step instructions to control your first iPhone.
+    Control your first iPhone in minutes.
   </Card>
-  <Card title="API Reference" icon="terminal" href="/api-reference/introduction">
-    Explore the full API for advanced integration.
+  <Card title="Integrations" icon="plug" href="/integrations/overview">
+    Connect TapKit to Claude, Codex, or your favorite AI tools.
   </Card>
 </CardGroup>
 
 ## Need inspiration?
 
-Browse our step-by-step tutorials and guides.
+Browse real examples of what you can build with TapKit.
 
 <CardGroup cols={2}>
   <Card title="Book a Flight" icon="plane" href="/use-cases/book-a-flight">
-    Automate flight searches and bookings on mobile travel apps.
+    Search flights and compare options on real travel apps.
   </Card>
   <Card title="Book a Haircut" icon="scissors" href="/use-cases/book-a-haircut">
-    Automate appointment booking on salon and barbershop apps.
+    Find and book appointments at local salons.
   </Card>
   <Card title="Order Dinner" icon="utensils" href="/use-cases/order-dinner">
-    Automate food delivery orders on apps like Uber Eats and DoorDash.
+    Browse menus and place delivery orders on DoorDash, Uber Eats, and more.
   </Card>
   <Card title="Dating Apps" icon="heart" href="/use-cases/dating-apps">
-    Automate swiping, matching, and messaging on dating apps.
+    Automate swiping, matching, and messaging.
   </Card>
   <Card title="QA Testing" icon="vial" href="/use-cases/qa-testing">
-    Run automated end-to-end tests on real iPhones.
+    Run end-to-end tests on real devices against production apps.
   </Card>
 </CardGroup>

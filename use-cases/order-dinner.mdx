@@ -1,6 +1,42 @@
 ---
 title: Order Dinner
-description: Automate food delivery orders on apps like Uber Eats and DoorDash
+description: Browse menus and place delivery orders on DoorDash, Uber Eats, and more
 ---
 
-Coming soon.
+{/* TODO: Demo video (30-60 sec) — sped up: prompt → delivery app → restaurant browse → menu → cart → order placed */}
+<Frame>
+  <div style={{ padding: "56.25% 0 0 0", position: "relative", background: "#111", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "#666", fontSize: "14px" }}>
+      Demo video coming soon
+    </div>
+  </div>
+</Frame>
+
+## What this does
+
+The agent opens a food delivery app on your iPhone, browses restaurants, selects items from a menu, adds them to your cart, and places the order. It navigates the full ordering flow — from finding a restaurant to checkout confirmation.
+
+## How we built it
+
+We tested with Uber Eats and DoorDash, both of which have well-structured mobile UIs that the agent navigates reliably. The prompt included what kind of food we wanted and any preferences (price range, delivery time, dietary restrictions).
+
+The agent was good at browsing restaurant listings, scrolling through menus, and adding items to the cart. It handled customization options (size, toppings, special instructions) by reading the options on screen and making reasonable choices based on the prompt.
+
+The trickiest part was checkout — delivery apps have a lot of confirmation screens, tip selection, and promotional banners that the agent needed to navigate through. Keeping the prompt specific about what to order (rather than "surprise me") reduced the number of decisions the agent had to make.
+
+## Try it yourself
+
+Paste this into the TapKit Mac app agent or Claude with TapKit connected:
+
+> Open Uber Eats and order a pepperoni pizza and a Caesar salad from the highest-rated Italian restaurant nearby. Use my saved address and payment method.
+
+Works with: TapKit Mac app, Claude.ai, Claude Code, any MCP client.
+
+## Tips and things to know
+
+- **Be specific about what you want** — "pepperoni pizza and a Caesar salad" works better than "order me some Italian food."
+- **Log in first** — the agent needs your saved address and payment method to complete the order. Without these, it can't check out.
+- **Tip selection** — the agent will select a tip if prompted. Include your preference in the prompt if you care ("select 20% tip" or "no tip").
+- **The agent handles pop-ups** — promotional banners, "order again?" suggestions, and notification prompts are dismissed automatically.
+- **Works across delivery apps** — Uber Eats, DoorDash, Grubhub, and similar platforms all work. Each has slightly different flows but the agent adapts.
+- **Reordering is easy** — if you've ordered before, ask the agent to "reorder my last meal from [restaurant]" and it'll find your order history.

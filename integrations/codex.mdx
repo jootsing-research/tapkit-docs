@@ -1,0 +1,42 @@
+---
+title: Codex
+description: Connect TapKit to the Codex CLI and Codex app
+---
+
+TapKit integrates with Codex to give your Codex agent direct iPhone control.
+
+<Warning>
+  The Codex integration is currently in development. This page will be updated with full setup instructions when the plugin system is ready.
+</Warning>
+
+## What to expect
+
+The Codex integration will follow the same pattern as [Claude](/integrations/claude) — two paths depending on how you use Codex:
+
+### Codex CLI
+
+Install TapKit as a plugin for the Codex command-line tool. The agent will be able to tap, swipe, type, screenshot, and control your iPhone from the terminal.
+
+### Codex App
+
+Connect TapKit as an MCP server in the Codex desktop app for visual, chat-based iPhone control.
+
+## In the meantime
+
+While the Codex plugin is in development, you can use TapKit with Codex through the [MCP server URL](/integrations/other-mcp-clients):
+
+```json
+{
+  "mcpServers": {
+    "tapkit": {
+      "type": "http",
+      "url": "https://mcp.tapkit.ai/mcp"
+    }
+  }
+}
+```
+
+## Links
+
+- [Codex documentation](https://docs.codex.ai)
+- [TapKit API Reference](/api-reference/introduction)

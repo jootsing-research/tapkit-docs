@@ -1,0 +1,115 @@
+---
+title: Security & Privacy
+description: How TapKit handles your devices and data
+---
+
+TapKit is designed to give you full control over real iPhones while being transparent about how everything works. This page covers the architecture, permissions, data handling, and security model.
+
+## How it works
+
+TapKit uses Apple's built-in accessibility features to control your iPhone:
+
+1. The **Mac app** connects to your iPhone over USB and Switch Control
+2. It **streams the phone's screen** so AI agents can see what's happening
+3. AI agents send commands (tap, swipe, type) which the Mac app **translates into Switch Control gestures**
+4. The gestures execute on the phone just like a human would perform them
+
+No jailbreaking. No modified iOS. No sideloaded apps. Everything runs through Apple's native accessibility APIs.
+
+{/* TODO: Architecture diagram — Mac ↔ Phone ↔ TapKit servers ↔ AI provider */}
+
+## Why we need each permission
+
+The Mac app requests three macOS permissions during setup. Here's exactly what each one does — and what it doesn't do.
+
+### Accessibility
+
+| | |
+|---|---|
+| **Used for** | Controlling Switch Control to send gestures to the phone |
+| **Not used for** | Reading your Mac screen, keylogging, or accessing other apps |
+
+### Automation
+
+| | |
+|---|---|
+| **Used for** | Running macOS Shortcuts for phone communication |
+| **Not used for** | Automating other Mac apps or accessing your files |
+
+### Camera
+
+| | |
+|---|---|
+| **Used for** | Capturing the phone's screen via the screencast stream |
+| **Not used for** | Your Mac's webcam, microphone, or any other camera input |
+
+## What data goes where
+
+### Local only (never leaves your Mac)
+
+- Phone screen data captured during screen streaming
+- Switch Control commands and gesture execution
+- Local app state and preferences
+
+### Sent to TapKit servers
+
+- Session metadata (start time, duration, which phone)
+- API call logs and usage tracking
+- Account and authentication data
+
+### Sent to AI providers
+
+When using integrations like Claude or Codex, screenshots and commands are sent through those providers' APIs for AI processing. TapKit doesn't store this data — it passes through to the AI provider you're using.
+
+- [Anthropic Privacy Policy](https://www.anthropic.com/privacy)
+- [OpenAI Privacy Policy](https://openai.com/privacy)
+
+## Shortcut security
+
+### Setup Shortcut
+
+The setup Shortcut (scanned via QR code during [Phone Setup](/setup/phone)) configures Switch Control and accessibility settings on your iPhone. It:
+
+- Sets Switch Control scanning mode and cursor speed
+- Configures platform switching for remote control
+- Orders menu items for gesture automation
+- Sets keyboard and timing preferences
+
+Nothing hidden — the Shortcut is effectively open source. You can inspect the full instruction list by tapping the three-dot menu on the Shortcut in the Shortcuts app.
+
+### TapKit Shortcut (runtime)
+
+The runtime Shortcut handles clipboard-based data transfer and automation actions during phone control. It uses:
+
+- Clipboard access for text transfer
+- Wi-Fi information for device discovery
+- Automation actions for executing commands
+
+This Shortcut is also fully inspectable in the Shortcuts app.
+
+## Shortcut token
+
+The Shortcut token you paste during phone setup is a restricted API key with limited access. It:
+
+- **Can** read device status and receive commands
+- **Cannot** modify account settings
+- **Cannot** access billing or payment information
+- **Cannot** create or revoke API keys
+- **Cannot** access other phones on your account
+
+It's scoped to the specific phone it's configured for.
+
+## Your phone's safety
+
+- **No jailbreaking** or iOS modifications required
+- Uses only **Apple's built-in accessibility APIs** (Switch Control)
+- Phone can be **disconnected at any time** — unplug the USB cable or close the Mac app
+- All changes are **reversible** — Switch Control settings can be reset, Shortcuts can be deleted
+- TapKit **cannot access** your phone when the Mac app isn't running
+
+## Legal and compliance
+
+- [Privacy Policy](https://tapkit.ai/privacy)
+- [Terms of Service](https://tapkit.ai/terms)
+- Security questions: [security@tapkit.ai](mailto:security@tapkit.ai)
+- General support: [support@tapkit.ai](mailto:support@tapkit.ai)

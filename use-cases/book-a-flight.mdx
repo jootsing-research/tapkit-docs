@@ -1,6 +1,41 @@
 ---
 title: Book a Flight
-description: Automate flight searches and bookings on mobile travel apps
+description: Search flights and compare options on real travel apps
 ---
 
-Coming soon.
+{/* TODO: Demo video (30-60 sec) — sped up: prompt → travel app opens → search → results → selection */}
+<Frame>
+  <div style={{ padding: "56.25% 0 0 0", position: "relative", background: "#111", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "#666", fontSize: "14px" }}>
+      Demo video coming soon
+    </div>
+  </div>
+</Frame>
+
+## What this does
+
+The agent opens a flight search app on your iPhone, enters your travel details (dates, airports, passengers), searches for available flights, and presents the best options. It navigates the real app UI — handling date pickers, pop-ups, and scrolling through results. You can stop at search results or have the agent go through to booking.
+
+## How we built it
+
+We used a native travel app rather than mobile web because native apps tend to be faster and more responsive for the agent to navigate. The prompt needs to be specific about dates and airports — vague requests like "find me a cheap flight" don't give the agent enough to work with.
+
+The agent figured out how to handle date picker widgets on its own by visually scanning the calendar UI and tapping the right dates. It also handled the usual pop-ups (cookie consent, app rating requests) without getting stuck.
+
+The trickiest part was dynamic loading — flight results sometimes load progressively, and the agent needed to scroll and wait for new results to appear before comparing prices. Some apps also rearrange results after loading completes, which occasionally confused the initial comparison.
+
+## Try it yourself
+
+Paste this into the TapKit Mac app agent or Claude with TapKit connected:
+
+> Open Google Flights and search for round-trip flights from Orlando to Denver, departing May 15 and returning May 18. Find the cheapest option and show me the results.
+
+Works with: TapKit Mac app, Claude.ai, Claude Code, any MCP client.
+
+## Tips and things to know
+
+- **Be specific with dates and airports** — include departure and return dates, origin and destination. The more specific, the better results.
+- **The agent handles pop-ups** — cookie consent, rating dialogs, and notification prompts are dismissed automatically.
+- **Log into the app first** if you want to go all the way through to booking. The agent can navigate the purchase flow, but it needs your saved payment info.
+- **Try variations** — one-way trips, multi-city, specific airlines, different travel apps. Each app has its own quirks but the agent adapts.
+- **Native apps work better** than mobile web for flight search. Safari-based booking works but is slower.

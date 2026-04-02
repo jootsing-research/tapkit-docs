@@ -1,0 +1,71 @@
+---
+title: Other MCP Clients
+description: Connect any MCP-compatible tool to TapKit
+---
+
+Any tool that speaks MCP (Model Context Protocol) can connect to TapKit. This includes Cursor, Windsurf, custom agents, and any other MCP-compatible client.
+
+## Setup
+
+Add the TapKit MCP server to your client's configuration:
+
+```json
+{
+  "mcpServers": {
+    "tapkit": {
+      "type": "http",
+      "url": "https://mcp.tapkit.ai/mcp"
+    }
+  }
+}
+```
+
+Where you add this depends on your client:
+
+- **Cursor** — add to your MCP settings in the Cursor configuration
+- **Windsurf** — add to the MCP configuration file
+- **Custom clients** — point your MCP client at `https://mcp.tapkit.ai/mcp`
+
+## Authentication
+
+When your client first connects to the TapKit MCP server, you'll be prompted to authenticate via browser. Sign in with your TapKit account and the token will be cached for future sessions.
+
+## Available tools
+
+Once connected, your client has access to all TapKit tools:
+
+| Tool | Description |
+|------|-------------|
+| `tap(x, y)` | Single tap at coordinates |
+| `double_tap(x, y)` | Double tap |
+| `long_press(x, y)` | Tap and hold |
+| `swipe(x, y, direction)` | Flick gesture |
+| `drag(from_x, from_y, to_x, to_y)` | Drag between points |
+| `hold_and_drag(from_x, from_y, to_x, to_y)` | Long press then drag |
+| `screenshot` | Capture current screen |
+| `open_app(app_name)` | Open any app by name |
+| `type_text(text)` | Type into focused field |
+| `press_home` | Go to home screen |
+| `escape` | Dismiss keyboards/alerts |
+| `lock` / `unlock` | Lock or unlock device |
+| `volume_up` / `volume_down` | Volume controls |
+| `spotlight(query?)` | Open Spotlight search |
+| `activate_siri` | Trigger Siri |
+| `get_phone_info` | Get screen dimensions |
+| `list_phones` | List connected phones |
+| `select_phone(phone_id)` | Select a specific phone |
+
+## How it works
+
+The MCP server runs as a hosted endpoint at `mcp.tapkit.ai`. You don't need to run anything locally beyond the [TapKit Mac app](/setup/mac-app) with a connected iPhone.
+
+Your MCP client connects to the server, which routes commands to the Mac app, which executes them on the phone. Screenshots are returned through the same channel.
+
+All coordinates map 1:1 with screenshot pixels. Screenshots are scaled so the longest edge is 1344px — the server handles coordinate conversion transparently.
+
+## Tips
+
+- **Auto phone selection** — if only one phone is connected, it's selected automatically. No need to call `list_phones` first.
+- **Multi-phone setups** — every tool accepts an optional `phone_id` parameter for targeting a specific phone.
+- **Text input requires focus** — tap a text field before calling `type_text`.
+- **The agent loop** — the standard pattern is: `screenshot` → reason about what's on screen → perform action → `screenshot` again to verify.

@@ -1,53 +1,66 @@
 ---
 title: Mac App Setup
-description: Install and configure the TapKit Mac companion app
+description: Install and configure the TapKit Mac app
 ---
 
-The TapKit Mac app connects your iPhone to the TapKit cloud service, enabling remote control.
+This guide walks through every step of setting up the TapKit Mac app, from download to "phone connected." If you got stuck during the [Quickstart](/quickstart), this is where you'll find the details.
 
-## Overview
+{/* TODO: Add video walkthrough (2-3 min) — screen recording of full Mac setup */}
+<Frame>
+  <div style={{ padding: "56.25% 0 0 0", position: "relative", background: "#111", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "#666", fontSize: "14px" }}>
+      Setup walkthrough video coming soon
+    </div>
+  </div>
+</Frame>
 
-The Mac app:
-- Connects to your iPhone via USB
-- Enables Switch Control for gesture execution
-- Streams screen content to the cloud
-- Executes commands from the TapKit API
+## Step 1: Download and install
 
-## Requirements
+Download the TapKit Mac app from your [dashboard](https://tapkit.ai/dashboard). Open the DMG and drag TapKit to your Applications folder.
 
-- macOS 12 (Monterey) or later
-- iPhone running iOS 16 or later
-- USB cable (Lightning or USB-C)
-- TapKit account
-- **Same Wi-Fi network** as your iPhone
-- **Bluetooth enabled**
-- **Same iCloud account** as your iPhone
+## Step 2: Sign in
 
-## Installation
+When you first launch TapKit, it opens an OAuth flow in your browser. Log in with your TapKit account (or create one). After authenticating, you'll be redirected back to the app.
 
-1. Download the TapKit Mac app from the dashboard
-2. Open the DMG and drag to Applications
-3. Launch TapKit and sign in with your account
-4. Connect your iPhone via USB
-5. Trust the Mac on your iPhone when prompted
+{/* TODO: Screenshot of the OAuth sign-in page */}
 
----
+## Step 3: Grant permissions
 
-## Switch Control Configuration
+The Mac app needs three macOS permissions to work. You'll be prompted for each one:
 
-You need to configure Switch Control in your Mac's System Settings. This sets up the keyboard keys that control Switch Control on your iPhone.
+### Accessibility
 
-Navigate to **System Settings > Accessibility > Switch Control**.
+Allows TapKit to control Switch Control and send commands to the phone. When the system dialog appears, click **Open System Settings** and enable TapKit.
 
-{/* TODO: Screenshot of System Settings > Accessibility > Switch Control path */}
+{/* TODO: Screenshot of Accessibility permission dialog */}
 
-### Setting Up Switches
+### Automation
 
-You'll configure 4 switches (keyboard keys) that map to Switch Control actions. You don't need to understand what these actions do—just set up the key assignments as shown below.
+Allows TapKit to run macOS Shortcuts for phone communication. Click **OK** when prompted.
+
+{/* TODO: Screenshot of Automation permission dialog */}
+
+### Camera
+
+Allows TapKit to capture the phone's screen via the screencast stream. Click **OK** when prompted.
+
+{/* TODO: Screenshot of Camera permission dialog */}
 
 <Note>
-These key assignments are currently required. Configurable key bindings are coming soon.
+  For a deeper explanation of why each permission is needed (and what it's *not* used for), see [Security & Privacy](/security).
 </Note>
+
+## Step 4: Switch Control configuration
+
+The app runs an automatic configuration flow that sets up the Switch Control profiles and settings needed for phone control. This happens in the background — you'll see a brief progress indicator.
+
+{/* TODO: GIF or screenshot sequence of the automatic Switch Control config */}
+
+<Info>
+  **What's happening:** TapKit is configuring keyboard switches (Tab, Escape, Control, System) that map to Switch Control actions. It also sets scanning mode, cursor speed, and menu item ordering. You don't need to do any of this manually.
+</Info>
+
+You can verify the configuration was applied by going to **System Settings > Accessibility > Switch Control** and checking that the switches are set up:
 
 | Key | Switch Control Action |
 |-----|----------------------|
@@ -56,73 +69,67 @@ These key assignments are currently required. Configurable key bindings are comi
 | **Control** | Restart Scanning |
 | **System** | Stop Scanning |
 
-{/* TODO: Screenshot of switches configuration */}
+## Step 5: Install macOS Shortcut
 
-### Auto Scanning
+The app prompts you to install a macOS Shortcut that enables communication between the Mac app and your phone. Click **Add Shortcut** when prompted.
 
-Set **Auto Scanning** to **Off**.
+{/* TODO: Screenshot of the Shortcut install prompt */}
 
-{/* TODO: Screenshot of auto scanning setting */}
+<Info>
+  This Shortcut handles clipboard-based data transfer and automation commands. It's inspectable — you can view the full instruction list in the Shortcuts app anytime.
+</Info>
 
-That's it for Switch Control configuration on the Mac.
+---
+
+## Pause: Set up your iPhone
+
+The Mac is ready. Now configure your iPhone.
+
+<Card title="Phone Setup" icon="mobile" href="/setup/phone">
+  Configure your iPhone for TapKit control — plug in, scan QR codes, enable Switch Control.
+</Card>
 
 ---
 
-## Connecting to Your iPhone
+## Step 6: Connect Mac to iPhone
 
-Once Switch Control is configured, you need to connect your Mac to your iPhone through the Switch Control system menu.
+Once phone setup is complete, come back to the Mac app. Your iPhone should appear in the sidebar. If it doesn't appear automatically:
 
-### Opening the Switch Control Menu
+1. Make sure the iPhone is still plugged in via USB
+2. Both devices should be on the same Wi-Fi network
+3. Bluetooth should be enabled on both devices
+4. Both should be signed into the same iCloud account
 
-You can open the Switch Control menu in two ways:
+When the phone appears in the sidebar, click on it to select it. The phone's screen will appear in the center panel, and you're ready to go.
 
-1. **From TapKit**: Click **Open Menu** in the TapKit Mac app
-2. **Manually**: Toggle on Switch Control in System Settings > Accessibility > Switch Control
-
-When the menu opens, you'll see a "Home" switch and a row of buttons:
-
-- Keyboard
-- Pointer
-- Dock
-- Menu Bar
-- System
-- Custom
-- Location
-- **Devices**
-
-{/* TODO: Screenshot of Switch Control menu showing the button row */}
-
-### Selecting Your iPhone
-
-Click **Devices** to see Apple devices on your network that are within reach.
-
-Your iPhone will appear in this list. It might be labeled "iPhone" or show your phone's custom name.
-
-{/* TODO: Screenshot of Devices list showing iPhone */}
-
-**How to verify it's the right device:** When you click on your phone in the list, you'll see Switch Control UI appear on your iPhone's screen. That confirms you've selected the correct device.
-
-Click **Connect** to establish the connection.
-
-{/* TODO: Screenshot of Connect button */}
-
-<Note>
-We're working on automating this connection process. For now, you'll need to connect manually through the menu. Automatic connection is coming soon.
-</Note>
-
-Once connected, Switch Control is active on your iPhone and TapKit can execute gestures.
-
----
+{/* TODO: Screenshot of Mac app showing connected phone in sidebar */}
 
 ## Troubleshooting
 
-### Mac and iPhone can't connect
+<AccordionGroup>
+  <Accordion title="macOS security warning / app won't open">
+    If macOS says the app is from an unidentified developer, right-click the app and choose **Open**, then click **Open** in the dialog. You only need to do this once.
+  </Accordion>
 
-Verify:
-- Both devices are on the **same Wi-Fi network**
-- **Bluetooth is enabled** on both devices
-- Both are signed into the **same iCloud account**
+  <Accordion title="Permission dialog didn't appear">
+    Go to **System Settings > Privacy & Security** and manually add TapKit to the relevant permission list (Accessibility, Automation, or Camera).
+  </Accordion>
 
-### Still having issues?
+  <Accordion title="Switch Control config failed">
+    Try restarting the Mac app. If the automatic configuration still fails, contact [support@tapkit.ai](mailto:support@tapkit.ai) with your macOS version and any error messages you see.
+  </Accordion>
 
-If you're experiencing problems not covered here, [contact our support team](mailto:support@tapkit.ai).
+  <Accordion title="Shortcut won't install">
+    Make sure you're running macOS 12 (Monterey) or later. If the Shortcuts app isn't installed, you can get it from the Mac App Store. Try restarting the Mac app and clicking the install prompt again.
+  </Accordion>
+
+  <Accordion title="Phone not appearing after connection">
+    Verify both devices are on the same Wi-Fi network, Bluetooth is enabled, and both are signed into the same iCloud account. Try unplugging and replugging the USB cable. If you're on a public Wi-Fi network (coffee shop, hotel), try switching to a personal hotspot.
+  </Accordion>
+
+  <Accordion title="Wi-Fi / Bonjour / network issues">
+    TapKit uses Apple's Bonjour protocol for device discovery, which requires both devices on the same local network. Public or enterprise Wi-Fi networks that isolate devices will prevent discovery. Use a home network or personal hotspot instead.
+  </Accordion>
+</AccordionGroup>
+
+If you're experiencing issues not covered here, [contact our support team](mailto:support@tapkit.ai).

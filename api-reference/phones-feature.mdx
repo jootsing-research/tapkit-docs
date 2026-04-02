@@ -1,0 +1,71 @@
+---
+title: Phones
+description: Control and manage phones via the API
+---
+
+Phones are the physical iPhones connected to your TapKit account through the Mac app. The API lets you list available phones, get device information, and perform actions on them.
+
+## How phones work in the API
+
+Every phone connected through the TapKit Mac app becomes available via the API. Each phone has a unique `phone_id` that you use to target actions.
+
+If you only have one phone connected, most endpoints auto-select it — you don't need to specify a `phone_id`.
+
+## Available actions
+
+You can perform these actions on a connected phone:
+
+### Touch gestures
+
+| Action | Endpoint | Description |
+|--------|----------|-------------|
+| Tap | `POST /phones/{id}/tap` | Single tap at coordinates |
+| Double tap | `POST /phones/{id}/double-tap` | Double tap for zoom or text selection |
+| Tap and hold | `POST /phones/{id}/tap-and-hold` | Long press for context menus |
+| Flick | `POST /phones/{id}/flick` | Fast swipe gesture |
+| Pan | `POST /phones/{id}/pan` | Slow drag gesture |
+| Drag | `POST /phones/{id}/drag` | Drag between two points |
+| Hold and drag | `POST /phones/{id}/hold-and-drag` | Long press then drag |
+| Pinch | `POST /phones/{id}/pinch` | Pinch to zoom in/out |
+
+### Device control
+
+| Action | Endpoint | Description |
+|--------|----------|-------------|
+| Home | `POST /phones/{id}/home` | Go to home screen |
+| Lock | `POST /phones/{id}/lock` | Lock the device |
+| Unlock | `POST /phones/{id}/unlock` | Unlock the device |
+| Volume | `POST /phones/{id}/volume` | Adjust volume up/down |
+| Rotate | `POST /phones/{id}/rotate` | Rotate screen orientation |
+| Spotlight | `POST /phones/{id}/spotlight` | Open Spotlight search |
+| Siri | `POST /phones/{id}/siri` | Activate Siri |
+
+### App control
+
+| Action | Endpoint | Description |
+|--------|----------|-------------|
+| Open app | `POST /phones/{id}/open-app` | Open any app by name or bundle ID |
+| Type text | `POST /phones/{id}/type` | Type into the focused text field |
+| Screenshot | `POST /phones/{id}/screenshot` | Capture the current screen |
+| Run shortcut | `POST /phones/{id}/shortcut` | Run an iOS Shortcut |
+
+## Coordinate system
+
+All touch actions use pixel coordinates that map 1:1 with screenshot pixels. Screenshots are scaled so the longest edge is 1344px. The API handles native-to-scaled coordinate conversion transparently.
+
+For example, if a screenshot shows a button at position (300, 672), you send `{"x": 300, "y": 672}` to the tap endpoint.
+
+## Selector-based actions
+
+Many touch actions also support a **selector** variant (e.g., `tap-select`, `drag-select`) that lets you target elements by description rather than coordinates. This is useful when you know what you want to tap but not exactly where it is.
+
+See the individual endpoint pages for details on selector parameters.
+
+## Device management
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /phones` | List all connected phones |
+| `GET /phones/{id}` | Get phone info (name, screen size, status) |
+| `GET /phones/{id}/settings` | Get phone settings |
+| `PUT /phones/{id}/settings` | Update phone settings |

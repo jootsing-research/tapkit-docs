@@ -17,25 +17,22 @@
             "group": "Getting Started",
             "pages": [
               "index",
-              "quickstart",
-              "authentication"
+              "quickstart"
             ]
           },
           {
             "group": "Setup",
             "pages": [
               "setup/mac-app",
-              "setup/phone",
-              "setup/shortcuts",
-              "setup/claude-code"
+              "setup/phone"
             ]
           },
           {
-            "group": "Features",
+            "group": "Reference",
             "pages": [
-              "features/vision-control",
-              "features/live-streaming",
-              "features/mcp"
+              "mac-app",
+              "dashboard",
+              "security"
             ]
           },
           {
@@ -46,6 +43,97 @@
               "use-cases/order-dinner",
               "use-cases/dating-apps",
               "use-cases/qa-testing"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Integrations",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "integrations/overview"
+            ]
+          },
+          {
+            "group": "Claude",
+            "pages": [
+              "integrations/claude"
+            ]
+          },
+          {
+            "group": "Codex",
+            "pages": [
+              "integrations/codex"
+            ]
+          },
+          {
+            "group": "Other Platforms",
+            "pages": [
+              "integrations/openclaw",
+              "integrations/other-mcp-clients"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Features",
+            "pages": [
+              "api-reference/sessions",
+              "api-reference/phones-feature"
+            ]
+          },
+          {
+            "group": "Status",
+            "pages": [
+              "api-reference/status/get-status"
+            ]
+          },
+          {
+            "group": "Devices",
+            "pages": [
+              "api-reference/phones/list-phones",
+              "api-reference/phones/get-info",
+              "api-reference/phones/get-settings",
+              "api-reference/phones/update-settings"
+            ]
+          },
+          {
+            "group": "Actions",
+            "pages": [
+              "api-reference/phones/tap",
+              "api-reference/phones/double-tap",
+              "api-reference/phones/tap-and-hold",
+              "api-reference/phones/flick",
+              "api-reference/phones/pan",
+              "api-reference/phones/drag",
+              "api-reference/phones/hold-and-drag",
+              "api-reference/phones/pinch",
+              "api-reference/phones/screenshot",
+              "api-reference/phones/open-app",
+              "api-reference/phones/type-text",
+              "api-reference/phones/shortcut",
+              "api-reference/phones/home",
+              "api-reference/phones/escape",
+              "api-reference/phones/lock",
+              "api-reference/phones/unlock",
+              "api-reference/phones/rotate",
+              "api-reference/phones/volume",
+              "api-reference/phones/spotlight",
+              "api-reference/phones/siri",
+              "api-reference/phones/app-switcher",
+              "api-reference/phones/control-center",
+              "api-reference/phones/action-button"
             ]
           }
         ]
@@ -119,77 +207,6 @@
             "pages": [
               "sdk/integrations/oagi",
               "sdk/integrations/cua"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "Overview",
-            "pages": [
-              "api-reference/introduction",
-              "api-reference/authentication"
-            ]
-          },
-          {
-            "group": "Status",
-            "pages": [
-              "api-reference/status/get-status"
-            ]
-          },
-          {
-            "group": "Phones",
-            "pages": [
-              "api-reference/phones/list-phones",
-              "api-reference/phones/get-info",
-              "api-reference/phones/get-settings",
-              "api-reference/phones/update-settings",
-              "api-reference/phones/screenshot"
-            ]
-          },
-          {
-            "group": "Gestures",
-            "pages": [
-              "api-reference/phones/tap",
-              "api-reference/phones/tap-select",
-              "api-reference/phones/double-tap",
-              "api-reference/phones/double-tap-select",
-              "api-reference/phones/tap-and-hold",
-              "api-reference/phones/tap-and-hold-select",
-              "api-reference/phones/flick",
-              "api-reference/phones/flick-select",
-              "api-reference/phones/pan",
-              "api-reference/phones/drag",
-              "api-reference/phones/drag-select",
-              "api-reference/phones/hold-and-drag",
-              "api-reference/phones/pinch",
-              "api-reference/phones/pinch-select"
-            ]
-          },
-          {
-            "group": "Device Actions",
-            "pages": [
-              "api-reference/phones/home",
-              "api-reference/phones/escape",
-              "api-reference/phones/lock",
-              "api-reference/phones/unlock",
-              "api-reference/phones/rotate",
-              "api-reference/phones/volume",
-              "api-reference/phones/spotlight",
-              "api-reference/phones/siri",
-              "api-reference/phones/app-switcher",
-              "api-reference/phones/control-center",
-              "api-reference/phones/action-button"
-            ]
-          },
-          {
-            "group": "App Control",
-            "pages": [
-              "api-reference/phones/open-app",
-              "api-reference/phones/type-text",
-              "api-reference/phones/shortcut"
             ]
           }
         ]

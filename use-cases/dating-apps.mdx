@@ -3,4 +3,40 @@ title: Dating App Automation
 description: Automate swiping, matching, and messaging on dating apps
 ---
 
-Coming soon.
+{/* TODO: Demo video (30-60 sec) — sped up: prompt → dating app → profile browse → swipe decisions → match */}
+<Frame>
+  <div style={{ padding: "56.25% 0 0 0", position: "relative", background: "#111", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "#666", fontSize: "14px" }}>
+      Demo video coming soon
+    </div>
+  </div>
+</Frame>
+
+## What this does
+
+The agent opens a dating app on your iPhone, browses profiles, and makes swiping decisions based on your preferences. It can read profile text, look at photos, and decide whether to like or pass. When matches happen, it can send opening messages based on what it learned from the profile.
+
+## How we built it
+
+We tested primarily with Hinge, which has a card-based profile layout that works well with vision-based AI. The prompt described what to look for — interests, lifestyle preferences, deal-breakers — and the agent made decisions based on the visible profile content.
+
+The agent was surprisingly good at reading profile prompts and bios. It could identify shared interests and make reasonable decisions about compatibility based on the text and photos it saw.
+
+The trickiest part was the timing — dating apps sometimes have rate limits or animation delays between swipes. We tuned the agent to wait for transitions to complete before acting on the next profile. The agent also needed to handle "out of likes" screens and in-app promotions gracefully.
+
+## Try it yourself
+
+Paste this into the TapKit Mac app agent or Claude with TapKit connected:
+
+> Open Hinge and browse 10 profiles. Like people who seem active and outdoorsy, and pass on profiles without bios. If we match with someone, send a friendly opening message that references something from their profile.
+
+Works with: TapKit Mac app, Claude.ai, Claude Code, any MCP client.
+
+## Tips and things to know
+
+- **Be specific about preferences** — the more detail you give about what you're looking for, the better the agent's decisions. "Active and outdoorsy" is better than "find me someone cool."
+- **The agent reads profile text** — it can parse bios, prompts, and job titles. Use this to set specific criteria.
+- **Set a limit** — "browse 10 profiles" or "spend 5 minutes" prevents the agent from running indefinitely.
+- **Messaging works well** — the agent can draft personalized opening messages based on profile content it's already seen.
+- **Log in first** — the agent needs your dating app account set up and logged in before it can browse.
+- **Different apps, different UIs** — Hinge's card layout works best. Tinder's swipe-based UI also works but with slightly different gestures. Bumble works similarly to Hinge.

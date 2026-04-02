@@ -1,129 +1,78 @@
 ---
 title: Quickstart
-description: Get up and running with TapKit in 20 minutes
+description: Control your first iPhone in minutes
 ---
 
-This guide will walk you through setting up TapKit and executing your first actions on an iPhone.
+This guide walks you through the fastest path from zero to controlling an iPhone with TapKit. Each step links to a detailed setup page if you need more help.
 
-## Prerequisites
+## Step 1: Create an account
 
-Before you begin, you'll need:
+Sign up at [tapkit.ai](https://tapkit.ai) and grab your API key from the dashboard.
 
-- A TapKit account with an API key
-- Python 3.9 or later
-- The TapKit Mac app installed and running ([setup guide](/setup/mac-app))
-- An iPhone connected via the Mac app ([phone setup](/setup/phone))
+<Card title="Open Dashboard" icon="arrow-up-right-from-square" href="https://tapkit.ai/dashboard">
+  Sign up or sign in to get your API key.
+</Card>
 
-## Step 1: Install the SDK
+## Step 2: Download the Mac app
 
-Install the TapKit Python SDK:
+The TapKit Mac app is the host that connects physical iPhones to your account. Download it, install it, and sign in.
 
-```bash
-pip install tapkit
-```
+1. Download the TapKit Mac app from your [dashboard](https://tapkit.ai/dashboard)
+2. Open the DMG and drag TapKit to Applications
+3. Launch TapKit and sign in with your account
 
-## Step 2: Set up your API key
+<Note>
+  Need help? See the full [Mac App Setup guide](/setup/mac-app) for detailed instructions including permissions and troubleshooting.
+</Note>
 
-You can provide your API key in two ways:
+## Step 3: Connect an iPhone
 
-<Tabs>
-  <Tab title="Environment variable">
-    ```bash
-    export TAPKIT_API_KEY="your-api-key"
-    ```
-  </Tab>
-  <Tab title="Direct initialization">
-    ```python
-    from tapkit import TapKitClient
+Plug your iPhone into your Mac via USB and follow the setup flow:
 
-    client = TapKitClient(api_key="your-api-key")
-    ```
-  </Tab>
-</Tabs>
+1. **Plug in your iPhone** via USB — the Mac app detects it automatically
+2. **Trust the connection** when prompted on both devices
+3. **Scan the QR code** shown in the Mac app with your iPhone camera — this runs the setup Shortcut that configures your phone's settings
+4. **Enable Switch Control** when directed at the end of the setup flow
+5. **Add the TapKit Shortcut** by scanning the second QR code and following the prompts
 
-## Step 3: Connect to your phone
+<Note>
+  For detailed instructions with screenshots, see the full [Phone Setup guide](/setup/phone).
+</Note>
 
-```python
-from tapkit import TapKitClient
+## Step 4: Run your first task
 
-# Initialize the client
-client = TapKitClient()
+Your Mac app is open and your phone is connected. Use the built-in agent — type a natural language command and watch the phone do it:
 
-# Get your phone (works when you have one phone connected)
-phone = client.get_phone()
+> "Open Safari and search for the weather in San Francisco"
 
-print(f"Connected to {phone.name}")
-print(f"Screen size: {phone.width}x{phone.height}")
-```
+The agent takes a screenshot, reasons about what it sees, performs an action, and repeats — all visible in real-time on the phone screen.
 
-## Step 4: Execute your first action
+## Step 5: Integrate with your AI tools
 
-Let's tap the center of the screen:
+Now that you've seen TapKit in action, connect it to the tools you already use:
 
-```python
-# Tap the center of the screen
-phone.tap(phone.screen.center)
-```
+- **Claude.ai / Co-work** — add TapKit as an MCP connector in Claude settings, zero code required
+- **Claude Code** — install the TapKit plugin for terminal-based iPhone control
+- **Codex** — connect via the Codex CLI or app (coming soon)
+- **Any MCP client** — point your client at TapKit's MCP server URL
 
-## Step 5: Capture a screenshot
+<Card title="See all integrations" icon="plug" href="/integrations/overview">
+  Detailed setup instructions for every supported platform.
+</Card>
 
-```python
-# Take a screenshot
-screenshot = phone.screenshot()
-
-# Save it to a file
-with open("screen.png", "wb") as f:
-    f.write(screenshot)
-```
-
-## Complete Example
-
-Here's a complete script that opens Safari and navigates to a website:
-
-```python
-from tapkit import TapKitClient
-import time
-
-# Initialize
-client = TapKitClient()
-phone = client.get_phone()
-
-# Go to home screen
-phone.home()
-time.sleep(0.5)
-
-# Tap on Safari icon (assumes it's on home screen)
-phone.tap("Safari")
-time.sleep(1)
-
-# Tap the address bar (top of screen)
-phone.tap((phone.width // 2, 80))
-time.sleep(0.3)
-
-# Type a URL
-phone.type_text("example.com")
-
-# Take a screenshot
-screenshot = phone.screenshot()
-with open("safari.png", "wb") as f:
-    f.write(screenshot)
-
-print("Done! Check safari.png")
-```
-
-## Next Steps
+## Next steps
 
 <CardGroup cols={2}>
-  <Card title="Authentication" icon="key" href="/authentication">
-    Learn about API keys and authentication
+  <Card title="Integrations" icon="plug" href="/integrations/overview">
+    Connect TapKit to Claude, Codex, and other AI tools.
   </Card>
-  <Card title="Touch Actions" icon="hand-pointer" href="/sdk/gestures">
-    Explore tap, swipe, and drag gestures
+  <Card title="Use Cases" icon="lightbulb" href="/use-cases/book-a-flight">
+    See what you can build with copy-paste-ready prompts.
   </Card>
-  <Card title="Device Control" icon="mobile" href="/sdk/device">
-    Control home, lock, volume, and more
+  <Card title="Mac App" icon="desktop" href="/mac-app">
+    Learn the Mac app interface and features.
   </Card>
-  <Card title="SDK Reference" icon="code" href="/sdk/client">
-    Deep dive into the SDK client
+  <Card title="API Reference" icon="code" href="/api-reference/introduction">
+    Build custom integrations with the REST API.
   </Card>
 </CardGroup>

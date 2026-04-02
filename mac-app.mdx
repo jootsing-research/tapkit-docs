@@ -1,0 +1,68 @@
+---
+title: Mac App
+description: The host app that makes your phones available
+---
+
+The TapKit Mac app is the host that connects physical iPhones to your TapKit account, making them available to any integration — Claude, Codex, the API, or any MCP client. No Mac app running, no phone access.
+
+{/* TODO: Annotated screenshot of the full app window with callouts */}
+
+## Sidebar (left)
+
+### Device list
+
+Connected phones appear in the sidebar. Each phone shows its name and connection status. Click a phone to select it as the active device — its screen appears in the center panel.
+
+### Gestures
+
+Below the device list, the Gestures section shows available touch gestures and device actions. You can trigger these manually by clicking them — useful for testing or quick one-off actions without writing prompts.
+
+### Switch Control
+
+At the bottom left, the Switch Control tab shows the connection status. Toggle it on/off to control whether Switch Control is active on the connected phone.
+
+## Status indicators (top left)
+
+Five indicators at the top left show system status at a glance:
+
+{/* TODO: Screenshot zoomed in on the 5 status indicators */}
+
+Each indicator shows whether a component is connected and healthy. Green means working, red means disconnected or errored. Hover over any indicator for more detail.
+
+## Phone view (center)
+
+The center panel shows a live feed of the selected phone's screen. During an active task, you'll see the agent's actions happen in real-time — taps, swipes, typing, and navigation.
+
+The screen updates continuously so you always know what the agent is doing and can intervene if needed.
+
+## Agent chat (right)
+
+The right panel is a built-in agent interface. Type a natural language prompt — like "Open Settings and turn on Dark Mode" — and the agent will execute it on the phone.
+
+The chat shows:
+- Your prompts
+- The agent's reasoning and actions
+- Screenshots taken during execution
+- The final result
+
+This is the fastest way to test TapKit without setting up any external integrations.
+
+## Settings
+
+<AccordionGroup>
+  <Accordion title="Account">
+    View your account details, sign out, or switch accounts.
+  </Accordion>
+
+  <Accordion title="Phone management">
+    Add or remove phones from your account. View phone details and connection history.
+  </Accordion>
+
+  <Accordion title="API key">
+    View or copy your API key. Links to the dashboard for key management.
+  </Accordion>
+
+  <Accordion title="Preferences">
+    Configure app-level preferences like startup behavior and notifications.
+  </Accordion>
+</AccordionGroup>

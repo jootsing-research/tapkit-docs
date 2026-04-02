@@ -1,9 +1,9 @@
 ---
-title: API Reference
+title: API Overview
 description: TapKit REST API documentation
 ---
 
-The TapKit REST API provides programmatic access to control iPhones. All endpoints are accessed via HTTPS at `https://api.tapkit.ai/v1`.
+The TapKit REST API gives you programmatic control over real iPhones. Everything in TapKit happens inside a **session** — a complete agent-controlled phone interaction.
 
 ## Base URL
 
@@ -13,16 +13,20 @@ https://api.tapkit.ai/v1
 
 ## Authentication
 
-All API endpoints require authentication via API key in the `X-API-Key` header:
+All API endpoints require an API key in the `X-API-Key` header:
 
 ```bash
 curl https://api.tapkit.ai/v1/phones \
   -H "X-API-Key: TK_your_api_key"
 ```
 
-See [Authentication](/api-reference/authentication) for details.
+Get your API key from the [TapKit dashboard](https://tapkit.ai/dashboard). Keys always start with `TK_` followed by a random string.
 
-## Response Format
+<Warning>
+  API keys are sensitive credentials. Never commit them to version control or expose them in client-side code. Use environment variables instead.
+</Warning>
+
+## Response format
 
 All responses are JSON. Successful responses return the requested data:
 
@@ -35,7 +39,7 @@ All responses are JSON. Successful responses return the requested data:
 }
 ```
 
-## Error Responses
+## Error responses
 
 Errors return a consistent format:
 
@@ -47,8 +51,6 @@ Errors return a consistent format:
 }
 ```
 
-### Common Error Codes
-
 | Code | HTTP Status | Description |
 |------|-------------|-------------|
 | `INVALID_API_KEY` | 401 | API key is invalid or revoked |
@@ -57,13 +59,13 @@ Errors return a consistent format:
 | `MAC_APP_NOT_RUNNING` | 400 | Mac companion app is offline |
 | `TIMEOUT` | 408 | Operation timed out |
 
-## Sync vs Async Mode
+## Sync vs async mode
 
-Most action endpoints support both synchronous and asynchronous execution:
+Most action endpoints support both synchronous and asynchronous execution.
 
-### Synchronous (Default)
+### Synchronous (default)
 
-Request blocks until action completes:
+Request blocks until the action completes:
 
 ```bash
 curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/tap \
@@ -71,8 +73,6 @@ curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/tap \
   -H "Content-Type: application/json" \
   -d '{"x": 100, "y": 200}'
 ```
-
-Returns:
 
 ```json
 {
@@ -86,7 +86,7 @@ Returns:
 
 ### Asynchronous
 
-Add `?async=true` to return immediately with job ID:
+Add `?async=true` to return immediately with a job ID:
 
 ```bash
 curl -X POST "https://api.tapkit.ai/v1/phones/{phone_id}/tap?async=true" \
@@ -94,8 +94,6 @@ curl -X POST "https://api.tapkit.ai/v1/phones/{phone_id}/tap?async=true" \
   -H "Content-Type: application/json" \
   -d '{"x": 100, "y": 200}'
 ```
-
-Returns:
 
 ```json
 {
@@ -105,19 +103,19 @@ Returns:
 
 Poll `GET /v1/jobs/{job_id}` to check status.
 
-## API Sections
+## What's next
 
 <CardGroup cols={2}>
-  <Card title="Authentication" icon="key" href="/api-reference/authentication">
-    API key authentication details
+  <Card title="Sessions" icon="play" href="/api-reference/sessions">
+    Understand the core concept — how agent-controlled phone interactions work.
   </Card>
-  <Card title="Status" icon="signal" href="/api-reference/status/get-status">
-    System status endpoint
+  <Card title="Phones" icon="mobile" href="/api-reference/phones-feature">
+    Learn what you can control on a phone via the API.
   </Card>
-  <Card title="Phones" icon="mobile" href="/api-reference/phones/list-phones">
-    Phone management and info
+  <Card title="Devices" icon="list" href="/api-reference/phones/list-phones">
+    List and manage connected phones.
   </Card>
-  <Card title="Gestures" icon="hand-pointer" href="/api-reference/phones/tap">
-    Touch gesture endpoints
+  <Card title="Actions" icon="hand-pointer" href="/api-reference/phones/tap">
+    Explore touch gestures, screenshots, and device control.
   </Card>
 </CardGroup>

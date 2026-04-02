@@ -1,6 +1,48 @@
 ---
 title: QA Testing
-description: Run automated end-to-end tests on real iPhones against production apps
+description: Run end-to-end tests on real iPhones against production apps
 ---
 
-Coming soon.
+{/* TODO: Demo video (30-60 sec) — sped up: prompt → app opens → test flow → verification → results */}
+<Frame>
+  <div style={{ padding: "56.25% 0 0 0", position: "relative", background: "#111", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "#666", fontSize: "14px" }}>
+      Demo video coming soon
+    </div>
+  </div>
+</Frame>
+
+## What this does
+
+The agent runs end-to-end test flows on your iPhone against real production apps — or your own app in development. It follows a test script, verifies expected behavior at each step, and reports pass/fail results. Because it runs on a real device, you're testing against the actual app experience, not a simulated version.
+
+## How we built it
+
+We wrote test prompts as natural language scripts describing the steps and expected outcomes. For example: "Open the app, tap Sign In, enter test credentials, verify the home screen loads, tap the profile icon, verify the profile name matches."
+
+The agent executes each step, takes a screenshot, verifies the expected state, and moves on. If something doesn't match expectations, it reports what it saw instead of what was expected.
+
+This approach works particularly well for:
+- **Smoke testing** after a release — quickly verify critical flows work
+- **Cross-app testing** — test interactions between your app and other apps (deeplinks, share sheets)
+- **Third-party app testing** — verify your app works correctly on real iOS, not just simulators
+- **Regression testing** — run the same test script across app versions
+
+The biggest advantage over traditional automation frameworks: no test IDs, no XCUITest setup, no simulator configuration. The agent just looks at the screen and acts.
+
+## Try it yourself
+
+Paste this into the TapKit Mac app agent or Claude with TapKit connected:
+
+> Open Safari. Navigate to example.com. Verify the page loads and contains the heading "Example Domain." Tap the "More information..." link. Verify the new page loads. Take a screenshot and report whether each step passed.
+
+Works with: TapKit Mac app, Claude.ai, Claude Code, any MCP client.
+
+## Tips and things to know
+
+- **Write test prompts like scripts** — describe each step and what you expect to see. "Tap X, verify Y appears, tap Z" is the pattern.
+- **The agent takes verification screenshots** — it compares what it sees to what you described. Include specific text or UI elements to look for.
+- **Works on any app** — unlike XCUITest, the agent doesn't need accessibility IDs or test hooks. If a human can see it on screen, the agent can verify it.
+- **Combine with the API for automation** — use the [Sessions API](/api-reference/sessions) to run tests programmatically on a schedule.
+- **Real devices catch real bugs** — simulators miss issues with performance, network conditions, and hardware-specific behavior. Testing on a real phone finds the bugs your users will hit.
+- **Great for manual test replacement** — if you have a QA checklist that someone runs through manually, the agent can follow the same steps.

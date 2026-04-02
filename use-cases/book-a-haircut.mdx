@@ -1,6 +1,41 @@
 ---
 title: Book a Haircut
-description: Automate appointment booking on salon and barbershop apps
+description: Find and book appointments at local salons and barbershops
 ---
 
-Coming soon.
+{/* TODO: Demo video (30-60 sec) — sped up: prompt → booking app → search → salon selection → time slot → confirmation */}
+<Frame>
+  <div style={{ padding: "56.25% 0 0 0", position: "relative", background: "#111", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "#666", fontSize: "14px" }}>
+      Demo video coming soon
+    </div>
+  </div>
+</Frame>
+
+## What this does
+
+The agent opens a salon booking app on your iPhone, searches for available appointments near you, selects a stylist and time slot, and books the appointment. It handles the full flow — browsing salons, picking services, choosing a date and time, and confirming the booking.
+
+## How we built it
+
+We used a booking app (like Booksy or Vagaro) that has a solid mobile experience. The prompt included the type of service, preferred date and time, and location preferences.
+
+The agent handled the multi-step booking flow surprisingly well — selecting service type from a menu, scrolling through available time slots, and tapping the right date on a calendar view. The visual layout of these apps is actually pretty consistent, which helps the agent navigate.
+
+The trickiest part was when the app asked the user to select from a list of stylists — the agent needed to scroll through profiles and make a reasonable selection. We found that including a preference in the prompt ("anyone available" or "the first available") helped the agent move through this step faster.
+
+## Try it yourself
+
+Paste this into the TapKit Mac app agent or Claude with TapKit connected:
+
+> Open Booksy and book a men's haircut for Saturday at 2pm. Pick the closest barbershop with availability and book with whoever is free.
+
+Works with: TapKit Mac app, Claude.ai, Claude Code, any MCP client.
+
+## Tips and things to know
+
+- **Include the service type** — "men's haircut," "women's cut and color," "beard trim." Booking apps organize by service, so being specific gets you to the right screen faster.
+- **Specify date and time preferences** — "Saturday at 2pm" or "any morning this week." Without a time preference, the agent has to guess.
+- **Log in first** if you have an existing account — your saved addresses and payment info make the booking flow smoother.
+- **The agent can compare options** — ask it to "find the highest-rated barbershop nearby" and it'll browse reviews before booking.
+- **Works across booking apps** — Booksy, Vagaro, Fresha, and similar salon booking platforms all work well.

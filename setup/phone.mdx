@@ -1,302 +1,147 @@
 ---
 title: Phone Setup
-description: Configure your iPhone for TapKit
+description: Configure your iPhone for TapKit control
 ---
 
-Set up your iPhone to work with TapKit by configuring Switch Control.
+This guide covers everything you need to configure your iPhone for TapKit. It's the detailed version of Quickstart Step 3.
 
-## Overview
+<Info>
+  **Prerequisite:** Complete [Mac App Setup](/setup/mac-app) first. You'll need a USB cable to connect your iPhone to your Mac.
+</Info>
 
-TapKit uses iOS Switch Control to execute gestures on your iPhone. This requires specific configuration to ensure reliable automation.
+{/* TODO: Add video walkthrough (3-4 min) — Mac app + phone screen side by side */}
+<Frame>
+  <div style={{ padding: "56.25% 0 0 0", position: "relative", background: "#111", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "#666", fontSize: "14px" }}>
+      Phone setup walkthrough video coming soon
+    </div>
+  </div>
+</Frame>
 
-## Requirements
+## Step 1: Plug in your iPhone
 
-- iPhone running iOS 16 or later
-- USB cable (for initial setup)
-- Mac with TapKit app installed
-- **Same Wi-Fi network** on both Mac and iPhone
-- **Bluetooth enabled** on both devices
-- **Same iCloud account** signed in on both devices
+Connect your iPhone to your Mac via USB. The Mac app detects the phone automatically.
 
-<Warning>
-Your Mac and iPhone must be on the same Wi-Fi network, have Bluetooth on, and be signed into the same iCloud account. Without these, Switch Control cannot communicate between devices.
-</Warning>
+## Step 2: Trust and authorize
 
-## Switch Control Configuration
+You may see one or both of these prompts:
 
-Navigate to **Settings > Accessibility > Switch Control** on your iPhone.
-
-{/* TODO: Screenshot of Settings > Accessibility path */}
-
-### Switches
-
-You should see 4 switches configured here. These are created automatically when you connect your phone to the TapKit Mac app.
-
-{/* TODO: Screenshot of switches list showing 4 switches */}
-
-### Scanning Style
-
-Set to **Manual Scanning**.
-
-| Option | Set To |
-|--------|--------|
-| Auto Scanning | - |
-| Manual Scanning | **Selected** |
-| Single Switch Step Scanning | - |
-
-{/* TODO: Screenshot of scanning style selection */}
-
-### Mode
-
-Set to **Gliding Cursor**.
-
-| Option | Set To |
-|--------|--------|
-| Item Mode | - |
-| Gliding Cursor | **Selected** |
-| Head Tracking | - |
-
-{/* TODO: Screenshot of mode selection */}
-
-### Timing
-
-| Setting | Value |
-|---------|-------|
-| Auto Hide | **Off** |
-| Move Repeat | **1 second** (On) |
-| Focused Item After Tap | **First Item** |
-
-The "Focused Item After Tap" options are "First Item" or "Current Item" - select **First Item**.
-
-{/* TODO: Screenshot of timing settings */}
-
-### Keyboard
-
-| Setting | Value |
-|---------|-------|
-| Scan Same Key | **Off** |
-| Always Tap Keyboard Keys | **On** |
-| Extended Predictions | **On** |
+- **On iPhone:** "Trust This Computer?" — tap **Trust** and enter your passcode
+- **On Mac:** "Allow this phone to connect?" — click **Allow**
 
 <Note>
-Extended Predictions may not be required - we're still determining if this affects automation.
+  These prompts don't always appear (especially if you've connected before). If the Mac app doesn't recognize your phone after approving, unplug and replug the USB cable.
 </Note>
 
-{/* TODO: Screenshot of keyboard settings */}
+## Step 3: Headphone popup
 
-### Switch Stabilization
+A popup appears on your iPhone asking if the connected device is headphones or another device. Tap **Other Device**.
 
-Set to **Off**.
+{/* TODO: Screenshot of the headphone popup */}
 
-### Ignore Repeat
+<Info>
+  **Why this happens:** TapKit uses screen sharing to see the phone, which routes audio through the Mac. iOS interprets this as an audio device connection. This is normal Apple system behavior.
+</Info>
 
-Set to **Off**.
+### Things that might look weird
 
-### Point Scanning
+Don't worry if you notice these — they're cosmetic:
 
-<Warning>
-These settings are critical for TapKit to work correctly.
-</Warning>
+- **Clock shows 9:41** — your phone enters Apple's presentation mode because of the screencast. This is normal.
+- **Headphone icon in status bar** — same audio routing reason. Goes away when you disconnect.
 
-| Setting | Value |
-|---------|-------|
-| Gliding Cursor | **On** |
-| Selection Mode | **Single** |
-| Gliding Cursor Speed | **30** |
+## Step 4: Run the setup Shortcut
 
-Selection Mode options are Single, Refine, or Precise - select **Single**.
+The Mac app shows a QR code on screen. Scan it with your iPhone camera. This opens the TapKit setup Shortcut.
+
+Tap **Run** to execute the Shortcut. It automatically configures a series of iOS settings:
+
+- Switch Control settings and scanning mode
+- Platform switching for remote control
+- Accessibility preferences
+- Menu item ordering for gesture automation
+
+{/* TODO: Screenshot of QR code in Mac app and Shortcut running on iPhone */}
 
 <Note>
-Support for faster gliding cursor speeds is planned. For now, set to 30.
+  The setup Shortcut only changes Switch Control and accessibility settings. You can inspect exactly what it does by tapping the three-dot menu on the Shortcut in the Shortcuts app.
 </Note>
 
-{/* TODO: Screenshot of point scanning settings */}
+## Step 5: Enable Switch Control
 
-### Head Tracking
-
-Set to **Off**.
-
-### Audio
-
-| Setting | Value |
-|---------|-------|
-| Sound Effects | **Off** |
-| Speech | **Off** |
-
-### Visual
-
-| Setting | Value |
-|---------|-------|
-| Large Cursors | **Off** |
-| Cursor Color | **Blue** |
-
----
-
-## Menu Items Configuration
-
-<Warning>
-Menu Items configuration is critical for automation. The order of items determines how TapKit navigates the Switch Control menu.
-</Warning>
-
-When using Switch Control, you scan horizontally, then vertically, and a menu appears. TapKit needs these menu items in a specific order to automate reliably.
-
-First, set **Group Items** to **Off**.
-
-Navigate to each menu category and configure the items in the exact order listed below.
-
-{/* TODO: Screenshot of Menu Items main screen */}
-
-### Top Level
-
-Select and order these items:
-
-1. Gestures
-2. Home
-3. Device
-4. Settings
-5. Recipes
-6. Shortcuts
-7. Element Specific Actions
-
-{/* TODO: Screenshot of Top Level menu items */}
-
-### Gestures
-
-Select and order these items:
-
-1. Tap
-2. Flick
-3. Pan
-4. Pinch
-5. Tap and Hold
-6. Drag
-7. Hold and Drag
-8. Direct Touch
-9. Double Tap
-10. Freehand Fingers
-
-{/* TODO: Screenshot of Gestures menu items */}
-
-### Device
-
-Select and order these items:
-
-1. App Switcher
-2. Notification Center
-3. Control Center
-4. Lock Screen
-5. Rotate Screen
-6. Volume Up
-7. Volume Down
-8. Spotlight Search
-9. Siri
-10. Accessibility Shortcut
-11. Type to Siri
-12. Shake
-13. Screenshot
-14. Speak Screen
-15. SOS
-16. Apple Pay
-17. Use Other Devices
-18. Voice Control
-19. Analytics
-20. Restart
-
-{/* TODO: Screenshot of Device menu items */}
-
-### Settings
-
-<Note>
-Settings menu item order documentation coming soon.
-</Note>
-
-### Media Controls
-
-<Note>
-Media Controls menu item order documentation coming soon.
-</Note>
-
----
-
-## Enabling Switch Control
-
-After configuring all the settings above, Switch Control still needs to be **turned on** for TapKit to work.
-
-<Warning>
-There is no off switch inside the Switch Control menu itself. You must toggle it on/off from the main Switch Control screen or use a shortcut.
-</Warning>
-
-To enable Switch Control:
+At the end of the setup Shortcut, you'll be directed to manually turn on Switch Control:
 
 1. Go to **Settings > Accessibility > Switch Control**
 2. Toggle **Switch Control** to **On** at the top of the screen
 3. The gliding cursor should appear on screen
 
-### Using the Action Button (Recommended)
+<Warning>
+  Switch Control must be on for TapKit to work. If you turn it off, TapKit won't be able to control the phone.
+</Warning>
 
-If you're using TapKit on your primary phone, we recommend assigning a shortcut to quickly toggle Switch Control on and off using your iPhone's **Action Button** (iPhone 15 Pro and later).
+## Step 6: Add the TapKit Shortcut
 
-{/* TODO: Add link to shortcut download and Action Button setup instructions */}
+Scan the second QR code shown in the Mac app. This opens the TapKit website in a logged-in state.
 
-This lets you quickly enable Switch Control when running automations and disable it when using your phone normally.
+1. Tap **Add Shortcut** to install the TapKit runtime Shortcut
+2. When prompted, paste your **Shortcut token** (displayed on the setup page)
+3. Run the Shortcut once and approve any permission popups
+
+<div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
+  <img src="/images/setup/shortcut-setup-page.png" alt="TapKit shortcut setup page" style={{ width: '32%', borderRadius: '8px' }} />
+  <img src="/images/setup/shortcut-add-prompt.jpeg" alt="iOS prompt to add shortcut" style={{ width: '32%', borderRadius: '8px' }} />
+  <img src="/images/setup/shortcut-enter-key.png" alt="Enter shortcut key during setup" style={{ width: '32%', borderRadius: '8px' }} />
+</div>
+
+<Info>
+  **About the Shortcut token:** This is a restricted API key with limited read-only access. It cannot modify your account settings or access sensitive data. See [Security & Privacy](/security) for details.
+</Info>
+
+<Warning>
+  The TapKit Shortcut must be the **first shortcut** in your Shortcuts app. If you have other shortcuts, open the Shortcuts app, tap Edit, and drag TapKit to the first position.
+</Warning>
 
 ---
 
-## Verification
+## Done
 
-After enabling Switch Control, verify everything is working:
+Your phone is set up. The Mac app should show your phone as connected and ready.
 
-1. Switch Control should be toggled **On**
-2. You should see the gliding cursor appear on screen
-3. The TapKit Mac app should show your phone as connected and ready
+<CardGroup cols={2}>
+  <Card title="Run your first task" icon="rocket" href="/quickstart#step-4-run-your-first-task">
+    Go back to the Quickstart and try your first command.
+  </Card>
+  <Card title="Integrations" icon="plug" href="/integrations/overview">
+    Connect TapKit to Claude, Codex, or other AI tools.
+  </Card>
+</CardGroup>
 
 ## Troubleshooting
 
-### Mac and iPhone can't find each other
+<AccordionGroup>
+  <Accordion title="Phone not detected after plugging in">
+    Unplug the USB cable, wait a few seconds, and plug it back in. Make sure to approve any "Trust This Computer?" or "Allow" prompts that appear on either device.
+  </Accordion>
 
-Verify:
-- Both devices are on the **same Wi-Fi network**
-- **Bluetooth is enabled** on both devices
-- Both are signed into the **same iCloud account**
+  <Accordion title="Phone not on Wi-Fi">
+    Your phone can look like it's on Wi-Fi but not actually be connected. Go to **Settings > Wi-Fi** on your iPhone and explicitly tap your network to reconnect. This is the most common troubleshooting issue.
+  </Accordion>
 
-<Note>
-Public Wi-Fi networks can cause issues. Home and office networks typically work fine, but public Wi-Fi (coffee shops, airports, hotels) may prevent your Mac and iPhone from discovering each other. If you're on a public network and experiencing issues, try switching to a personal hotspot or different network.
-</Note>
+  <Accordion title="QR code won't scan">
+    Make sure your iPhone camera is in photo mode (not video or portrait). Hold the phone steady about 6-8 inches from the screen. If the QR code still won't scan, try increasing your Mac's screen brightness.
+  </Accordion>
 
-### Switches not appearing
+  <Accordion title="Setup Shortcut fails midway">
+    Run the Shortcut again — it's safe to re-run. If it continues to fail, make sure you're running iOS 16 or later and that you have the Shortcuts app installed.
+  </Accordion>
 
-Make sure your phone is connected via USB and trusted by the Mac. The TapKit Mac app creates the switches automatically.
+  <Accordion title="Can't add untrusted Shortcuts">
+    Go to **Settings > Shortcuts** on your iPhone and enable **Allow Running Scripts** and **Private Sharing**. This allows installing Shortcuts from sources other than the Shortcuts Gallery.
+  </Accordion>
 
-### Gestures not executing correctly
+  <Accordion title="Headphone popup keeps reappearing">
+    This can happen if the screencast connection drops and reconnects. Tap **Other Device** each time. If it happens frequently, make sure your USB cable is securely connected.
+  </Accordion>
+</AccordionGroup>
 
-Verify the Menu Items are in the exact order specified above. TapKit relies on this order to navigate the Switch Control menu.
-
-### Slow automation
-
-Check that Gliding Cursor Speed is set to 30. Lower values will slow down automation.
-
-### Still having issues?
-
-If you're experiencing problems not covered here, [contact our support team](mailto:support@tapkit.ai). We're happy to help you get set up.
-
----
-
-## More Switch Control Settings
-
-### Extended Predictions
-
-**Path:** Switch Control → Keyboard → Extended Predictions
-
-Extended Predictions shows a word prediction bar above the keyboard. When this is **on**, the predictions bar takes up space above the keyboard rows — this changes the visual layout and can affect where TapKit expects keys to be when automating keyboard interactions.
-
-Set this to **On** for best results with TapKit.
-
-**Extended Predictions Off:**
-
-{/* TODO: Replace with actual screenshot of keyboard with Extended Predictions off */}
-<img src="/images/setup/shortcut-setup-page.png" alt="Extended Predictions off — placeholder" />
-
-**Extended Predictions On:**
-
-{/* TODO: Replace with actual screenshot of keyboard with Extended Predictions on */}
-<img src="/images/setup/shortcut-setup-page.png" alt="Extended Predictions on — placeholder" />
+If you're experiencing issues not covered here, [contact our support team](mailto:support@tapkit.ai).

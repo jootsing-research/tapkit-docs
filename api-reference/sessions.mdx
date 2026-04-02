@@ -1,0 +1,85 @@
+---
+title: Sessions
+description: Agent-controlled phone interactions
+---
+
+A session is the core concept in TapKit. It represents a complete agent-controlled phone interaction — from the moment an AI agent connects to a phone until the task is done.
+
+## What is a session?
+
+Creating a session spins up a full AI agent instance that connects to a phone and executes tasks autonomously. This isn't just an API connection — it's a running agent with vision, reasoning, and action capabilities.
+
+When you create a session, TapKit:
+
+1. Assigns a phone to the session
+2. Spins up an AI agent instance (currently Claude Code, Codex support coming)
+3. Connects the agent to the phone
+4. The agent executes the task you described
+5. The session ends when the task is complete (or times out)
+
+## The agent loop
+
+The agent follows a **screenshot-reason-act** loop:
+
+1. **Screenshot** — capture the current phone screen
+2. **Reason** — send the screenshot to the AI model, which decides what to do next
+3. **Act** — execute the chosen action (tap, swipe, type, etc.)
+4. **Repeat** — take another screenshot and continue until the task is done
+
+This is not scripted automation. The agent reasons about what it sees on screen and decides its next action in real-time. It handles pop-ups, loading states, and unexpected UI changes because it's making visual decisions, not following a fixed script.
+
+## Session lifecycle
+
+```
+Create → Agent connects → Task execution → Session ends
+```
+
+| Status | Description |
+|--------|-------------|
+| `queued` | Session created, waiting for an available phone and agent |
+| `active` | Agent is connected and executing the task |
+| `completed` | Task finished successfully |
+| `failed` | Task encountered an error |
+| `timed_out` | Task exceeded the timeout duration |
+
+## Session parameters
+
+When creating a session, you can configure:
+
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `phone_id` | Which phone to use | Auto-selected if only one available |
+| `task` | Natural language description of what to do | Required |
+| `model` | Which AI model to use | Latest default |
+| `timeout` | Maximum session duration (seconds) | 300 |
+| `callback_url` | URL to receive webhook when session ends | None |
+
+## Monitoring a session
+
+While a session is active, you can:
+
+- **Poll status** — `GET /v1/sessions/{session_id}` returns current status, actions taken, and screenshots
+- **Watch live** — the Mac app shows the phone screen in real-time during the session
+- **Receive webhooks** — if you set a `callback_url`, TapKit sends a POST request when the session ends
+
+## Session results
+
+When a session completes, the response includes:
+
+- **Agent response** — the AI's final summary of what it did
+- **Screenshots** — key screenshots taken during execution
+- **Actions performed** — list of actions (taps, swipes, etc.) with timestamps
+- **Duration** — total session time
+- **Status** — whether the task completed, failed, or timed out
+
+## Billing and usage
+
+Sessions consume plan time. Your plan includes a set amount of session minutes per month.
+
+- Session time is calculated from session start to end
+- Monitor usage in the [dashboard](https://tapkit.ai/dashboard) under **Sessions**
+- Overages beyond your plan's included minutes are billed separately
+
+<Card title="View your sessions" icon="chart-bar" href="https://tapkit.ai/dashboard">
+  Check session history and usage in the dashboard.
+</Card>
