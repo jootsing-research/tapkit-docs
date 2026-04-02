@@ -37,65 +37,49 @@ You may see one or both of these prompts:
 
 A popup appears on your iPhone asking if the connected device is headphones or another device. Tap **Other Device**.
 
-{/* TODO: Screenshot of the headphone popup */}
+## Step 4: Install the setup shortcut
 
-<Info>
-  **Why this happens:** TapKit uses screen sharing to see the phone, which routes audio through the Mac. iOS interprets this as an audio device connection. This is normal Apple system behavior.
-</Info>
+The Mac app shows a QR code on screen. Scan it with your iPhone camera. This will open the **TapKit Phone Setup** shortcut. Tap **Add Shortcut** to install it.
 
-### Things that might look weird
+<Accordion title="See screenshot">
+  <Frame>
+    <img src="/images/setup/phone-setup-shortcut.png" alt="TapKit Phone Setup shortcut with Add Shortcut button" style={{ maxWidth: "300px", margin: "0 auto", display: "block", borderRadius: "24px" }} />
+  </Frame>
+</Accordion>
 
-Don't worry if you notice these — they're cosmetic:
+## Step 5: Run the TapKit Phone Setup shortcut
 
-- **Clock shows 9:41** — your phone enters Apple's presentation mode because of the screencast. This is normal.
-- **Headphone icon in status bar** — same audio routing reason. Goes away when you disconnect.
+After installing, the shortcut should appear automatically. If it doesn't, open the Shortcuts app and check the first tab (called **Library** or **Shortcuts** depending on your iOS version). Tap **TapKit Phone Setup** to run it.
 
-## Step 4: Run the setup Shortcut
+This is a guided setup experience built with Apple Shortcuts. It takes about five minutes — just read the instructions on screen and follow along.
 
-The Mac app shows a QR code on screen. Scan it with your iPhone camera. This opens the TapKit setup Shortcut.
+After the setup shortcut is completed, return back to the Mac app.
 
-Tap **Run** to execute the Shortcut. It automatically configures a series of iOS settings:
-
-- Switch Control settings and scanning mode
-- Platform switching for remote control
-- Accessibility preferences
-- Menu item ordering for gesture automation
-
-{/* TODO: Screenshot of QR code in Mac app and Shortcut running on iPhone */}
-
-<Note>
-  The setup Shortcut only changes Switch Control and accessibility settings. You can inspect exactly what it does by tapping the three-dot menu on the Shortcut in the Shortcuts app.
-</Note>
-
-## Step 5: Enable Switch Control
-
-At the end of the setup Shortcut, you'll be directed to manually turn on Switch Control:
-
-1. Go to **Settings > Accessibility > Switch Control**
-2. Toggle **Switch Control** to **On** at the top of the screen
-3. The gliding cursor should appear on screen
-
-<Warning>
-  Switch Control must be on for TapKit to work. If you turn it off, TapKit won't be able to control the phone.
-</Warning>
-
-## Step 6: Add the TapKit Shortcut
+## Step 6: Install the Use TapKit shortcut
 
 Scan the second QR code shown in the Mac app. This opens the TapKit website in a logged-in state.
 
-1. Tap **Add Shortcut** to install the TapKit runtime Shortcut
-2. When prompted, paste your **Shortcut token** (displayed on the setup page)
-3. Run the Shortcut once and approve any permission popups
+1. Tap the **Tap to copy token** button to copy your token.
+2. Tap the **Use TapKit** shortcut to open the install prompt.
+3. Tap **Set Up Shortcut**.
+4. Paste the token into the API key field.
+5. Tap **Add Shortcut**.
 
-<div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
-  <img src="/images/setup/shortcut-setup-page.png" alt="TapKit shortcut setup page" style={{ width: '32%', borderRadius: '8px' }} />
-  <img src="/images/setup/shortcut-add-prompt.jpeg" alt="iOS prompt to add shortcut" style={{ width: '32%', borderRadius: '8px' }} />
-  <img src="/images/setup/shortcut-enter-key.png" alt="Enter shortcut key during setup" style={{ width: '32%', borderRadius: '8px' }} />
-</div>
+<Accordion title="See screenshots">
+  <Frame>
+    <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', padding: '16px' }}>
+      <img src="/images/setup/shortcut-setup-page.png" alt="TapKit shortcut setup page" style={{ width: '30%', borderRadius: '24px' }} />
+      <img src="/images/setup/shortcut-add-prompt.jpeg" alt="iOS prompt to add shortcut" style={{ width: '30%', borderRadius: '24px' }} />
+      <img src="/images/setup/shortcut-enter-key.png" alt="Enter shortcut key during setup" style={{ width: '30%', borderRadius: '24px' }} />
+    </div>
+  </Frame>
+</Accordion>
 
-<Info>
-  **About the Shortcut token:** This is a restricted API key with limited read-only access. It cannot modify your account settings or access sensitive data. See [Security & Privacy](/security) for details.
-</Info>
+## Step 7: Run the Use TapKit shortcut
+
+1. Navigate back to the first tab of the Shortcuts app (called **Library** or **Shortcuts** depending on your iOS version).
+2. Tap the **Use TapKit** shortcut to run it.
+3. Approve any permission popups that appear.
 
 <Warning>
   The TapKit Shortcut must be the **first shortcut** in your Shortcuts app. If you have other shortcuts, open the Shortcuts app, tap Edit, and drag TapKit to the first position.

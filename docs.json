@@ -24,7 +24,8 @@
             "group": "Setup",
             "pages": [
               "setup/mac-app",
-              "setup/phone"
+              "setup/phone",
+              "setup/switch-control"
             ]
           },
           {
