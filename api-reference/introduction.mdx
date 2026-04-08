@@ -17,10 +17,10 @@ All API endpoints require an API key in the `X-API-Key` header:
 
 ```bash
 curl https://api.tapkit.ai/v1/phones \
-  -H "X-API-Key: TK_your_api_key"
+  -H "X-API-Key: joot_your_api_key"
 ```
 
-Get your API key from the [TapKit dashboard](https://tapkit.ai/dashboard). Keys always start with `TK_` followed by a random string.
+Get your API key from the [TapKit dashboard](https://tapkit.ai/dashboard). Keys start with `joot_` followed by a random string.
 
 <Warning>
   API keys are sensitive credentials. Never commit them to version control or expose them in client-side code. Use environment variables instead.
@@ -55,9 +55,15 @@ Errors return a consistent format:
 |------|-------------|-------------|
 | `INVALID_API_KEY` | 401 | API key is invalid or revoked |
 | `AUTH_REQUIRED` | 401 | No authentication provided |
+| `SUBSCRIPTION_REQUIRED` | 402 | No active subscription |
 | `PHONE_NOT_FOUND` | 404 | Phone ID doesn't exist |
+| `SESSION_NOT_FOUND` | 404 | Session ID doesn't exist |
+| `PHONE_NOT_CONNECTED` | 400 | Phone not connected to any Mac |
 | `MAC_APP_NOT_RUNNING` | 400 | Mac companion app is offline |
+| `TASK_ALREADY_RUNNING` | 409 | Agent task already running on phone |
 | `TIMEOUT` | 408 | Operation timed out |
+| `SCREENSHOT_FAILED` | 500 | Screenshot capture failed |
+| `EMPTY_BODY` | 400 | Required request body missing |
 
 ## Sync vs async mode
 
@@ -69,7 +75,7 @@ Request blocks until the action completes:
 
 ```bash
 curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/tap \
-  -H "X-API-Key: TK_..." \
+  -H "X-API-Key: joot_..." \
   -H "Content-Type: application/json" \
   -d '{"x": 100, "y": 200}'
 ```
@@ -90,7 +96,7 @@ Add `?async=true` to return immediately with a job ID:
 
 ```bash
 curl -X POST "https://api.tapkit.ai/v1/phones/{phone_id}/tap?async=true" \
-  -H "X-API-Key: TK_..." \
+  -H "X-API-Key: joot_..." \
   -H "Content-Type: application/json" \
   -d '{"x": 100, "y": 200}'
 ```

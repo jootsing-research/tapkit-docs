@@ -10,7 +10,7 @@ Tap an element on screen by describing it in natural language. Uses vision AI to
 
 ```bash
 curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/tap/select \
-  -H "X-API-Key: TK_your_api_key" \
+  -H "X-API-Key: joot_your_api_key" \
   -H "Content-Type: application/json" \
   -d '{"selector": "the blue Submit button"}'
 ```
@@ -67,7 +67,7 @@ curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/tap/select \
 
 ```bash
 curl -X POST https://api.tapkit.ai/v1/phones/abc123/tap/select \
-  -H "X-API-Key: TK_..." \
+  -H "X-API-Key: joot_..." \
   -H "Content-Type: application/json" \
   -d '{"selector": "the Settings icon"}'
 ```
@@ -76,7 +76,7 @@ curl -X POST https://api.tapkit.ai/v1/phones/abc123/tap/select \
 
 ```bash
 curl -X POST https://api.tapkit.ai/v1/phones/abc123/tap/select \
-  -H "X-API-Key: TK_..." \
+  -H "X-API-Key: joot_..." \
   -H "Content-Type: application/json" \
   -d '{"selector": "the Sign In link"}'
 ```
@@ -89,7 +89,7 @@ import requests
 response = requests.post(
     f"https://api.tapkit.ai/v1/phones/{phone_id}/tap/select",
     headers={
-        "X-API-Key": "TK_...",
+        "X-API-Key": "joot_...",
         "Content-Type": "application/json"
     },
     json={"selector": "the blue Submit button"}

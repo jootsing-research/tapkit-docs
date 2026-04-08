@@ -10,7 +10,7 @@ Get detailed information about a specific phone, including screen dimensions.
 
 ```bash
 curl https://api.tapkit.ai/v1/phones/{phone_id}/info \
-  -H "X-API-Key: TK_your_api_key"
+  -H "X-API-Key: joot_your_api_key"
 ```
 
 ### Path Parameters
@@ -58,7 +58,7 @@ import requests
 phone_id = "abc123-def456"
 response = requests.get(
     f"https://api.tapkit.ai/v1/phones/{phone_id}/info",
-    headers={"X-API-Key": "TK_..."}
+    headers={"X-API-Key": "joot_..."}
 )
 info = response.json()
 

@@ -10,7 +10,7 @@ Retrieve the current settings for a phone, including typing method and speed con
 
 ```bash
 curl https://api.tapkit.ai/v1/phones/{phone_id}/settings \
-  -H "X-API-Key: TK_your_api_key"
+  -H "X-API-Key: joot_your_api_key"
 ```
 
 ### Path Parameters
@@ -44,7 +44,7 @@ import requests
 
 response = requests.get(
     "https://api.tapkit.ai/v1/phones/{phone_id}/settings",
-    headers={"X-API-Key": "TK_..."}
+    headers={"X-API-Key": "joot_..."}
 )
 settings = response.json()
 
@@ -57,7 +57,7 @@ print(f"Speed: {settings['speed']}")
 ```python
 from tapkit import TapKitClient
 
-client = TapKitClient(api_key="TK_...")
+client = TapKitClient(api_key="joot_...")
 phone = client.get_phone("phone_id")
 
 settings = phone.get_settings()

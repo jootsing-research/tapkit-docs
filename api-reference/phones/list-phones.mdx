@@ -10,7 +10,7 @@ List all phones currently registered with your organization.
 
 ```bash
 curl https://api.tapkit.ai/v1/phones \
-  -H "X-API-Key: TK_your_api_key"
+  -H "X-API-Key: joot_your_api_key"
 ```
 
 ## Response
@@ -20,8 +20,24 @@ curl https://api.tapkit.ai/v1/phones \
   {
     "id": "abc123-def456",
     "name": "iPhone 15 Pro",
+    "device_name": "iPhone 15 Pro",
+    "display_name": "My Work Phone",
     "unique_id": "00008030-001A2B3C4D5E6F",
-    "phone_number": null
+    "phone_number": "+15551234567",
+    "shortcut_token": "st_abc123",
+    "typing_method": "shortcut",
+    "speed": 30,
+    "activation_state": "active",
+    "activated_at": "2024-01-10T15:00:00Z",
+    "deactivated_at": null,
+    "consumes_entitlement": true,
+    "can_control": true,
+    "can_view_on_web": true,
+    "connection_status": "online",
+    "connected_mac_id": "mac_xyz789",
+    "width": 1179,
+    "height": 2556,
+    "created_at": "2024-01-10T14:30:00Z"
   }
 ]
 ```
@@ -31,9 +47,25 @@ curl https://api.tapkit.ai/v1/phones \
 | Field | Type | Description |
 |-------|------|-------------|
 | `id` | `string` | Server-assigned phone identifier |
-| `name` | `string` | Device display name |
+| `name` | `string` | Device model name |
+| `device_name` | `string` | Device hardware name |
+| `display_name` | `string \| null` | Custom display name (set via update-settings) |
 | `unique_id` | `string` | Hardware identifier (UDID) |
 | `phone_number` | `string \| null` | Phone number if available |
+| `shortcut_token` | `string \| null` | Token for iOS Shortcut authentication |
+| `typing_method` | `string` | Default typing method: `"keys"`, `"paste"`, `"shortcut"`, or `"shortcut_legacy"` |
+| `speed` | `number` | Switch Control scanning speed: `30` (slow) or `90` (fast) |
+| `activation_state` | `string` | `"active"` or `"inactive"` |
+| `activated_at` | `string \| null` | ISO 8601 timestamp of activation |
+| `deactivated_at` | `string \| null` | ISO 8601 timestamp of deactivation |
+| `consumes_entitlement` | `boolean` | Whether this phone counts against plan limits |
+| `can_control` | `boolean` | Whether the phone can be controlled via API |
+| `can_view_on_web` | `boolean` | Whether the phone screen can be viewed in the web dashboard |
+| `connection_status` | `string` | `"online"`, `"available"`, or `"offline"` |
+| `connected_mac_id` | `string \| null` | ID of the Mac this phone is connected to |
+| `width` | `integer` | Screen width in pixels |
+| `height` | `integer` | Screen height in pixels |
+| `created_at` | `string` | ISO 8601 timestamp of phone registration |
 
 ## Examples
 
@@ -44,25 +76,27 @@ import requests
 
 response = requests.get(
     "https://api.tapkit.ai/v1/phones",
-    headers={"X-API-Key": "TK_..."}
+    headers={"X-API-Key": "joot_..."}
 )
 phones = response.json()
 
 for phone in phones:
-    print(f"{phone['name']} ({phone['id']})")
+    status = phone["connection_status"]
+    name = phone["display_name"] or phone["name"]
+    print(f"{name} ({phone['id']}) - {status}")
 ```
 
-### Find Phone by Name
+### Find Available Phone
 
 ```python
 phones = response.json()
-iphone_15 = next(
-    (p for p in phones if "iPhone 15" in p["name"]),
+available = next(
+    (p for p in phones if p["connection_status"] in ("online", "available") and p["can_control"]),
     None
 )
 
-if iphone_15:
-    phone_id = iphone_15["id"]
+if available:
+    phone_id = available["id"]
 ```
 
 ## Notes

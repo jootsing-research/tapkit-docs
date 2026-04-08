@@ -11,7 +11,7 @@ Include your API key in the `X-API-Key` header:
 
 ```bash
 curl https://api.tapkit.ai/v1/phones \
-  -H "X-API-Key: TK_your_api_key_here"
+  -H "X-API-Key: joot_your_api_key_here"
 ```
 
 ### API Key Format
@@ -19,10 +19,10 @@ curl https://api.tapkit.ai/v1/phones \
 TapKit API keys follow this format:
 
 ```
-TK_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+joot_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-All keys start with `TK_` followed by a random string.
+All keys start with `joot_` followed by a random string.
 
 ## Request Examples
 
@@ -30,14 +30,14 @@ All keys start with `TK_` followed by a random string.
 
 ```bash
 curl https://api.tapkit.ai/v1/status \
-  -H "X-API-Key: TK_your_api_key"
+  -H "X-API-Key: joot_your_api_key"
 ```
 
 ### POST Request
 
 ```bash
 curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/tap \
-  -H "X-API-Key: TK_your_api_key" \
+  -H "X-API-Key: joot_your_api_key" \
   -H "Content-Type: application/json" \
   -d '{"x": 100, "y": 200}'
 ```
@@ -84,7 +84,7 @@ HTTP Status: `401 Unauthorized`
     Store keys in environment variables rather than hardcoding:
 
     ```bash
-    export TAPKIT_API_KEY="TK_..."
+    export TAPKIT_API_KEY="joot_..."
     ```
   </Accordion>
 

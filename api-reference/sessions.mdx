@@ -36,41 +36,43 @@ Create → Agent connects → Task execution → Session ends
 
 | Status | Description |
 |--------|-------------|
-| `queued` | Session created, waiting for an available phone and agent |
-| `active` | Agent is connected and executing the task |
+| `creating` | Session created, spinning up agent instance |
+| `running` | Agent is connected and executing the task |
+| `paused` | Session is paused, can be resumed |
 | `completed` | Task finished successfully |
 | `failed` | Task encountered an error |
-| `timed_out` | Task exceeded the timeout duration |
+| `killed` | Session was manually stopped |
 
 ## Session parameters
 
-When creating a session, you can configure:
+When creating a session, you provide:
 
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `phone_id` | Which phone to use | Auto-selected if only one available |
-| `task` | Natural language description of what to do | Required |
-| `model` | Which AI model to use | Latest default |
-| `timeout` | Maximum session duration (seconds) | 300 |
-| `callback_url` | URL to receive webhook when session ends | None |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `phone_id` | `string` | Which phone to use (required) |
+| `instruction` | `string` | Natural language description of what to do (required) |
 
 ## Monitoring a session
 
 While a session is active, you can:
 
-- **Poll status** — `GET /v1/sessions/{session_id}` returns current status, actions taken, and screenshots
+- **Poll status** — `GET /v1/sessions/{session_id}` returns current status, cost, duration, and turn count
+- **Stream events** — `GET /v1/sessions/{session_id}/events` returns real-time agent events (text, tool use, thinking)
+- **Send messages** — `POST /v1/sessions/{session_id}/message` sends a message to the running agent
+- **Pause/resume** — `POST /v1/sessions/{session_id}/pause` and `/resume` to control execution
+- **Stop** — `POST /v1/sessions/{session_id}/stop` to end the session early
 - **Watch live** — the Mac app shows the phone screen in real-time during the session
-- **Receive webhooks** — if you set a `callback_url`, TapKit sends a POST request when the session ends
 
 ## Session results
 
 When a session completes, the response includes:
 
-- **Agent response** — the AI's final summary of what it did
-- **Screenshots** — key screenshots taken during execution
-- **Actions performed** — list of actions (taps, swipes, etc.) with timestamps
-- **Duration** — total session time
-- **Status** — whether the task completed, failed, or timed out
+- **Status** — `completed`, `failed`, or `killed`
+- **Cost** — session cost in USD (`cost_usd`)
+- **Duration** — total session time in milliseconds (`duration_ms`)
+- **Turns** — number of agent turns (`num_turns`)
+- **Error** — error message if the session failed
+- **Timestamps** — `created_at`, `started_at`, `completed_at`
 
 ## Billing and usage
 

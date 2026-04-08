@@ -36,7 +36,7 @@ Use the SDK to retrieve the current settings for a phone:
 ```python
 from tapkit import TapKitClient
 
-client = TapKitClient(api_key="TK_...")
+client = TapKitClient(api_key="joot_...")
 phone = client.get_phone("phone_id")
 
 settings = phone.get_settings()
@@ -48,7 +48,7 @@ Or via the API directly:
 
 ```bash
 curl https://api.tapkit.ai/v1/phones/{phone_id}/settings \
-  -H "X-API-Key: TK_your_api_key"
+  -H "X-API-Key: joot_your_api_key"
 ```
 
 ## Updating Settings
@@ -70,7 +70,7 @@ Or via the API:
 
 ```bash
 curl -X PATCH https://api.tapkit.ai/v1/phones/{phone_id}/settings \
-  -H "X-API-Key: TK_your_api_key" \
+  -H "X-API-Key: joot_your_api_key" \
   -H "Content-Type: application/json" \
   -d '{"typing_method": "shortcut", "speed": 90}'
 ```

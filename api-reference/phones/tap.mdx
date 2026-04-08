@@ -10,7 +10,7 @@ Execute a single tap at the specified coordinates.
 
 ```bash
 curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/tap \
-  -H "X-API-Key: TK_your_api_key" \
+  -H "X-API-Key: joot_your_api_key" \
   -H "Content-Type: application/json" \
   -d '{"x": 100, "y": 200}'
 ```
@@ -69,7 +69,7 @@ curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/tap \
 
 ```bash
 curl -X POST https://api.tapkit.ai/v1/phones/abc123/tap \
-  -H "X-API-Key: TK_..." \
+  -H "X-API-Key: joot_..." \
   -H "Content-Type: application/json" \
   -d '{"x": 585, "y": 1266}'
 ```
@@ -82,7 +82,7 @@ import requests
 response = requests.post(
     f"https://api.tapkit.ai/v1/phones/{phone_id}/tap",
     headers={
-        "X-API-Key": "TK_...",
+        "X-API-Key": "joot_...",
         "Content-Type": "application/json"
     },
     json={"x": 100, "y": 200}

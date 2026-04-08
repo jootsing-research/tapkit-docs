@@ -10,7 +10,7 @@ Capture a screenshot from the phone's current screen.
 
 ```bash
 curl https://api.tapkit.ai/v1/phones/{phone_id}/screenshot \
-  -H "X-API-Key: TK_your_api_key" \
+  -H "X-API-Key: joot_your_api_key" \
   --output screenshot.png
 ```
 
@@ -48,7 +48,7 @@ Retrieve the screenshot via `GET /jobs/{job_id}/download`.
 
 ```bash
 curl https://api.tapkit.ai/v1/phones/abc123/screenshot \
-  -H "X-API-Key: TK_..." \
+  -H "X-API-Key: joot_..." \
   --output screen.png
 ```
 
@@ -59,7 +59,7 @@ import requests
 
 response = requests.get(
     f"https://api.tapkit.ai/v1/phones/{phone_id}/screenshot",
-    headers={"X-API-Key": "TK_..."}
+    headers={"X-API-Key": "joot_..."}
 )
 
 with open("screenshot.png", "wb") as f:
@@ -72,7 +72,7 @@ with open("screenshot.png", "wb") as f:
 # Request screenshot asynchronously
 response = requests.get(
     f"https://api.tapkit.ai/v1/phones/{phone_id}/screenshot?async=true",
-    headers={"X-API-Key": "TK_..."}
+    headers={"X-API-Key": "joot_..."}
 )
 job_id = response.json()["job_id"]
 
@@ -80,7 +80,7 @@ job_id = response.json()["job_id"]
 while True:
     job = requests.get(
         f"https://api.tapkit.ai/v1/jobs/{job_id}",
-        headers={"X-API-Key": "TK_..."}
+        headers={"X-API-Key": "joot_..."}
     ).json()
 
     if job["status"] == "completed":
@@ -90,7 +90,7 @@ while True:
 # Download the image
 image = requests.get(
     f"https://api.tapkit.ai/v1/jobs/{job_id}/download",
-    headers={"X-API-Key": "TK_..."}
+    headers={"X-API-Key": "joot_..."}
 )
 
 with open("screenshot.png", "wb") as f:

@@ -10,7 +10,7 @@ Long press an element on screen by describing it in natural language. Uses visio
 
 ```bash
 curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/tap-and-hold/select \
-  -H "X-API-Key: TK_your_api_key" \
+  -H "X-API-Key: joot_your_api_key" \
   -H "Content-Type: application/json" \
   -d '{"selector": "the app icon to delete", "duration_ms": 1000}'
 ```
@@ -69,7 +69,7 @@ curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/tap-and-hold/select \
 
 ```bash
 curl -X POST https://api.tapkit.ai/v1/phones/abc123/tap-and-hold/select \
-  -H "X-API-Key: TK_..." \
+  -H "X-API-Key: joot_..." \
   -H "Content-Type: application/json" \
   -d '{"selector": "the Instagram app icon", "duration_ms": 2000}'
 ```

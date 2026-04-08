@@ -10,7 +10,7 @@ Type text into the currently focused input field.
 
 ```bash
 curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/type \
-  -H "X-API-Key: TK_your_api_key" \
+  -H "X-API-Key: joot_your_api_key" \
   -H "Content-Type: application/json" \
   -d '{"text": "Hello, world!", "method": "keys"}'
 ```
@@ -27,7 +27,7 @@ curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/type \
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `text` | `string` | required | Text to type |
-| `method` | `string` | `"keys"` | `"keys"`, `"paste"`, or `"shortcut"` |
+| `method` | `string` | `"keys"` | `"keys"`, `"paste"`, `"shortcut"`, or `"shortcut_legacy"` |
 
 ### Methods
 
@@ -36,3 +36,4 @@ curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/type \
 | `keys` | Simulate individual keystrokes. Works everywhere, slower for long text. |
 | `paste` | Paste via clipboard. Fast for long text, may not work in all contexts. |
 | `shortcut` | Uses iOS Shortcut for clipboard. Requires [shortcut setup](/setup/shortcuts). Fast and reliable. |
+| `shortcut_legacy` | Legacy shortcut-based method. Use `shortcut` instead when possible. |
