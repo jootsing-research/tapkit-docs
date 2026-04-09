@@ -62,7 +62,7 @@ The MCP server runs as a hosted endpoint. You don't need to run anything locally
 
 | Tool | Description |
 |------|-------------|
-| `type_text(text)` | Type into the currently focused text field |
+| `copy_text_to_phone(text)` | Copy text to the phone's clipboard |
 | `activate_siri` | Trigger Siri |
 
 ### Device
@@ -71,11 +71,13 @@ The MCP server runs as a hosted endpoint. You don't need to run anything locally
 |------|-------------|
 | `screenshot` | Capture the current screen as an image |
 | `get_phone_info` | Get screen dimensions and device name |
+| `get_phone_status` | Get connection status, Switch Control state, and screen lock state |
 | `list_phones` | List all connected phones |
 | `select_phone(phone_id)` | Select which phone to control (multi-phone setups) |
 | `lock` / `unlock` | Lock or unlock the device |
 | `volume_up` / `volume_down` | Volume controls |
 | `run_shortcut(index)` | Run an iOS Shortcut by index |
+| `enable_switch_control` | Enable Switch Control on the phone |
 
 ## How It Works
 
@@ -102,4 +104,4 @@ Ask Claude naturally:
 
 - **Auto phone selection** — if only one phone is connected, it's selected automatically. No need to call `list_phones` first.
 - **Multi-phone** — every tool accepts an optional `phone_id` for setups with multiple phones.
-- **Text input requires focus** — tap a text field before calling `type_text`.
+- **Clipboard workflow** — use `copy_text_to_phone` to stage text on the clipboard, then tap a text field and paste.
