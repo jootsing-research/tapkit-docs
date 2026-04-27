@@ -12,7 +12,7 @@ Pinch, zoom, or rotate on an element described in natural language. Uses vision 
 curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/pinch/select \
   -H "X-API-Key: joot_your_api_key" \
   -H "Content-Type: application/json" \
-  -d '{"selector": "the map", "action": "pinch_out"}'
+  -d '{"selector": "the map", "action": "pinch_out", "duration_ms": 1000}'
 ```
 
 ### Path Parameters
@@ -32,14 +32,16 @@ curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/pinch/select \
 ```json
 {
   "selector": "the map",
-  "action": "pinch_out"
+  "action": "pinch_out",
+  "duration_ms": 1000
 }
 ```
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `selector` | `string` | Natural language description of the element |
-| `action` | `string` | `"pinch_in"`, `"pinch_out"`, `"rotate_cw"`, or `"rotate_ccw"` |
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `selector` | `string` | required | Natural language description of the element |
+| `action` | `string` | required | `"pinch_in"`, `"pinch_out"`, `"rotate_cw"`, or `"rotate_ccw"` |
+| `duration_ms` | `integer` | `1000` | Gesture duration in milliseconds |
 
 ### Actions
 
@@ -80,7 +82,7 @@ curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/pinch/select \
 curl -X POST https://api.tapkit.ai/v1/phones/abc123/pinch/select \
   -H "X-API-Key: joot_..." \
   -H "Content-Type: application/json" \
-  -d '{"selector": "the map view", "action": "pinch_out"}'
+  -d '{"selector": "the map view", "action": "pinch_out", "duration_ms": 1000}'
 ```
 
 ### SDK Usage
@@ -89,7 +91,7 @@ The Python SDK provides this through the `pinch()` method with a string argument
 
 ```python
 phone.pinch("the map", "pinch_out")      # Zoom in
-phone.pinch("the photo", "pinch_in")     # Zoom out
+phone.pinch("the photo", "pinch_in", duration_ms=1500)  # Zoom out
 phone.pinch("the image", "rotate_cw")    # Rotate clockwise
 ```
 

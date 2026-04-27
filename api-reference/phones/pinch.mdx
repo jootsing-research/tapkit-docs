@@ -12,7 +12,7 @@ Execute a pinch gesture for zooming or rotating.
 curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/pinch \
   -H "X-API-Key: joot_your_api_key" \
   -H "Content-Type: application/json" \
-  -d '{"x": 500, "y": 1000, "action": "pinch_out"}'
+  -d '{"x": 500, "y": 1000, "action": "pinch_out", "duration_ms": 1000}'
 ```
 
 ### Request Body
@@ -21,15 +21,17 @@ curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/pinch \
 {
   "x": 500,
   "y": 1000,
-  "action": "pinch_out"
+  "action": "pinch_out",
+  "duration_ms": 1000
 }
 ```
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `x` | `integer` | Center X coordinate |
-| `y` | `integer` | Center Y coordinate |
-| `action` | `string` | Pinch action type |
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `x` | `integer` | required | Center X coordinate |
+| `y` | `integer` | required | Center Y coordinate |
+| `action` | `string` | required | Pinch action type |
+| `duration_ms` | `integer` | `1000` | Gesture duration in milliseconds |
 
 ### Action Types
 

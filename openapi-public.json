@@ -5178,6 +5178,11 @@
           },
           "action": {
             "$ref": "#/components/schemas/PinchAction"
+          },
+          "duration_ms": {
+            "type": "integer",
+            "title": "Duration Ms",
+            "default": 1000
           }
         },
         "type": "object",
@@ -5196,6 +5201,11 @@
           },
           "action": {
             "$ref": "#/components/schemas/PinchAction"
+          },
+          "duration_ms": {
+            "type": "integer",
+            "title": "Duration Ms",
+            "default": 1000
           }
         },
         "type": "object",

@@ -69,16 +69,16 @@ For `drag()` with selectors, both arguments must be strings. You cannot mix coor
 
 ```python
 # Coordinates
-phone.pinch((500, 500), action="pinch_out")
+phone.pinch((500, 500), action="pinch_out", duration_ms=1000)
 
 # Natural language (vision AI)
 phone.pinch("the map", "pinch_out")
-phone.pinch("the photo", "pinch_in")
+phone.pinch("the photo", "pinch_in", duration_ms=1500)
 ```
 
 | Method | Parameters | Description |
 |--------|------------|-------------|
-| `pinch(target, action)` | coordinates or description, action | Pinch/zoom/rotate gesture |
+| `pinch(target, action, duration_ms=1000)` | coordinates or description, action, gesture duration | Pinch/zoom/rotate gesture |
 
 | Action | Effect |
 |--------|--------|
