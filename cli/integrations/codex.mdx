@@ -1,38 +1,47 @@
 ---
 title: Codex CLI
-description: Use TapKit with Codex CLI via npx skills and Bash commands
+description: Use TapKit with Codex CLI via the TapKit Codex plugin
 ---
 
-Codex uses the TapKit CLI via Bash and loads skills for app knowledge.
+The TapKit plugin for Codex gives the agent iPhone control in your terminal. It installs an MCP server connection and skills for app knowledge.
 
 ## Setup
 
-Install TapKit skills for Codex:
+Add the TapKit marketplace from your terminal:
 
 ```bash
-npx skills add tapkit
-
-# ? Select skills to install:
-#   ✓ tapkit        (core — device control)
-#   ✓ hinge         (app — Hinge dating)
-#   ✓ telegram      (app — Telegram messaging)
-#   ✓ tiktok        (app — TikTok video)
-#   ✓ linkedin      (app — LinkedIn professional)
-#   ✓ uber-eats     (app — Uber Eats delivery)
-#
-# Installed 6 skills to .agents/skills/
+codex plugin marketplace add jootsing-research/tapkit-plugins-codex
 ```
+
+Open the Codex plugin directory:
+
+```bash
+codex
+/plugins
+```
+
+Switch to the **Tap Kit Plugins** marketplace, open **Tap Kit**, and select **Install plugin**.
+
+## Upgrade
+
+Refresh the TapKit marketplace when a new plugin version is available:
+
+```bash
+codex plugin marketplace upgrade tapkit-plugins
+```
+
+`tapkit-plugins` is the Codex marketplace name from the marketplace metadata.
 
 ## Usage
 
-Codex calls TapKit via Bash commands. The skill teaches it the screenshot → look → act → verify workflow:
+Codex calls TapKit through the bundled MCP tools. The skills teach it the screenshot → look → act → verify workflow:
 
 ```
 you: Take a screenshot of my phone and tell me what app is open
 
-codex: Running: tapkit screenshot --base64
+codex: Running TapKit screenshot tool
         I can see Twitter is open on the Home feed. The top tweet is from
         @elonmusk about... Would you like me to interact with anything?
 ```
 
-The core skill teaches Codex how to use the coordinate system, chain commands, and verify actions — so it knows the workflow without you having to explain it.
+The core skill teaches Codex how to use the coordinate system, chain actions, and verify results — so it knows the workflow without you having to explain it.

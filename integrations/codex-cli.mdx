@@ -6,55 +6,45 @@ description: Control iPhones from the Codex CLI
 The TapKit plugin for Codex gives the agent iPhone control in your terminal. It installs an MCP server connection and a skill file that teaches Codex how to use the tools effectively.
 
 <Note>
-  Codex doesn't officially support community plugins yet — only personal plugins you install yourself. The TapKit plugin is open source and ready to install, you just need to add it manually.
+  Codex can install and track the TapKit plugin marketplace from GitHub. You do not need to clone the plugin repo or create a marketplace file yourself.
 </Note>
 
 ## Setup
 
-**1. Clone the [tapkit-plugins-codex](https://github.com/Jootsing-Research/tapkit-plugins-codex) repo** to a location of your choice. Remember where you clone it — you'll need the path in the next step.
+**1. Add the TapKit marketplace** from your terminal:
 
-**2. Create the marketplace file** at `~/.agents/plugins/marketplace.json`:
-
-```json
-{
-  "name": "tapkit",
-  "interface": {
-    "displayName": "Tap Kit"
-  },
-  "plugins": [
-    {
-      "name": "tapkit",
-      "source": {
-        "source": "local",
-        "path": "<path-to-cloned-repo>/plugins/tapkit"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Productivity"
-    }
-  ]
-}
+```bash
+codex plugin marketplace add jootsing-research/tapkit-plugins-codex
 ```
 
-<Warning>
-  **Update the path!** Replace `<path-to-cloned-repo>` with the actual path to where you cloned the repo, relative to your home directory. It must point to the `plugins/tapkit` subdirectory inside the cloned repo.
+**2. Install the plugin**:
 
-  For example, if you cloned to `~/Dev/tapkit-plugins-codex`, the path would be `./Dev/tapkit-plugins-codex/plugins/tapkit`.
-</Warning>
+```bash
+codex
+/plugins
+```
 
-**3. Install the plugin** — restart Codex, then run `/plugin`. Find **TapKit** in the list and install it.
+In the plugin directory, switch to the **Tap Kit Plugins** marketplace, open **Tap Kit**, and select **Install plugin**.
 
-**4. Authenticate** — once the plugin is loaded, the TapKit MCP server will prompt you to sign in via your browser.
+**3. Authenticate** — once the plugin is loaded, the TapKit MCP server will prompt you to sign in via your browser.
 
-**5. Verify it works:**
+**4. Verify it works:**
 
 ```
 Take a screenshot of my phone
 ```
 
 If a phone is connected via the Mac app, you'll see the screenshot.
+
+## Upgrade
+
+Refresh the TapKit marketplace when a new plugin version is available:
+
+```bash
+codex plugin marketplace upgrade tapkit-plugins
+```
+
+`tapkit-plugins` is the Codex marketplace name from the marketplace metadata.
 
 ## What's in the plugin
 

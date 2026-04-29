@@ -6,55 +6,100 @@ description: Control iPhones from the Codex desktop app
 The TapKit plugin for Codex gives the agent iPhone control in the desktop app. It installs an MCP server connection and a skill file that teaches Codex how to use the tools effectively.
 
 <Note>
-  Codex doesn't officially support community plugins yet — only personal plugins you install yourself. The TapKit plugin is open source and ready to install, you just need to add it manually.
+  Codex can install and track the TapKit plugin marketplace from GitHub. You do not need to clone the plugin repo or create a marketplace file yourself.
 </Note>
 
-## Setup
+## Step 1: Install the Codex CLI
 
-**1. Clone the [tapkit-plugins-codex](https://github.com/Jootsing-Research/tapkit-plugins-codex) repo** to a location of your choice. Remember where you clone it — you'll need the path in the next step.
+The Codex app uses the CLI to add and update plugin marketplaces. If you do not already have it, install the Codex CLI:
 
-**2. Create the marketplace file** at `~/.agents/plugins/marketplace.json`:
-
-```json
-{
-  "name": "tapkit",
-  "interface": {
-    "displayName": "Tap Kit"
-  },
-  "plugins": [
-    {
-      "name": "tapkit",
-      "source": {
-        "source": "local",
-        "path": "<path-to-cloned-repo>/plugins/tapkit"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Productivity"
-    }
-  ]
-}
+```bash
+npm i -g @openai/codex
+codex
 ```
 
-<Warning>
-  **Update the path!** Replace `<path-to-cloned-repo>` with the actual path to where you cloned the repo, relative to your home directory. It must point to the `plugins/tapkit` subdirectory inside the cloned repo.
+The first time you run `codex`, sign in with your ChatGPT account or API key. See OpenAI's [Codex CLI setup guide](https://developers.openai.com/codex/cli) for more install options.
 
-  For example, if you cloned to `~/Dev/tapkit-plugins-codex`, the path would be `./Dev/tapkit-plugins-codex/plugins/tapkit`.
-</Warning>
+## Step 2: Add the TapKit marketplace
 
-**3. Install the plugin** — restart Codex, then go to **Plugins** in the left sidebar. In the plugins page, change the dropdown from **Built by OpenAI** to **TapKit**, then install the plugin.
+Run this command in your terminal:
 
-**4. Authenticate** — once the plugin is loaded, the TapKit MCP server will prompt you to sign in via your browser.
+```bash
+codex plugin marketplace add jootsing-research/tapkit-plugins-codex
+```
 
-**5. Verify it works:**
+If the Codex app is already open, restart it so the new marketplace appears.
+
+## Step 3: Open Plugins
+
+In the Codex app, click **Plugins** in the left sidebar.
+
+<Accordion title="See screenshot">
+  <Frame>
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '16px' }}>
+      <img src="/images/codex-app-plugins.png" alt="Codex app sidebar with Plugins selected" style={{ maxWidth: '70%', borderRadius: '12px' }} />
+    </div>
+  </Frame>
+</Accordion>
+
+## Step 4: Select the TapKit marketplace
+
+On the Plugins page, open the marketplace dropdown and select **Tap Kit Plugins**.
+
+<Accordion title="See screenshot">
+  <Frame>
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '16px' }}>
+      <img src="/images/codex-app-marketplace-dropdown.png" alt="Codex plugins page marketplace dropdown showing Tap Kit Plugins" style={{ maxWidth: '100%', borderRadius: '12px' }} />
+    </div>
+  </Frame>
+</Accordion>
+
+## Step 5: Install the TapKit plugin
+
+Find **Tap Kit** under **Productivity**, click the **+** button, then click **Install Tap Kit** in the popup.
+
+<Accordion title="See screenshots">
+  <Frame>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center', padding: '16px' }}>
+      <img src="/images/codex-app-tapkit-not-installed.png" alt="Codex plugins page showing Tap Kit with plus button" style={{ maxWidth: '100%', borderRadius: '12px' }} />
+      <img src="/images/codex-app-install-popup.png" alt="Install Tap Kit popup with Install Tap Kit button" style={{ maxWidth: '80%', borderRadius: '12px' }} />
+    </div>
+  </Frame>
+</Accordion>
+
+## Step 6: Confirm TapKit is installed
+
+After installation, TapKit shows a checkmark in the plugin list.
+
+<Accordion title="See screenshot">
+  <Frame>
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '16px' }}>
+      <img src="/images/codex-app-installed.png" alt="Codex plugins page showing Tap Kit installed with checkmark" style={{ maxWidth: '100%', borderRadius: '12px' }} />
+    </div>
+  </Frame>
+</Accordion>
+
+## Step 7: Authenticate
+
+Once the plugin is loaded, the TapKit MCP server will prompt you to sign in via your browser.
+
+## Verify it works
 
 ```
 Take a screenshot of my phone
 ```
 
 If a phone is connected via the Mac app, you'll see the screenshot.
+
+## Upgrade
+
+Refresh the TapKit marketplace when a new plugin version is available:
+
+```bash
+codex plugin marketplace upgrade tapkit-plugins
+```
+
+`tapkit-plugins` is the Codex marketplace name from the marketplace metadata.
 
 ## What's in the plugin
 
