@@ -9,18 +9,11 @@ The TapKit plugin for Codex gives the agent iPhone control in the desktop app. I
   Codex can install and track the TapKit plugin marketplace from GitHub. You do not need to clone the plugin repo or create a marketplace file yourself.
 </Note>
 
-## Step 1: Install the Codex CLI
+<Note>
+  This guide assumes you already have the Codex CLI installed. If you do not, follow OpenAI's [Codex CLI setup guide](https://developers.openai.com/codex/cli) first.
+</Note>
 
-The Codex app uses the CLI to add and update plugin marketplaces. If you do not already have it, install the Codex CLI:
-
-```bash
-npm i -g @openai/codex
-codex
-```
-
-The first time you run `codex`, sign in with your ChatGPT account or API key. See OpenAI's [Codex CLI setup guide](https://developers.openai.com/codex/cli) for more install options.
-
-## Step 2: Add the TapKit marketplace
+## Step 1: Add the TapKit marketplace
 
 Run this command in your terminal:
 
@@ -30,7 +23,7 @@ codex plugin marketplace add jootsing-research/tapkit-plugins-codex
 
 If the Codex app is already open, restart it so the new marketplace appears.
 
-## Step 3: Open Plugins
+## Step 2: Open Plugins
 
 In the Codex app, click **Plugins** in the left sidebar.
 
@@ -42,7 +35,7 @@ In the Codex app, click **Plugins** in the left sidebar.
   </Frame>
 </Accordion>
 
-## Step 4: Select the TapKit marketplace
+## Step 3: Select the TapKit marketplace
 
 On the Plugins page, open the marketplace dropdown and select **Tap Kit Plugins**.
 
@@ -54,7 +47,7 @@ On the Plugins page, open the marketplace dropdown and select **Tap Kit Plugins*
   </Frame>
 </Accordion>
 
-## Step 5: Install the TapKit plugin
+## Step 4: Install the TapKit plugin
 
 Find **Tap Kit** under **Productivity**, click the **+** button, then click **Install Tap Kit** in the popup.
 
@@ -67,7 +60,7 @@ Find **Tap Kit** under **Productivity**, click the **+** button, then click **In
   </Frame>
 </Accordion>
 
-## Step 6: Confirm TapKit is installed
+## Step 5: Confirm TapKit is installed
 
 After installation, TapKit shows a checkmark in the plugin list.
 
@@ -79,7 +72,7 @@ After installation, TapKit shows a checkmark in the plugin list.
   </Frame>
 </Accordion>
 
-## Step 7: Authenticate
+## Step 6: Authenticate
 
 Once the plugin is loaded, the TapKit MCP server will prompt you to sign in via your browser.
 
