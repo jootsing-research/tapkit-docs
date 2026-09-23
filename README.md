@@ -19,8 +19,6 @@ Preview at `http://localhost:3000`. Check links with `mint broken-links`.
 | Integrations | `integrations/` | Claude, Codex, MCP, skills |
 | API Reference | `api-reference/` | REST endpoints |
 
-See `AGENTS.md` for where each page's facts come from.
-
 ## Deploying
 
 Pushes to `main` deploy automatically via Mintlify.
