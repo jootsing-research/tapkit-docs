@@ -26,21 +26,7 @@ Most clients accept a config like this:
 }
 ```
 
-<Tabs>
-  <Tab title="Cursor">
-    Add the config above to `.cursor/mcp.json` in your project, or `~/.cursor/mcp.json` for every project. Cursor prompts you to sign in the first time it connects.
-  </Tab>
-  <Tab title="Claude Code without the plugin">
-    ```bash
-    claude mcp add --transport http tapkit https://mcp.tapkit.ai/mcp
-    ```
-
-    Then run `/mcp` in Claude Code and authenticate. The [plugin](/integrations/claude-code) does this for you and adds skills.
-  </Tab>
-  <Tab title="Your own client">
-    Point your MCP client at the URL. The client must support OAuth 2.1 with PKCE and dynamic client registration. The server publishes its OAuth metadata at `/.well-known/oauth-protected-resource/mcp`.
-  </Tab>
-</Tabs>
+Point your MCP client at the URL. The client must support OAuth 2.1 with PKCE and dynamic client registration. The server publishes its OAuth metadata at `/.well-known/oauth-protected-resource/mcp`.
 
 ## Sign in
 
