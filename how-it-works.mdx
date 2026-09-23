@@ -1,22 +1,23 @@
 ---
-title: How It Works
-description: How the Mac, the iPhone, and your agent fit together
+title: How it works
+description: How the Mac, the iPhone, and your agent connect
 ---
 
-TapKit has three parts: your **iPhone**, the **TapKit Mac app**, and the **TapKit cloud**.
+TapKit has three parts: your iPhone, the TapKit Mac app, and the TapKit cloud.
 
-## The Mac drives the iPhone
+## The Mac controls the iPhone
 
-The iPhone stays plugged into the Mac with a USB cable. The Mac app uses two connections to it:
+The iPhone stays plugged into the Mac with a USB cable. The Mac app talks to it in two ways.
 
-- **Screen (USB).** The Mac receives the iPhone's screen over the cable, the same way QuickTime can record an iPhone. This is why TapKit asks for Camera access on the Mac.
-- **Touch and keyboard (Bluetooth).** The iPhone pairs with the Mac as a Bluetooth mouse and keyboard. iOS's AssistiveTouch turns the mouse input into taps, drags, and flicks. This is why TapKit asks for Bluetooth access.
+**Screen over USB.** The Mac receives the iPhone's screen over the cable, the same way QuickTime records an iPhone. macOS treats the iPhone's screen as a camera, so TapKit asks for Camera access.
 
-TapKit uses only features built into iOS. Nothing is installed on the iPhone, and you can disconnect it at any time by unplugging it or unpairing it in **Settings > Bluetooth**.
+**Touch and keyboard over Bluetooth.** The iPhone pairs with the Mac, and the Mac acts as a Bluetooth mouse and keyboard. AssistiveTouch, an iOS accessibility feature, turns the mouse input into taps, drags, and flicks. TapKit asks for Bluetooth access for this.
+
+TapKit only uses features built into iOS, so nothing is installed on the iPhone. To disconnect a phone, unplug it or forget the Mac in **Settings > Bluetooth**.
 
 ## Agents reach the Mac through the cloud
 
-The Mac app keeps a connection open to the TapKit cloud while you're signed in. Agents that don't run on the Mac send commands to the cloud, which forwards them to the Mac hosting the target phone.
+While you're signed in, the Mac app keeps a connection open to the TapKit cloud. Agents that don't run on the Mac send commands to the cloud, and the cloud forwards each command to the Mac that the target phone is plugged into.
 
 ```mermaid
 flowchart LR
@@ -28,24 +29,26 @@ flowchart LR
     Mac -->|Bluetooth: touch + keys| P
 ```
 
-The built-in agent in the Mac app skips the cloud relay for phone control: it reads the screen and sends input locally, and only calls out to a hosted language model.
+The built-in agent in the Mac app reads the screen and sends input on the Mac itself. It only uses the network to call a hosted language model.
 
 ## The agent loop
 
-Every TapKit agent works the same way:
+Every TapKit agent repeats the same steps:
 
 1. Take a screenshot.
-2. Decide what to do from what's on screen.
+2. Decide what to do based on the screen.
 3. Tap, flick, type, or press a key.
 4. Take another screenshot to check the result.
 
-There is no accessibility tree or DOM — agents work from pixels and coordinates, so any app you can use by hand works with TapKit.
+Agents work from screenshots and pixel coordinates, not an accessibility tree. Any app you can use by hand works with TapKit.
 
-## What has to be true for a phone to work
+## When a phone is ready
 
-- The Mac app is open and signed in.
-- The iPhone is connected over USB, trusted, and unlocked.
-- The iPhone is paired with the Mac over Bluetooth, and AssistiveTouch is on. The Mac app sets this up for you.
-- The phone is active on your TapKit subscription.
+A phone works with TapKit when:
 
-If any of these break, the phone shows up as offline or not ready. See [Setup](/setup#troubleshooting).
+- the Mac app is open and signed in,
+- the iPhone is plugged in, trusted, and unlocked,
+- the iPhone is paired with the Mac over Bluetooth and AssistiveTouch is on, and
+- the phone is active on your TapKit subscription.
+
+The Mac app sets up Bluetooth and AssistiveTouch for you. If a phone isn't ready, it shows as offline. See [Setup](/setup#troubleshooting).

@@ -1,18 +1,18 @@
 ---
-title: Claude App
+title: Claude app
 description: Control iPhones from Claude Chat and Cowork
 ---
 
-The TapKit plugin adds the TapKit connector and TapKit's [skills](/integrations/skills) to Claude Chat and Cowork. Install it from Cowork in the Claude app. For the terminal, see [Claude Code](/integrations/claude-code).
+The TapKit plugin adds the TapKit connector and TapKit's [skills](/integrations/skills) to Claude Chat and Cowork. You install it from Cowork in the Claude app. To use TapKit in the terminal, see [Claude Code](/integrations/claude-code).
 
-## Step 1: Add the TapKit plugin marketplace
+## 1. Add the TapKit marketplace
 
 1. Open **Cowork** in the Claude app.
 2. In the left sidebar, click **Customize**.
 3. Go to **Personal Plugins** and click the **+** button.
-4. You'll see a popup with **Browse Plugins** and **Create Plugin** — hover over **Create Plugin**.
+4. In the popup, hover over **Create Plugin**.
 5. Click **Add Marketplace**.
-6. In the popup, paste the following:
+6. Paste this and confirm:
 
 ```
 jootsing-research/tapkit-plugins-claude
@@ -27,15 +27,15 @@ jootsing-research/tapkit-plugins-claude
   </Frame>
 </Accordion>
 
-## Step 2: Install the TapKit plugin
+## 2. Install the plugin
 
 1. Still in Cowork under **Customize**, click **Browse Plugins**.
 2. Find the **TapKit** plugin in the list.
 3. Click **Install**, then click **Manage**.
 
-You should now see TapKit listed under **Personal Plugins** in the Customize sidebar.
+TapKit now appears under **Personal Plugins** in the Customize sidebar.
 
-<Accordion title="See screenshots — navigate to Browse Plugins">
+<Accordion title="See screenshots of Browse Plugins">
   <Frame>
     <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', alignItems: 'flex-start', padding: '16px' }}>
       <img src="/images/claude-app-browse-plugins.png" alt="Customize sidebar with Browse Plugins button" style={{ maxWidth: '30%', borderRadius: '12px' }} />
@@ -44,7 +44,7 @@ You should now see TapKit listed under **Personal Plugins** in the Customize sid
   </Frame>
 </Accordion>
 
-<Accordion title="See screenshots — find and install TapKit">
+<Accordion title="See screenshots of installing TapKit">
   <Frame>
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center', padding: '16px' }}>
       <img src="/images/claude-app-personal.png" alt="Personal tab showing tapkit-plugins-claude marketplace with Tapkit plugin" style={{ maxWidth: '100%', borderRadius: '12px' }} />
@@ -53,11 +53,11 @@ You should now see TapKit listed under **Personal Plugins** in the Customize sid
   </Frame>
 </Accordion>
 
-## Step 3: Give it permission
+## 3. Allow the tools
 
-1. In the Customize sidebar, click on the **TapKit** plugin.
-2. Click on **Connectors**, then select the **TapKit** connector.
-3. On the right side next to the tools, set the permission to **Always allow**.
+1. In the Customize sidebar, click the **TapKit** plugin.
+2. Click **Connectors**, then select the **TapKit** connector.
+3. Set the tool permission to **Always allow**.
 
 <Accordion title="See screenshots">
   <Frame>
@@ -68,7 +68,9 @@ You should now see TapKit listed under **Personal Plugins** in the Customize sid
   </Frame>
 </Accordion>
 
-The first time Claude uses TapKit, it asks you to sign in to TapKit in your browser. Click **Allow access** on the consent screen.
+## 4. Sign in
+
+The first time Claude uses TapKit, it opens TapKit in your browser. Sign in and click **Allow access**.
 
 ## Try it
 
@@ -83,9 +85,9 @@ The first time Claude uses TapKit, it asks you to sign in to TapKit in your brow
     Open the TapKit connector under **Customize** and reconnect it.
   </Accordion>
   <Accordion title="Claude can't find a phone, or the phone is offline">
-    Make sure the Mac app is open and signed in, and the phone's tile isn't showing a setup message. Ask Claude to "list my phones" to see what TapKit sees.
+    Check that the Mac app is open and signed in, and isn't showing a setup message for the phone. Ask Claude to "list my phones" to see what TapKit sees.
   </Accordion>
   <Accordion title="Actions time out">
-    Unlock the phone and check that it's still plugged in. If the phone's tile in the Mac app shows a problem, fix that first.
+    Unlock the phone and check that it's still plugged in. If the Mac app shows a problem with the phone, fix that first.
   </Accordion>
 </AccordionGroup>

@@ -1,10 +1,10 @@
 ---
-title: Get Apps
+title: Get apps
 description: List the apps installed on a phone
 api: GET /phones/{phone_id}/apps
 ---
 
-Returns the phone's installed apps and Apple's built-in apps. TapKit saves the list the first time it's fetched; call [Refresh apps](/api-reference/refresh-apps) after installing or removing apps.
+Returns the phone's installed apps and Apple's built-in apps. TapKit saves the list the first time you request it. Call [Refresh apps](/api-reference/refresh-apps) after you install or remove apps.
 
 <ParamField path="phone_id" type="string" required>
   The phone's ID, from [List phones](/api-reference/list-phones).

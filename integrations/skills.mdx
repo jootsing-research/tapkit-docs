@@ -3,9 +3,9 @@ title: Skills
 description: Teach agents how to use TapKit and navigate iOS
 ---
 
-Skills are Markdown instructions that agents load when they need them. They follow the open [Agent Skills](https://agentskills.io) standard. TapKit's skills teach an agent how to drive an iPhone through TapKit and where things are in iOS and Apple's apps.
+Skills are Markdown instructions that an agent loads when it needs them. They follow the open [Agent Skills](https://agentskills.io) standard. TapKit's skills teach an agent how to control an iPhone through TapKit and where to find things in iOS and Apple's apps.
 
-The [Claude](/integrations/claude-code) and [Codex](/integrations/codex-cli) plugins already include these skills. Install them separately only for other agents.
+The [Claude](/integrations/claude-code) and [Codex](/integrations/codex-cli) plugins include these skills. Install them separately only for other agents.
 
 ## Install
 
@@ -13,7 +13,7 @@ The [Claude](/integrations/claude-code) and [Codex](/integrations/codex-cli) plu
 npx skills add jootsing-research/skills
 ```
 
-Choose your agent when prompted. Skills don't give an agent access to your phone on their own — connect it to the [MCP server](/integrations/mcp) too.
+Choose your agent when prompted. Skills don't give an agent access to your phone, so connect the agent to the [MCP server](/integrations/mcp) too.
 
 ## Available skills
 
@@ -21,14 +21,14 @@ Choose your agent when prompted. Skills don't give an agent access to your phone
 
 | Skill | What it teaches |
 |---|---|
-| `tapkit` | The screenshot → act → verify loop, TapKit's tools and coordinates, and safe text entry. Always install this one. |
+| `tapkit` | How to use TapKit's tools and coordinates, check each action with a screenshot, and enter text safely. Always install this one. |
 | `tapkit-ios-home-navigation` | Finding apps across Home Screen pages, folders, App Library, Spotlight, and Today View |
 | `text-editing` | Placing the cursor, selecting, replacing, and deleting text |
 | `ios-pickers` | Setting time, date, and duration wheel pickers reliably |
 
 ### Apple apps
 
-Maps of each app's screens and where every control is, for when the agent can't find something.
+Each app skill maps the app's screens and where each control is. The agent reads it when it can't find something.
 
 | Skill | App |
 |---|---|

@@ -1,40 +1,42 @@
 ---
-title: Web App
+title: Web app
 description: Manage phones, API keys, your team, and billing at tapkit.ai
 ---
 
-The [TapKit web app](https://tapkit.ai/dashboard) is where you manage your organization. Sign in with the same Google account you use in the Mac app.
+Use the [TapKit web app](https://tapkit.ai/dashboard) to manage your organization. Sign in with the same account you use in the Mac app.
+
+<img src="/images/web-app-overview.png" alt="TapKit web app showing a phone's live stream" />
 
 ## Phones
 
-Lists every phone your organization has connected, with its status, the Mac it's connected to, and whether it's active.
+The Phones page lists every phone your organization has connected. For each phone it shows the status, the Mac it's connected to, and whether it's active.
 
-- **Status** — **Online** (connected and selected on its Mac), **Available** (connected to a Mac), or **Offline**.
-- **Activation** — only active phones can be controlled. Your plan sets how many phones can be active at once; click **Activate** or **Deactivate** to choose which ones.
-- **Rename** — click the pencil next to a phone's name. Agents see this name.
-- **View Stream** — watch the phone live and control it from the browser.
-- **Edit** — remove a phone you no longer use.
+A phone's status is **Online** when it's connected and selected on its Mac, **Available** when it's connected to a Mac but not selected, and **Offline** otherwise.
+
+Agents can only control active phones. Your plan sets how many phones can be active at once. Click **Activate** or **Deactivate** to choose which ones.
+
+To rename a phone, click the pencil next to its name. Agents see this name. To remove a phone you no longer use, click **Edit**.
 
 ### Live stream
 
-The stream page shows the phone's screen in real time, with controls for tapping, flicking, and dragging from your browser. The phone's Mac must be online. Only one phone per Mac can stream at a time.
+Click **View Stream** to watch a phone's screen in real time and tap, flick, and drag on it from your browser. The phone's Mac must be online, and each Mac can stream one phone at a time.
 
-## API Keys
+## API keys
 
-Create and revoke keys for the [REST API](/api-reference/introduction).
+API keys authenticate requests to the [REST API](/api-reference/introduction).
 
-1. Click **Create API Key** and give it a name.
-2. Copy the key. It starts with `tk_`, and you won't be able to see it again.
+1. Click **Create API Key** and give the key a name.
+2. Copy the key. It starts with `tk_`, and you can't view it again after you close the dialog.
 
-The list shows each key's prefix, when it was created, and when it was last used. **Revoke** disables a key immediately.
+The list shows each key's prefix, when it was created, and when it was last used. Click **Revoke** to disable a key immediately.
 
 <Note>
-  The MCP server doesn't use API keys — MCP clients sign in with OAuth. See [MCP](/integrations/mcp).
+  MCP clients sign in with OAuth instead of API keys. See [MCP](/integrations/mcp).
 </Note>
 
 ## Sessions
 
-Streaming and viewing time for the current billing period, with a history of each live stream: when it ran, which phone, how long, and who watched.
+The Sessions page shows how much streaming and viewing time your organization has used this billing period. Its history lists each live stream with its phone, start time, length, and viewers.
 
 ## Team
 
@@ -42,13 +44,13 @@ Invite people to your organization by email as a **Member** or **Admin**. Admins
 
 ## Settings
 
-Your display name (shown to others watching a stream) and your organization's name.
+Set your display name, which other people see when you watch a stream, and your organization's name.
 
 ## Billing
 
-Your subscription is priced per phone. From here you can:
+You pay for your subscription per phone. From the Billing page you can:
 
-- **Subscribe**, if you haven't yet.
-- **Add Phones** — takes effect immediately, charged a prorated amount.
-- **Remove Phones** — takes effect at the end of the billing period. Choose which phones to deactivate, or TapKit deactivates the oldest first.
-- **Manage Payment & Invoices** — opens Stripe to update your card, download invoices, or cancel.
+- Subscribe, if you haven't yet.
+- Add phones. The change takes effect immediately, and you pay a prorated amount for the rest of the period.
+- Remove phones. The change takes effect at the end of the billing period. Choose which phones to deactivate, or TapKit deactivates the oldest ones.
+- Click **Manage Payment & Invoices** to update your card, download invoices, or cancel in Stripe.

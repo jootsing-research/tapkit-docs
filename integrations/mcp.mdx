@@ -3,7 +3,7 @@ title: MCP
 description: Connect any MCP client to TapKit
 ---
 
-TapKit runs a hosted MCP server. Any client that supports remote MCP servers with OAuth can connect to it; there's nothing to run locally besides the [Mac app](/setup).
+TapKit runs a hosted MCP server. Any client that supports remote MCP servers with OAuth can connect to it. The only thing you run locally is the [Mac app](/setup).
 
 ```
 https://mcp.tapkit.ai/mcp
@@ -30,7 +30,7 @@ Most clients accept a config like this:
   <Tab title="Cursor">
     Add the config above to `.cursor/mcp.json` in your project, or `~/.cursor/mcp.json` for every project. Cursor prompts you to sign in the first time it connects.
   </Tab>
-  <Tab title="Claude Code (without the plugin)">
+  <Tab title="Claude Code without the plugin">
     ```bash
     claude mcp add --transport http tapkit https://mcp.tapkit.ai/mcp
     ```
@@ -38,7 +38,7 @@ Most clients accept a config like this:
     Then run `/mcp` in Claude Code and authenticate. The [plugin](/integrations/claude-code) does this for you and adds skills.
   </Tab>
   <Tab title="Your own client">
-    Point your MCP client at the URL. It must support OAuth 2.1 with PKCE and dynamic client registration; the server publishes its metadata at `/.well-known/oauth-protected-resource/mcp`.
+    Point your MCP client at the URL. The client must support OAuth 2.1 with PKCE and dynamic client registration. The server publishes its OAuth metadata at `/.well-known/oauth-protected-resource/mcp`.
   </Tab>
 </Tabs>
 
@@ -46,7 +46,7 @@ Most clients accept a config like this:
 
 The first time your client connects, it opens TapKit in your browser. Sign in with Google, then click **Allow access** to let the client view and interact with your connected iPhones.
 
-The MCP server only accepts OAuth. It doesn't accept [API keys](/web-app#api-keys) — those are for the [REST API](/api-reference/introduction).
+The MCP server only accepts OAuth. [API keys](/web-app#api-keys) are for the [REST API](/api-reference/introduction).
 
 ## Tools
 
@@ -54,15 +54,15 @@ Start with `list_phones`. Every other tool takes the `phone_id` it returns.
 
 | Tool | Parameters | Description |
 |---|---|---|
-| `list_phones` | — | List phones with their IDs, status, and screen size |
+| `list_phones` | None | List phones with their IDs, status, and screen size |
 | `get_phone_status` | `phone_id` | Connection status and screen size of one phone |
 | `screenshot` | `phone_id` | Capture the screen as an image |
 | `tap` | `phone_id`, `x`, `y` | Tap a point |
 | `double_tap` | `phone_id`, `x`, `y` | Double tap, for zooming or selecting a word |
 | `triple_tap` | `phone_id`, `x`, `y` | Triple tap, for selecting a line or paragraph |
-| `long_press` | `phone_id`, `x`, `y`, `duration`? | Press and hold, for context menus. `duration` in ms, default 1000 |
+| `long_press` | `phone_id`, `x`, `y`, `duration`? | Press and hold, for context menus. `duration` is in ms, default 1000 |
 | `flick` | `phone_id`, `x`, `y`, `direction` | Quick swipe `up`, `down`, `left`, or `right` from a point |
-| `drag` | `phone_id`, `from_x`, `from_y`, `to_x`, `to_y`, `speed`? | Press, move, and release. `speed` is `slow`, `medium` (default), or `fast` |
+| `drag` | `phone_id`, `from_x`, `from_y`, `to_x`, `to_y`, `speed`? | Press, move, and release. `speed` is `slow`, `medium`, or `fast`, default `medium` |
 | `hold_and_drag` | `phone_id`, `from_x`, `from_y`, `to_x`, `to_y`, `hold_duration_ms`?, `speed`? | Long press, then drag, for moving items. Hold defaults to 500 ms |
 | `type_text` | `phone_id`, `text` | Type into the focused field. US-ASCII only, up to 100 characters |
 | `press_key` | `phone_id`, `key`, `modifiers`?, `repeat`? | Press `enter`, `escape`, `backspace`, or an arrow key, optionally holding `control`, `shift`, `alternate`, or `command` |
@@ -70,11 +70,10 @@ Start with `list_phones`. Every other tool takes the `phone_id` it returns.
 
 ## Coordinates
 
-Screenshots are JPEGs scaled so the long edge is at most 1344 pixels. Tool coordinates are pixels in that image, measured from the top-left corner — the server converts them to the phone's native resolution.
+Screenshots are JPEGs scaled so the long edge is at most 1344 pixels. Tool coordinates are pixels in that image, measured from the top-left corner. The server converts them to the phone's native resolution.
 
 Action tools don't return a screenshot. Call `screenshot` after an action to see the result.
 
 ## Limits
 
-- 300 requests per minute per connection.
-- A phone must be online and active on your subscription to be controlled.
+Each connection can make 300 requests per minute. Agents can only control phones that are online and active on your subscription.

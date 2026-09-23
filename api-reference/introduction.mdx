@@ -1,9 +1,9 @@
 ---
-title: API Overview
+title: API overview
 description: Control connected iPhones over HTTP
 ---
 
-The REST API sends touch and keyboard input to your iPhones and reads their screens. It's the same set of actions agents use through [MCP](/integrations/mcp), for code that doesn't go through an agent framework.
+The REST API sends touch and keyboard input to your iPhones and takes screenshots. It has the same actions that agents get through [MCP](/integrations/mcp), for code that doesn't use an agent framework.
 
 ## Base URL
 
@@ -13,7 +13,7 @@ https://api.tapkit.ai/v1
 
 ## Authentication
 
-Send an API key in the `X-API-Key` header. Create keys in the [web app](/web-app#api-keys); they start with `tk_`.
+Send an API key in the `X-API-Key` header. Create keys in the [web app](/web-app#api-keys). Keys start with `tk_`.
 
 ```bash
 curl https://api.tapkit.ai/v1/phones \
@@ -24,21 +24,21 @@ A key has access to every phone in your organization. Keep it out of source cont
 
 ## Before you call an action
 
-A phone accepts actions when:
+A phone accepts actions when
 
 - its Mac app is open and signed in,
 - it's connected, unlocked, and set up in the Mac app, and
 - it's active on your subscription.
 
-Call [List phones](/api-reference/list-phones) to get phone IDs and check their `connection_status`.
+[List phones](/api-reference/list-phones) returns each phone's ID and `connection_status`.
 
 ## Coordinates
 
-Coordinates are integer pixels on the phone's screen, measured from the top-left corner. They match the pixels of a [screenshot](/api-reference/screenshot), and the full range is the `width` × `height` reported by [List phones](/api-reference/list-phones).
+Coordinates are integer pixels on the phone's screen, measured from the top-left corner. They match the pixels of a [screenshot](/api-reference/screenshot). [List phones](/api-reference/list-phones) reports each screen's `width` and `height`.
 
 ## Jobs
 
-Every action runs as a job on the phone's Mac. By default a request waits for the job to finish (up to 60 seconds) and returns it:
+Every action runs as a job on the phone's Mac. By default, a request waits up to 60 seconds for the job to finish and then returns it:
 
 ```json
 {
@@ -50,9 +50,9 @@ Every action runs as a job on the phone's Mac. By default a request waits for th
 }
 ```
 
-`status` is `pending`, `running`, `completed`, or `failed`. A failed action still returns HTTP 200, with the reason in `result.error`. An action that doesn't finish in 60 seconds fails with `"error": "TIMEOUT"`.
+`status` is `pending`, `running`, `completed`, or `failed`. A failed action still returns HTTP 200, with the reason in `result.error`. If an action doesn't finish in 60 seconds, its job fails with `"error": "TIMEOUT"`.
 
-Add `?async=true` to return immediately with just the job ID, then poll [Get job](/api-reference/get-job):
+Add `?async=true` to get the job ID back immediately, then poll [Get job](/api-reference/get-job):
 
 ```json
 { "job_id": "5d2c9a0e-7f7b-4c1e-9d1a-2f4b8e0c3a61" }
@@ -60,7 +60,7 @@ Add `?async=true` to return immediately with just the job ID, then poll [Get job
 
 ## Errors
 
-Request errors use HTTP status codes, with details under `detail`:
+Other errors return an HTTP error status, with details under `detail`:
 
 ```json
 {

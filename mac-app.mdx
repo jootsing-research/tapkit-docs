@@ -1,49 +1,49 @@
 ---
-title: Mac App
-description: The host app that makes your phones available
+title: Mac app
+description: The app that connects your phones to TapKit
 ---
 
-The TapKit Mac app connects your iPhones to your TapKit account and makes them available to its built-in agent, Claude, Codex, the API, and any other MCP client. The app must be open and signed in for TapKit to see or control a phone.
+The TapKit Mac app connects your iPhones to your TapKit account. Once a phone is connected, the built-in agent, Claude, Codex, the API, and any other MCP client can use it. TapKit can only see or control a phone while the app is open and signed in.
 
 <img src="/images/mac-app-overview.webp" alt="TapKit Mac app with a connected iPhone on the left and the agent chat on the right" />
 
 ## Connected phones
 
-The main window shows every iPhone connected to this Mac, each with its live screen. Plug in another iPhone to add it; it walks through the same trust, screen, and Bluetooth checks as the first one. See [Setup](/setup#adding-more-phones).
+The main window shows the live screen of every iPhone connected to this Mac. To add a phone, plug it in. It goes through the same trust, screen, and Bluetooth checks as the first one. See [Setup](/setup#adding-more-phones).
 
-Each phone must stay plugged in over USB, unlocked, and paired with the Mac over Bluetooth. If a phone isn't ready, the app says why and what to do.
+Each phone has to stay plugged in, unlocked, and paired with the Mac over Bluetooth. If a phone isn't ready, the app tells you why and what to do.
 
-## Gestures & device controls
+## Gestures and device controls
 
-You can control a phone by hand from the Mac app: pick a gesture — tap, double or triple tap, tap and hold, flick, drag, or hold and drag — and click on the phone's screen, or use **Live** to click and drag as if with a finger. **Home** goes to the Home Screen.
+You can control a phone by hand from the Mac app. Pick a gesture and click on the phone's screen. The gestures are tap, double tap, triple tap, tap and hold, flick, drag, and hold and drag. **Live** lets you click and drag on the screen like a finger. **Home** goes to the Home Screen.
 
-Manual control is useful for testing the connection, getting a phone into position before a task, or stepping in while an agent is working. Your Mac's keyboard isn't forwarded to the phone.
+Use manual control to test the connection, set up a phone before a task, or take over while an agent is working. Your Mac's keyboard doesn't type on the phone.
 
 ## Agent chat
 
-The built-in agent is the fastest way to try TapKit without setting up another tool. Open a phone's chat, and type a task:
+The built-in agent lets you try TapKit without setting up another tool. Open a phone's chat and type a task:
 
 > Add eggs to my Groceries list in Reminders
 
-The agent looks at the screen, acts, and repeats until the task is done or it needs your input. You can watch each step on the phone and in the chat, and stop it at any time. It can use any connected phone and asks which one if it's not clear.
+The agent looks at the screen, acts, and repeats until the task is done or it needs your input. Each step shows on the phone and in the chat, and you can stop the agent at any time. The agent can use any connected phone, and asks which one if your task doesn't say.
 
-Chats aren't saved when you quit TapKit.
+TapKit doesn't save chats when you quit.
 
 ## Connection status
 
 When a phone isn't ready:
 
-1. Make sure TapKit is open and signed in.
-2. Make sure the iPhone is plugged in and unlocked.
-3. Follow the message on the phone in the Mac app — for example, tap **Trust** on the iPhone, or reconnect Bluetooth.
-4. Make sure the phone is active on your subscription in the [web app](/web-app#phones).
+1. Check that TapKit is open and signed in.
+2. Check that the iPhone is plugged in and unlocked.
+3. Follow the message the Mac app shows for that phone. For example, it may ask you to tap **Trust** on the iPhone or reconnect Bluetooth.
+4. Check that the phone is active on your subscription in the [web app](/web-app#phones).
 
-See [Setup troubleshooting](/setup#troubleshooting) for specific problems.
+[Setup troubleshooting](/setup#troubleshooting) covers specific problems.
 
 ## Settings
 
-Most of what you'll change lives behind the **Account** button in the toolbar. Rename a phone there to change what agents call it, fix Camera or Bluetooth access if macOS revoked it, or copy the MCP server URL to [connect another AI tool](/integrations/overview). It's also where you manage your subscription and add phones to it, and where you sign out.
+Most settings are behind the **Account** button in the toolbar. There you can rename a phone, which changes the name agents see. You can also fix Camera or Bluetooth access, copy the MCP server URL to [connect another AI tool](/integrations/overview), manage your subscription, add phones to it, and sign out.
 
-If a phone gets into a state you can't recover from, choose **TapKit > Settings...** (⌘,) and click **Run Setup Again** to go through the guided setup from the start.
+If a phone gets stuck in a state you can't fix, choose **TapKit > Settings...** (⌘,) and click **Run Setup Again** to go through setup from the start.
 
-TapKit keeps itself up to date. Choose **TapKit > Check for Updates...** to check right away.
+TapKit updates itself. Choose **TapKit > Check for Updates...** to check now.

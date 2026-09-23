@@ -4,7 +4,7 @@ description: Type text into the focused field
 api: POST /phones/{phone_id}/type
 ---
 
-Type text into whichever field has focus. Tap the field first so the keyboard is showing.
+Type text into the focused field. Tap the field first so the keyboard is showing.
 
 <ParamField path="phone_id" type="string" required>
   The phone's ID, from [List phones](/api-reference/list-phones).
@@ -21,7 +21,7 @@ Type text into whichever field has focus. Tap the field first so the keyboard is
 </ParamField>
 
 <Note>
-  Characters outside US-ASCII, such as emoji and accented letters, can't be typed. Split longer text across several requests.
+  Emoji, accented letters, and other characters outside US-ASCII can't be typed. Split text longer than 100 characters across several requests.
 </Note>
 
 <RequestExample>

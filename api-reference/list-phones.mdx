@@ -1,5 +1,5 @@
 ---
-title: List Phones
+title: List phones
 description: List every phone in your organization
 api: GET /phones
 ---
@@ -21,7 +21,7 @@ Returns every phone your organization has connected, including offline ones.
 </ResponseField>
 
 <ResponseField name="connection_status" type="string">
-  `online` (connected and selected on its Mac), `available` (connected to a Mac), or `offline`.
+  `online` if the phone is connected and selected on its Mac, `available` if it's connected to a Mac but not selected, or `offline`.
 </ResponseField>
 
 <ResponseField name="activation_state" type="string">
@@ -44,7 +44,7 @@ Returns every phone your organization has connected, including offline ones.
   When the phone was first connected.
 </ResponseField>
 
-The response includes other fields not listed here. Don't rely on them.
+The response has other fields that aren't part of the API. Don't rely on them.
 
 <RequestExample>
 ```bash cURL

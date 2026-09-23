@@ -14,7 +14,7 @@
         "tab": "Documentation",
         "groups": [
           {
-            "group": "Getting Started",
+            "group": "Getting started",
             "pages": [
               "index",
               "how-it-works",
@@ -42,7 +42,7 @@
         "tab": "Integrations",
         "groups": [
           {
-            "group": "Getting Started",
+            "group": "Getting started",
             "pages": [
               "integrations/overview"
             ]
@@ -62,7 +62,7 @@
             ]
           },
           {
-            "group": "Everywhere Else",
+            "group": "Everywhere else",
             "pages": [
               "integrations/mcp",
               "integrations/skills"
@@ -74,7 +74,7 @@
         "tab": "API Reference",
         "groups": [
           {
-            "group": "Getting Started",
+            "group": "Getting started",
             "pages": [
               "api-reference/introduction"
             ]
@@ -103,7 +103,7 @@
             ]
           },
           {
-            "group": "Keyboard & Buttons",
+            "group": "Keyboard and buttons",
             "pages": [
               "api-reference/type",
               "api-reference/keypress",
