@@ -33,22 +33,10 @@ The built-in agent in the Mac app reads the screen and sends input on the Mac it
 
 ## The agent loop
 
-Every TapKit agent repeats the same steps:
-
-1. Take a screenshot.
-2. Decide what to do based on the screen.
-3. Tap, flick, type, or press a key.
-4. Take another screenshot to check the result.
+Every TapKit agent works in a loop. It takes a screenshot, decides what to do, then taps, flicks, types, or presses a key. Then it takes another screenshot to check the result, and repeats until the task is done.
 
 Agents work from screenshots and pixel coordinates, not an accessibility tree. Any app you can use by hand works with TapKit.
 
 ## When a phone is ready
 
-A phone works with TapKit when:
-
-- the Mac app is open and signed in,
-- the iPhone is plugged in, trusted, and unlocked,
-- the iPhone is paired with the Mac over Bluetooth and AssistiveTouch is on, and
-- the phone is active on your TapKit subscription.
-
-The Mac app sets up Bluetooth and AssistiveTouch for you. If a phone isn't ready, it shows as offline. See [Setup](/setup#troubleshooting).
+A phone works with TapKit when the Mac app is open and signed in, and the iPhone is plugged in, trusted, and unlocked. The iPhone also has to be paired with the Mac over Bluetooth with AssistiveTouch on, which the Mac app sets up for you. Finally, the phone has to be active on your TapKit subscription. If a phone isn't ready, it shows as offline. See [Setup](/setup#troubleshooting).

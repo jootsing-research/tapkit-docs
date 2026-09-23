@@ -3,7 +3,7 @@ title: Skills
 description: Teach agents how to use TapKit and navigate iOS
 ---
 
-Skills are Markdown instructions that an agent loads when it needs them. They follow the open [Agent Skills](https://agentskills.io) standard. TapKit's skills teach an agent how to control an iPhone through TapKit and where to find things in iOS and Apple's apps.
+Skills are Markdown instructions that an agent loads when it needs them. They follow the open [Agent Skills](https://agentskills.io) standard. TapKit's skills teach an agent how to control an iPhone through TapKit and where to find things in iOS and Apple's apps. The skills' source is [on GitHub](https://github.com/jootsing-research/skills).
 
 The [Claude](/integrations/claude-code) and [Codex](/integrations/codex-cli) plugins include these skills. Install them separately only for other agents.
 
@@ -28,22 +28,4 @@ Choose your agent when prompted. Skills don't give an agent access to your phone
 
 ### Apple apps
 
-Each app skill maps the app's screens and where each control is. The agent reads it when it can't find something.
-
-| Skill | App |
-|---|---|
-| `calendar` | Calendar |
-| `clock` | Clock |
-| `files` | Files |
-| `maps` | Maps |
-| `messages` | Messages |
-| `notes` | Notes |
-| `photos` | Photos |
-| `reminders` | Reminders |
-| `safari` | Safari |
-| `shortcuts` | Shortcuts |
-
-## Links
-
-- [Skills on GitHub](https://github.com/jootsing-research/skills)
-- [Agent Skills standard](https://agentskills.io)
+TapKit has a skill for each of Calendar, Clock, Files, Maps, Messages, Notes, Photos, Reminders, Safari, and Shortcuts, named after the app in lowercase, such as `reminders`. Each one maps the app's screens and where each control is, and the agent reads it when it can't find something.
