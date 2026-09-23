@@ -1,31 +1,33 @@
 ---
-title: Integrations Overview
-description: Use TapKit wherever you build
+title: Integrations
+description: Use TapKit from Claude, Codex, and any MCP client
 ---
 
-TapKit connects to the AI tools you already use. You can write code if you want, but it's not a requirement. TapKit has plugins for all of the major AI providers, and MCPs and skills for everyone else.
-
-## What's the same everywhere
-
-Every integration lets you inspect and operate the phone through screenshots, gestures, text input, and device controls. The platform changes how you talk to TapKit, not the phone workflow itself.
+Every integration connects to the same hosted MCP server, `https://mcp.tapkit.ai/mcp`, and signs in with your TapKit account in the browser. The plugins for Claude and Codex also install [skills](/integrations/skills) that teach the agent how to navigate iOS.
 
 <Info>
-  **All integrations require the TapKit Mac app running with at least one phone connected.** If you haven't set that up yet, start with [Mac App Setup](/setup/mac-app).
+  All integrations need the [TapKit Mac app](/setup) running with at least one connected, active iPhone.
 </Info>
 
-## Choose your platform
-
 <CardGroup cols={2}>
-  <Card title="Claude" icon="message" href="/integrations/claude">
-    Use TapKit in Claude Chat, Cowork, and Claude Code. Install the Claude app plugin for Chat and Cowork, or the separate Claude Code plugin for terminal workflows.
+  <Card title="Claude Code" icon="terminal" href="/integrations/claude-code">
+    Plugin for Claude in the terminal.
   </Card>
-  <Card title="Codex" icon="terminal" href="/integrations/codex">
-    Connect TapKit to the Codex CLI and Codex app for AI-powered iPhone control.
+  <Card title="Claude app" icon="message" href="/integrations/claude-app">
+    Plugin for Claude Chat and Cowork.
   </Card>
-  <Card title="MCP" icon="plug" href="/integrations/mcp">
-    Connect any tool that speaks MCP — Cursor, Windsurf, or your own client.
+  <Card title="Codex CLI" icon="terminal" href="/integrations/codex-cli">
+    Plugin for Codex in the terminal.
+  </Card>
+  <Card title="Codex app" icon="desktop" href="/integrations/codex-app">
+    Plugin for the Codex desktop app.
+  </Card>
+  <Card title="Other MCP clients" icon="plug" href="/integrations/mcp">
+    Cursor, your own agent, or anything else that speaks MCP.
   </Card>
   <Card title="Skills" icon="book-open" href="/integrations/skills">
-    Teach compatible agents how to navigate TapKit and supported iPhone apps.
+    iOS navigation know-how for agents without a TapKit plugin.
   </Card>
 </CardGroup>
+
+To control phones from your own code without an agent framework, use the [REST API](/api-reference/introduction).

@@ -1,37 +1,26 @@
 ---
 title: Introduction
-description: Programmatically control iPhones with TapKit
+description: Give your agent an iPhone
 ---
 
-{/* TODO: Add hero video (60-90 sec) — prompt → phone moves → montage of tasks → setup flash → end card */}
-<Frame>
-  <div style={{ padding: "56.25% 0 0 0", position: "relative", background: "#111", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-    <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "#666", fontSize: "14px" }}>
-      Demo video coming soon
-    </div>
-  </div>
-</Frame>
+TapKit lets AI agents see, tap, and type on real iPhones. Plug an iPhone into a Mac running the TapKit app, and any agent — TapKit's built-in agent, Claude, Codex, or your own code — can operate it through screenshots and touch input, the same way you do.
 
-## Overview
+Nothing is installed on the iPhone. No jailbreak, no developer mode, no simulator.
 
-TapKit gives AI agents and automation tools direct control over real iPhones. Your agent sees the screen, taps buttons, types text, and navigates apps — on a physical device with your real accounts and data. No simulators, no jailbreaking, no sideloaded apps.
-
-It connects to Claude, Codex, and any MCP-compatible platform, so you can start automating in minutes without learning new tools.
-
-## Why TapKit
+## What you can do with it
 
 <CardGroup cols={2}>
-  <Card title="Real iPhones" icon="mobile">
-    Physical devices, real apps, real accounts. Not a simulator, not a screenshot — your agent operates an actual phone.
+  <Card title="Chat with a built-in agent" icon="message" href="/mac-app#agent-chat">
+    Tell the TapKit Mac app what to do on a phone and watch it happen.
   </Card>
-  <Card title="Real work" icon="briefcase">
-    Book appointments, manage accounts, place orders, run tests. Your AI agent operates the phone the way you would.
+  <Card title="Use Claude or Codex" icon="plug" href="/integrations/overview">
+    Install the TapKit plugin and ask your assistant to use your iPhone.
   </Card>
-  <Card title="Works with your AI tools" icon="plug">
-    Connects to Claude, Codex, or any MCP-compatible platform. No new tools to learn.
+  <Card title="Connect any MCP client" icon="server" href="/integrations/mcp">
+    Point Cursor or your own agent at `https://mcp.tapkit.ai/mcp`.
   </Card>
-  <Card title="Live visibility" icon="eye">
-    Watch everything happen on the phone screen in real-time. Never in the dark about what your agent is doing.
+  <Card title="Call the REST API" icon="code" href="/api-reference/introduction">
+    Send taps, keystrokes, and screenshots from your own code.
   </Card>
 </CardGroup>
 
@@ -39,31 +28,9 @@ It connects to Claude, Codex, and any MCP-compatible platform, so you can start 
 
 <CardGroup cols={2}>
   <Card title="Quickstart" icon="rocket" href="/quickstart">
-    Control your first iPhone in minutes.
+    Install the Mac app, connect an iPhone, and run your first task.
   </Card>
-  <Card title="Integrations" icon="plug" href="/integrations/overview">
-    Connect TapKit to Claude, Codex, or your favorite AI tools.
-  </Card>
-</CardGroup>
-
-## Need inspiration?
-
-Browse real examples of what you can build with TapKit.
-
-<CardGroup cols={2}>
-  <Card title="Book a Flight" icon="plane" href="/use-cases/book-a-flight">
-    Search flights and compare options on real travel apps.
-  </Card>
-  <Card title="Book a Haircut" icon="scissors" href="/use-cases/book-a-haircut">
-    Find and book appointments at local salons.
-  </Card>
-  <Card title="Order Dinner" icon="utensils" href="/use-cases/order-dinner">
-    Browse menus and place delivery orders on DoorDash, Uber Eats, and more.
-  </Card>
-  <Card title="Dating Apps" icon="heart" href="/use-cases/dating-apps">
-    Automate swiping, matching, and messaging.
-  </Card>
-  <Card title="QA Testing" icon="vial" href="/use-cases/qa-testing">
-    Run end-to-end tests on real devices against production apps.
+  <Card title="How it works" icon="diagram-project" href="/how-it-works">
+    How the Mac, the iPhone, and your agent fit together.
   </Card>
 </CardGroup>

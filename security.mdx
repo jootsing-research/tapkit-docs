@@ -1,55 +1,47 @@
 ---
 title: Security & Privacy
-description: How TapKit handles your devices and data
+description: What TapKit can access and where your data goes
 ---
 
-TapKit is designed to give you control over real iPhones while being transparent about how everything works. This page covers the architecture, permissions, data handling, and security model.
+## What's on the iPhone
 
-## How it works
+Nothing is installed on the iPhone. TapKit uses two things built into iOS:
 
-TapKit uses the Mac app as a local host for your iPhone:
+- **Screen capture over USB**, which requires the iPhone to trust the Mac.
+- **A Bluetooth mouse and keyboard**, which the Mac pretends to be, with AssistiveTouch turning mouse input into touches.
 
-1. The **Mac app** connects to the selected iPhone over USB and a Bluetooth pairing.
-2. It **receives the phone's screen** so AI agents can see what's happening.
-3. AI agents send commands such as tap, swipe, and type to the Mac app.
-4. The Mac app executes each action on the phone and returns the updated screen.
+TapKit can't bypass the passcode, Face ID, or anything else a person using the phone couldn't. To cut TapKit off, unplug the phone, quit the Mac app, or forget the Mac in **Settings > Bluetooth**.
 
-No jailbreaking, modified iOS, developer mode, or sideloaded iPhone app is required.
+## Mac permissions
 
-{/* TODO: Architecture diagram — Mac ↔ Phone ↔ TapKit servers ↔ AI provider */}
+| Permission | Used for | Not used for |
+|---|---|---|
+| Camera | Receiving the iPhone's screen over USB | Your Mac's webcam |
+| Bluetooth | Pairing with the iPhone and sending touch and keyboard input | Any other Bluetooth device |
 
-## Why we need each permission
+## Where screenshots and actions go
 
-The Mac app requests two macOS permissions during setup. Here's what each one is used for.
+- **Built-in agent.** Screenshots are captured on your Mac and sent to a hosted language model through TapKit's servers to decide the next action. Actions go straight from your Mac to the phone.
+- **MCP and REST API.** Commands travel from your agent through TapKit's servers to your Mac. Screenshots travel back the same way and are stored by TapKit. Your agent's provider (for example Anthropic or OpenAI) receives the screenshots your agent requests.
+- **Live streaming.** When you view a phone in the web app, its screen is streamed through Agora.
 
-### Camera
+The Mac app shows each phone's screen locally, but only sends it off the Mac when an agent takes a screenshot or someone opens a live stream.
 
-| | |
-|---|---|
-| **Used for** | Capturing the phone's screen via the screencast stream |
-| **Not used for** | Your Mac's webcam, microphone, or any other camera input |
+## Access control
 
-### Bluetooth
+- **Mac app** — signs in through tapkit.ai and keeps its session in the macOS Keychain.
+- **MCP clients** — sign in with OAuth and see a consent screen before connecting. Access tokens expire after an hour and are refreshed automatically.
+- **REST API** — uses API keys from the [web app](/web-app#api-keys). TapKit stores only a hash of each key. Revoked keys stop working immediately.
 
-| | |
-|---|---|
-| **Used for** | Pairing the selected iPhone with the host Mac and sending phone actions |
-| **Not used for** | Connecting to accessories that aren't part of your TapKit setup |
+Anyone in your organization can use its phones.
 
-## Local device data
+## Agent safety
 
-If you choose to save an iPhone passcode in the Mac app, TapKit stores it locally in the macOS Keychain. The passcode is not uploaded to the TapKit server.
+TapKit's agent skills tell agents to verify typed text and stop before submitting it unless you've asked them to, and not to type passwords you haven't provided. These reduce risk but don't remove it: an agent with your phone can do anything you can. Use a phone and accounts you're comfortable letting an agent use.
 
-## Your phone's safety
-
-- **No jailbreaking** or iOS modifications required
-- Phone can be **disconnected at any time** — unplug the USB cable or close the Mac app
-- Bluetooth pairing can be removed from either device's Bluetooth settings
-- TapKit **cannot access** your phone when the Mac app isn't running
-
-## Legal and compliance
+## Legal
 
 - [Privacy Policy](https://tapkit.ai/privacy)
 - [Terms of Service](https://tapkit.ai/terms)
-- Security questions: [security@tapkit.ai](mailto:security@tapkit.ai)
-- General support: [support@tapkit.ai](mailto:support@tapkit.ai)
+- [Subprocessors](https://tapkit.ai/subprocessors)
+- Security reports: [security@tapkit.ai](mailto:security@tapkit.ai)

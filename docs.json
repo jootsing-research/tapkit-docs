@@ -22,32 +22,18 @@
             ]
           },
           {
-            "group": "Setup",
+            "group": "Guides",
             "pages": [
-              "setup/mac-app"
-            ]
-          },
-          {
-            "group": "Apps",
-            "pages": [
+              "setup",
               "mac-app",
-              "dashboard"
+              "web-app",
+              "examples"
             ]
           },
           {
             "group": "Resources",
             "pages": [
               "security"
-            ]
-          },
-          {
-            "group": "Use Cases",
-            "pages": [
-              "use-cases/book-a-flight",
-              "use-cases/book-a-haircut",
-              "use-cases/order-dinner",
-              "use-cases/dating-apps",
-              "use-cases/qa-testing"
             ]
           }
         ]
@@ -94,106 +80,41 @@
             ]
           },
           {
-            "group": "Features",
+            "group": "Phones",
             "pages": [
-              "api-reference/sessions",
-              "api-reference/phones-feature"
+              "api-reference/list-phones",
+              "api-reference/get-status",
+              "api-reference/rename-phone",
+              "api-reference/get-apps",
+              "api-reference/refresh-apps",
+              "api-reference/screenshot"
             ]
           },
           {
-            "group": "Endpoints",
+            "group": "Gestures",
             "pages": [
-              {
-                "group": "Sessions",
-                "pages": [
-                  "api-reference/sessions/create-session",
-                  "api-reference/sessions/list-sessions",
-                  "api-reference/sessions/get-session",
-                  "api-reference/sessions/get-events",
-                  "api-reference/sessions/send-message",
-                  "api-reference/sessions/interrupt",
-                  "api-reference/sessions/pause",
-                  "api-reference/sessions/resume",
-                  "api-reference/sessions/stop"
-                ]
-              },
-              {
-                "group": "Devices",
-                "pages": [
-                  "api-reference/phones/list-phones",
-                  "api-reference/phones/get-info",
-                  "api-reference/phones/get-status",
-                  "api-reference/phones/update-settings"
-                ]
-              },
-              {
-                "group": "Inspection",
-                "pages": [
-                  "api-reference/phones/screenshot",
-                  "api-reference/phones/get-apps"
-                ]
-              },
-              {
-                "group": "Gestures",
-                "pages": [
-                  "api-reference/phones/tap",
-                  "api-reference/phones/double-tap",
-                  "api-reference/phones/tap-and-hold",
-                  "api-reference/phones/flick",
-                  "api-reference/phones/drag",
-                  "api-reference/phones/hold-and-drag",
-                  "api-reference/phones/pinch"
-                ]
-              },
-              {
-                "group": "Device Commands",
-                "pages": [
-                  "api-reference/phones/home",
-                  "api-reference/phones/escape",
-                  "api-reference/phones/lock",
-                  "api-reference/phones/unlock",
-                  "api-reference/phones/spotlight",
-                  "api-reference/phones/app-switcher",
-                  "api-reference/phones/control-center"
-                ]
-              },
-              {
-                "group": "Apps",
-                "pages": [
-                  "api-reference/phones/open-app"
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "SDK",
-        "groups": [
-          {
-            "group": "Getting Started",
-            "pages": [
-              "sdk/installation",
-              "sdk/client",
-              "sdk/phones"
+              "api-reference/tap",
+              "api-reference/double-tap",
+              "api-reference/triple-tap",
+              "api-reference/tap-and-hold",
+              "api-reference/flick",
+              "api-reference/drag",
+              "api-reference/hold-and-drag"
             ]
           },
           {
-            "group": "Reference",
+            "group": "Keyboard & Buttons",
             "pages": [
-              "sdk/gestures",
-              "sdk/typing",
-              "sdk/device",
-              "sdk/apps",
-              "sdk/screenshots",
-              "sdk/geometry"
+              "api-reference/type",
+              "api-reference/keypress",
+              "api-reference/home"
             ]
           },
           {
-            "group": "Integrations",
+            "group": "Jobs",
             "pages": [
-              "sdk/integrations/oagi",
-              "sdk/integrations/cua"
+              "api-reference/get-job",
+              "api-reference/download-screenshot"
             ]
           }
         ]
@@ -242,64 +163,12 @@
     }
   },
   "api": {
-    "baseUrl": "https://api.tapkit.ai"
-  },
-  "redirects": [
-    {
-      "source": "/setup/claude-code",
-      "destination": "/integrations/claude-code"
-    },
-    {
-      "source": "/setup/switch-control",
-      "destination": "/setup/mac-app"
-    },
-    {
-      "source": "/setup/shortcuts",
-      "destination": "/setup/mac-app"
-    },
-    {
-      "source": "/setup/phone",
-      "destination": "/setup/mac-app"
-    },
-    {
-      "source": "/cli/:slug*",
-      "destination": "/integrations/overview"
-    },
-    {
-      "source": "/integrations/cli",
-      "destination": "/integrations/mcp"
-    },
-    {
-      "source": "/integrations/openclaw",
-      "destination": "/integrations/overview"
-    },
-    {
-      "source": "/api-reference/phones/shortcut",
-      "destination": "/api-reference/phones-feature"
-    },
-    {
-      "source": "/api-reference/phones/copy-text",
-      "destination": "/api-reference/phones-feature"
-    },
-    {
-      "source": "/api-reference/phones/read-clipboard",
-      "destination": "/api-reference/phones-feature"
-    },
-    {
-      "source": "/api-reference/phones/open-url",
-      "destination": "/api-reference/phones-feature"
-    },
-    {
-      "source": "/api-reference/phones/get-settings",
-      "destination": "/api-reference/phones/update-settings"
-    },
-    {
-      "source": "/api-reference/phones/select-phone",
-      "destination": "/api-reference/phones/list-phones"
-    },
-    {
-      "source": "/sdk/settings",
-      "destination": "/sdk/phones"
+    "mdx": {
+      "server": "https://api.tapkit.ai/v1",
+      "auth": {
+        "method": "key",
+        "name": "X-API-Key"
+      }
     }
-  ]
+  }
 }

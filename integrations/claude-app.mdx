@@ -1,9 +1,9 @@
 ---
-title: Claude (App)
+title: Claude App
 description: Control iPhones from Claude Chat and Cowork
 ---
 
-The TapKit plugin works in Claude Chat and Cowork. Install and configure it from Cowork in the Claude app. For terminal workflows, follow the separate [Claude Code setup](/integrations/claude-code).
+The TapKit plugin adds the TapKit connector and TapKit's [skills](/integrations/skills) to Claude Chat and Cowork. Install it from Cowork in the Claude app. For the terminal, see [Claude Code](/integrations/claude-code).
 
 ## Step 1: Add the TapKit plugin marketplace
 
@@ -68,29 +68,24 @@ You should now see TapKit listed under **Personal Plugins** in the Customize sid
   </Frame>
 </Accordion>
 
-Once set up, TapKit is available in Claude Chat and Cowork.
+The first time Claude uses TapKit, it asks you to sign in to TapKit in your browser. Click **Allow access** on the consent screen.
 
-## Example prompts
+## Try it
 
-Try these to get started:
-
-- "Open Settings and take a screenshot"
-- "Go to Safari and search for flights to Denver"
-- "Open DoorDash and order from the first restaurant"
-- "Take a screenshot and tell me what apps are on the home screen"
+- "What's on my phone right now?"
+- "Add eggs to my Groceries list in Reminders."
+- "Set a timer on my iPhone for two minutes."
 
 ## Troubleshooting
 
 <AccordionGroup>
   <Accordion title="Claude says TapKit isn't connected">
-    Make sure the TapKit Mac app is running with a phone connected. You may need to re-authenticate the plugin.
+    Open the TapKit connector under **Customize** and reconnect it.
   </Accordion>
-
-  <Accordion title="Actions are timing out">
-    Check that your phone is awake, unlocked, and still connected. If the Mac app shows the phone as disconnected, unplug and reconnect the USB cable.
+  <Accordion title="Claude can't find a phone, or the phone is offline">
+    Make sure the Mac app is open and signed in, and the phone's tile isn't showing a setup message. Ask Claude to "list my phones" to see what TapKit sees.
   </Accordion>
-
-  <Accordion title="Phone not showing up in available devices">
-    If you have multiple phones, Claude may need to select the right one. Ask Claude to "list my available phones" and then specify which one to use.
+  <Accordion title="Actions time out">
+    Unlock the phone and check that it's still plugged in. If the phone's tile in the Mac app shows a problem, fix that first.
   </Accordion>
 </AccordionGroup>

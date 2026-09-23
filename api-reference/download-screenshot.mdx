@@ -1,0 +1,19 @@
+---
+title: Download Screenshot
+description: Fetch the image from an async screenshot
+api: GET /jobs/{job_id}/download
+---
+
+Returns the PNG captured by a [screenshot](/api-reference/screenshot) requested with `?async=true`. Returns `404 DATA_NOT_FOUND` if the image isn't available yet.
+
+<ParamField path="job_id" type="string" required>
+  The `job_id` returned by the screenshot request.
+</ParamField>
+
+<RequestExample>
+```bash cURL
+curl https://api.tapkit.ai/v1/jobs/$JOB_ID/download \
+  -H "X-API-Key: $TAPKIT_API_KEY" \
+  -o screen.png
+```
+</RequestExample>

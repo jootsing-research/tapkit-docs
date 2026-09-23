@@ -1,53 +1,51 @@
 ---
-title: "How It Works"
-description: "The architecture behind TapKit in 60 seconds"
+title: How It Works
+description: How the Mac, the iPhone, and your agent fit together
 ---
 
-## The three layers
+TapKit has three parts: your **iPhone**, the **TapKit Mac app**, and the **TapKit cloud**.
 
-TapKit has three pieces that work together: your **iPhone**, the **Mac app**, and the **TapKit server**.
+## The Mac drives the iPhone
 
-### The Mac app is the host
+The iPhone stays plugged into the Mac with a USB cable. The Mac app uses two connections to it:
 
-The Mac app runs on a Mac that's physically connected to your iPhone via USB. It receives the phone's screen and sends taps, swipes, text, and device commands through the paired phone connection. The Mac is the only TapKit component that talks directly to the phone.
+- **Screen (USB).** The Mac receives the iPhone's screen over the cable, the same way QuickTime can record an iPhone. This is why TapKit asks for Camera access on the Mac.
+- **Touch and keyboard (Bluetooth).** The iPhone pairs with the Mac as a Bluetooth mouse and keyboard. iOS's AssistiveTouch turns the mouse input into taps, drags, and flicks. This is why TapKit asks for Bluetooth access.
 
-### The server connects everything
+TapKit uses only features built into iOS. Nothing is installed on the iPhone, and you can disconnect it at any time by unplugging it or unpairing it in **Settings > Bluetooth**.
 
-The Mac app maintains a persistent connection to the TapKit server. When an AI agent sends a command through the API — "tap at (200, 400)" or "take a screenshot" — the server routes it to the right Mac, which executes it on the right phone. The server also handles authentication, session management, and screen streaming.
+## Agents reach the Mac through the cloud
 
-### Your agent calls the API
-
-Any tool that can make HTTP requests or connect to an MCP server can control the phone. Claude, Codex, your own scripts — they all talk to the TapKit API, never directly to the Mac or the phone. This means your agent doesn't need to be on the same network, or even the same continent, as the device it's controlling.
-
-## Why this architecture?
-
-- **No jailbreak, no sideloading, no developer mode.** Nothing is installed on the iPhone.
-- **Works with any app.** TapKit interacts with the phone through the same visible interface a person uses, rather than relying on app-specific integrations.
-- **Remote by default.** The API layer means your agent can be anywhere. The Mac and phone can be in a closet, a data center, or on your desk.
-
-## What happens when you run a task
+The Mac app keeps a connection open to the TapKit cloud while you're signed in. Agents that don't run on the Mac send commands to the cloud, which forwards them to the Mac hosting the target phone.
 
 ```mermaid
-sequenceDiagram
-    participant Agent as Your AI Agent
-    participant Server as TapKit Server
-    participant Mac as Mac App
-    participant Phone as iPhone
-
-    Agent->>Server: Send command (API / MCP)
-    Server->>Mac: Route to host Mac
-    Mac->>Phone: Execute action
-    Phone-->>Mac: Updated screen
-    Mac-->>Server: Screenshot
-    Server-->>Agent: Result
-    Note over Agent: Decide next action
-    Agent->>Server: Next command...
+flowchart LR
+    A[Claude, Codex, or<br/>any MCP client] -->|MCP| M[mcp.tapkit.ai]
+    C[Your code] -->|REST| S[api.tapkit.ai]
+    M --> S
+    S -->|live connection| Mac[TapKit Mac app]
+    Mac -->|USB: screen| P[iPhone]
+    Mac -->|Bluetooth: touch + keys| P
 ```
 
-1. Your agent sends a command to the TapKit API (or MCP server).
-2. The server authenticates the request and routes it to the Mac that's hosting the target phone.
-3. The Mac app executes the action on the phone.
-4. The Mac captures the updated screen and sends it back through the server.
-5. Your agent sees the result and decides what to do next.
+The built-in agent in the Mac app skips the cloud relay for phone control: it reads the screen and sends input locally, and only calls out to a hosted language model.
 
-This loop repeats until the task is done — your agent looks, acts, and reacts just like a person would.
+## The agent loop
+
+Every TapKit agent works the same way:
+
+1. Take a screenshot.
+2. Decide what to do from what's on screen.
+3. Tap, flick, type, or press a key.
+4. Take another screenshot to check the result.
+
+There is no accessibility tree or DOM — agents work from pixels and coordinates, so any app you can use by hand works with TapKit.
+
+## What has to be true for a phone to work
+
+- The Mac app is open and signed in.
+- The iPhone is connected over USB, trusted, and unlocked.
+- The iPhone is paired with the Mac over Bluetooth, and AssistiveTouch is on. The Mac app sets this up for you.
+- The phone is active on your TapKit subscription.
+
+If any of these break, the phone shows up as offline or not ready. See [Setup](/setup#troubleshooting).

@@ -1,47 +1,39 @@
 ---
 title: Quickstart
-description: Connect your iPhone and run your first task
+description: Connect an iPhone and run your first task
 ---
 
-Follow along below — each step links to a detailed setup page if you need more help.
+## What you need
 
-## Step 1: Set up TapKit
+- A Mac with Apple silicon running macOS 14.6 or later, with Bluetooth
+- An iPhone and a USB cable that carries data
+- A Google account to sign in to TapKit
 
-Download the Mac app and follow its setup flow. TapKit guides you through signing in, granting Camera and Bluetooth access, connecting your iPhone over USB, and pairing it with your Mac.
+## 1. Install TapKit and connect your iPhone
 
-<Card title="Mac App Setup" icon="desktop" href="/setup/mac-app">
-  Step-by-step setup guide with troubleshooting.
+<a href="https://github.com/Jootsing-Research/tapkit-releases/releases/latest/download/TapKit.dmg" download>Download TapKit</a>, drag it into **Applications**, and open it. The app walks you through signing in, granting Camera and Bluetooth access, trusting the Mac on your iPhone, and pairing over Bluetooth.
+
+<Card title="Setup guide" icon="laptop" href="/setup">
+  Every setup step, plus troubleshooting.
 </Card>
 
-## Step 2: Run your first task
+## 2. Run a task in the Mac app
 
-Your Mac app is open and your phone is connected. Talk to the agent in TapKit and watch the phone go to work:
+Click the chat button on your phone in the Mac app and type a task in the **Do anything** box:
 
-> "Open Safari and search for the weather in San Francisco"
+> Open the Clock app and start a 2 minute timer
 
-The agent can look, think, and act — all visible in real time on the phone screen.
+The agent takes screenshots, taps, and types on the phone while you watch.
 
-## Step 3: Integrate with your AI tools
+## 3. Connect your own AI tools
 
-Connect TapKit to the AI tools you already use — Claude, Codex, or anything else that supports MCP.
-
-<Card title="See all integrations" icon="plug" href="/integrations/overview">
-  Set up TapKit with Claude, Codex, and other MCP clients.
-</Card>
-
-## Next steps
+Install the TapKit plugin for Claude or Codex, or add the TapKit MCP server to any MCP client.
 
 <CardGroup cols={2}>
   <Card title="Integrations" icon="plug" href="/integrations/overview">
-    Connect TapKit to Claude, Codex, and other AI tools.
+    Claude Code, the Claude app, Codex, and other MCP clients.
   </Card>
-  <Card title="Use Cases" icon="lightbulb" href="/use-cases/book-a-flight">
-    See what you can build with copy-paste-ready prompts.
-  </Card>
-  <Card title="Mac App" icon="desktop" href="/mac-app">
-    Learn the Mac app interface and features.
-  </Card>
-  <Card title="API Reference" icon="code" href="/api-reference/introduction">
-    Build custom integrations with the REST API.
+  <Card title="REST API" icon="code" href="/api-reference/introduction">
+    Control phones from your own code.
   </Card>
 </CardGroup>

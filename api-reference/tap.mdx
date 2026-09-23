@@ -1,0 +1,51 @@
+---
+title: Tap
+description: Tap a point on the screen
+api: POST /phones/{phone_id}/tap
+---
+
+Tap once at a point.
+
+<ParamField path="phone_id" type="string" required>
+  The phone's ID, from [List phones](/api-reference/list-phones).
+</ParamField>
+
+<ParamField query="async" type="boolean" default="false">
+  Return `{"job_id": ...}` immediately instead of waiting for the action. See [Jobs](/api-reference/introduction#jobs).
+</ParamField>
+
+## Body
+
+<ParamField body="x" type="integer" required>
+  Horizontal position in pixels from the left edge.
+</ParamField>
+
+<ParamField body="y" type="integer" required>
+  Vertical position in pixels from the top edge.
+</ParamField>
+
+<RequestExample>
+```bash cURL
+curl -X POST https://api.tapkit.ai/v1/phones/$PHONE_ID/tap \
+  -H "X-API-Key: $TAPKIT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"x": 585, "y": 1266}'
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200
+{
+  "id": "5d2c9a0e-7f7b-4c1e-9d1a-2f4b8e0c3a61",
+  "status": "completed",
+  "result": {},
+  "created_at": "2026-09-23T18:30:00Z",
+  "completed_at": "2026-09-23T18:30:01Z"
+}
+```
+</ResponseExample>
+
+## Related
+
+- [Double tap](/api-reference/double-tap)
+- [Tap and hold](/api-reference/tap-and-hold)

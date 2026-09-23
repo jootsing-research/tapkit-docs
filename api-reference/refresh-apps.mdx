@@ -1,0 +1,18 @@
+---
+title: Refresh Apps
+description: Fetch a phone's app list again
+api: POST /phones/{phone_id}/apps/refresh
+---
+
+Fetches the app list from the phone and saves it. Returns the same `apps` and `app_count` as [Get apps](/api-reference/get-apps).
+
+<ParamField path="phone_id" type="string" required>
+  The phone's ID, from [List phones](/api-reference/list-phones).
+</ParamField>
+
+<RequestExample>
+```bash cURL
+curl -X POST https://api.tapkit.ai/v1/phones/$PHONE_ID/apps/refresh \
+  -H "X-API-Key: $TAPKIT_API_KEY"
+```
+</RequestExample>

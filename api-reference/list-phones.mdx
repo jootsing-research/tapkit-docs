@@ -1,0 +1,72 @@
+---
+title: List Phones
+description: List every phone in your organization
+api: GET /phones
+---
+
+Returns every phone your organization has connected, including offline ones.
+
+## Response
+
+<ResponseField name="id" type="string">
+  The phone's ID. Pass it as `phone_id` to every other endpoint.
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  The name the phone reports, such as "Tom's iPhone".
+</ResponseField>
+
+<ResponseField name="display_name" type="string | null">
+  The name you gave the phone in TapKit, if any. See [Rename phone](/api-reference/rename-phone).
+</ResponseField>
+
+<ResponseField name="connection_status" type="string">
+  `online` (connected and selected on its Mac), `available` (connected to a Mac), or `offline`.
+</ResponseField>
+
+<ResponseField name="activation_state" type="string">
+  `active` or `inactive`. Only active phones accept actions.
+</ResponseField>
+
+<ResponseField name="connected_mac_id" type="string | null">
+  The Mac the phone is connected to.
+</ResponseField>
+
+<ResponseField name="width" type="integer | null">
+  Screen width in pixels.
+</ResponseField>
+
+<ResponseField name="height" type="integer | null">
+  Screen height in pixels.
+</ResponseField>
+
+<ResponseField name="created_at" type="string">
+  When the phone was first connected.
+</ResponseField>
+
+The response includes other fields not listed here. Don't rely on them.
+
+<RequestExample>
+```bash cURL
+curl https://api.tapkit.ai/v1/phones \
+  -H "X-API-Key: $TAPKIT_API_KEY"
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200
+[
+  {
+    "id": "d9fb00a7-1c7a-44dc-88f6-d06ba5061fdd",
+    "name": "iPhone",
+    "display_name": "Test phone",
+    "connection_status": "online",
+    "activation_state": "active",
+    "connected_mac_id": "3f1e8c52-6a0b-4d8e-9b7a-1c2d3e4f5a6b",
+    "width": 1170,
+    "height": 2532,
+    "created_at": "2026-09-11T17:02:44Z"
+  }
+]
+```
+</ResponseExample>

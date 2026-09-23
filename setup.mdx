@@ -1,0 +1,98 @@
+---
+title: Setup
+description: Install the Mac app and connect an iPhone
+---
+
+The TapKit Mac app has a guided setup. This page follows the same steps and covers what to do when one gets stuck.
+
+## Requirements
+
+- A Mac with Apple silicon running macOS 14.6 or later, with Bluetooth turned on
+- An iPhone with Face ID, and its passcode
+- A USB cable that carries data (not a charge-only cable)
+- A Google account to sign in to TapKit
+
+The iPhone stays plugged into the Mac while TapKit uses it.
+
+## 1. Install
+
+1. <a href="https://github.com/Jootsing-Research/tapkit-releases/releases/latest/download/TapKit.dmg" download>Download TapKit.dmg</a>.
+2. Open it and drag **TapKit** into **Applications**.
+3. Open **TapKit** from Applications.
+
+TapKit updates itself. To check for an update manually, choose **TapKit > Check for Updates...**.
+
+## 2. Sign in
+
+Click **Log in with browser**. TapKit opens tapkit.ai in your browser; sign in with Google, then click **Open the desktop app**. The Mac app continues on its own once you're signed in.
+
+## 3. Allow Camera and Bluetooth
+
+TapKit needs two macOS permissions:
+
+| Permission | Button | Why |
+|---|---|---|
+| Camera | **Enable Camera** | macOS presents a connected iPhone's screen as a camera. TapKit never uses your Mac's webcam. |
+| Bluetooth | **Allow Bluetooth** | The iPhone pairs with the Mac as a Bluetooth mouse and keyboard so TapKit can tap and type. |
+
+Click each button and choose **Allow** when macOS asks. If you denied a permission earlier, the button opens System Settings instead — turn TapKit on under **Privacy & Security > Camera** or **Bluetooth**.
+
+## 4. Connect your iPhone
+
+1. Plug the iPhone into the Mac and unlock it.
+2. Select it under **Connected iPhones** and click **Continue**.
+3. If the iPhone asks whether to trust this computer, tap **Trust** and enter your passcode.
+
+TapKit then checks that it can see the phone's screen. Keep the phone plugged in and unlocked during this step. TapKit may briefly put the phone to sleep and ask you to unlock it again. If it still can't see the screen, it asks to restart the phone — click **Restart iPhone**, then unlock the phone when it comes back on.
+
+## 5. Pair over Bluetooth
+
+TapKit turns on AssistiveTouch on the iPhone automatically. Then, on the iPhone:
+
+1. Open **Settings**.
+2. Tap **Bluetooth**.
+3. Tap your Mac's name.
+
+The Mac app moves on as soon as the phone connects. If your Mac's name doesn't appear, go back to Settings and tap **Bluetooth** again.
+
+## 6. Subscribe
+
+Click **Start subscription** to finish checkout in your browser, or **Explore TapKit first** to skip for now. Agents can only control phones that are active on a subscription. You can subscribe or add phones later from **Account > Billing** in the Mac app or from the [web app](/web-app#billing).
+
+When you see **Your agents have an iPhone now.**, click **Start using TapKit**.
+
+## Adding more phones
+
+Plug in another iPhone. It appears in the Mac app's phone grid and walks through the same trust, screen, and Bluetooth steps inside its own tile. Each phone needs its own slot on your subscription.
+
+To run the whole setup again, choose **TapKit > Settings...** (⌘,) and click **Run Setup Again** on the **General** tab.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="My iPhone doesn't appear">
+    Unlock the iPhone and make sure the cable carries data — try a different cable or port. Unplug and reconnect, and tap **Trust** if the iPhone asks.
+  </Accordion>
+
+  <Accordion title="The phone says Unlock Your iPhone">
+    TapKit can only use an unlocked phone and can't unlock it for you. Unlock it and keep it unlocked; setting **Settings > Display & Brightness > Auto-Lock** to **Never** keeps it from locking between tasks.
+  </Accordion>
+
+  <Accordion title="TapKit can't see the phone's screen">
+    Keep the phone plugged in and unlocked. If TapKit offers to restart the phone, let it. If it still fails, click **Try Again**, or unplug the phone, restart it yourself, and plug it back in.
+  </Accordion>
+
+  <Accordion title="My Mac doesn't show up in the iPhone's Bluetooth settings">
+    Make sure Bluetooth is on for both devices and that the Mac app is still on the pairing step. Leave **Settings > Bluetooth** and open it again to refresh the list.
+  </Accordion>
+
+  <Accordion title="Taps don't do anything">
+    AssistiveTouch must be on: **Settings > Accessibility > Touch > AssistiveTouch**. If it's on and taps still fail, open the phone's **More** menu in the Mac app and choose **Reset AssistiveTouch**.
+  </Accordion>
+
+  <Accordion title="Camera or Bluetooth was denied">
+    Open **System Settings > Privacy & Security**, choose **Camera** or **Bluetooth**, and turn on TapKit. Quit and reopen TapKit.
+  </Accordion>
+</AccordionGroup>
+
+Still stuck? Email [support@tapkit.ai](mailto:support@tapkit.ai).
