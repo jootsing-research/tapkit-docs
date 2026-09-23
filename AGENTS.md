@@ -19,5 +19,6 @@ Read published branches (`origin/main`/`origin/master`), not whatever is checked
 - Only document an API endpoint or MCP tool if the Mac app actually executes it (`joots-host/Jootsing/Features/Operation/`). The server has many legacy routes that no longer work.
 - Don't document the Python SDK, server-side agent sessions, or Shortcuts-based actions. They are gone.
 - Don't quote prices; link to the web app instead.
+- Don't explain how TapKit sees or controls the phone (capture method, Bluetooth HID, AssistiveTouch internals). Describe what the user does and sees.
 - Use exact UI labels from the apps, in bold.
 - Second person, short sentences, language tags on code blocks, relative links for internal pages.
