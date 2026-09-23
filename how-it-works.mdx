@@ -9,13 +9,19 @@ TapKit has three parts: your iPhone, the TapKit Mac app, and the TapKit cloud.
 
 The iPhone stays plugged into a Mac running the TapKit app. The Mac app is the only part of TapKit that talks to the phone. It sees the phone's screen and carries out taps, flicks, typing, and key presses on it.
 
-Nothing is installed on the iPhone. To disconnect it, unplug it or quit the Mac app.
+To disconnect a phone, unplug it or quit the Mac app.
 
 ## Agents reach the Mac through the cloud
 
 While you're signed in, the Mac app keeps a connection open to the TapKit cloud. Claude, Codex, and your own code send commands to the cloud through [MCP](/integrations/mcp) or the [REST API](/api-reference/introduction). The cloud forwards each command to the Mac that the target phone is plugged into, and sends the result back.
 
-Your agent doesn't need to be on the same network as the Mac. The built-in agent in the Mac app works with the phone directly and only uses the network to call a hosted language model.
+The built-in agent in the Mac app works with the phone directly and only uses the network to call a hosted language model.
+
+## Why this architecture?
+
+- **No jailbreak, no sideloading, no developer mode.** Nothing is installed on the iPhone.
+- **Works with any app.** TapKit interacts with the phone through the same visible interface a person uses, rather than relying on app-specific integrations.
+- **Remote by default.** The API layer means your agent can be anywhere. The Mac and phone can be in a closet, a data center, or on your desk.
 
 ## What happens when you run a task
 
@@ -37,8 +43,6 @@ sequenceDiagram
 ```
 
 Every TapKit agent works in a loop. It takes a screenshot, decides what to do, then taps, flicks, types, or presses a key. Then it takes another screenshot to check the result, and repeats until the task is done.
-
-Agents work from screenshots and pixel coordinates, not an accessibility tree. Any app you can use by hand works with TapKit.
 
 ## When a phone is ready
 
