@@ -3,28 +3,38 @@ title: Examples
 description: Prompts to try with TapKit
 ---
 
-Paste any of these into the Mac app's agent chat, or into Claude or Codex with the TapKit plugin installed.
+Paste any of these into the Mac app's agent chat, or into Claude or Codex with the TapKit plugin installed. Sign in to the apps you want the agent to use first. Agents can't get past Face ID or CAPTCHAs, and won't type a password you haven't given them.
 
-## Everyday tasks
+## Book a flight
 
-> Add eggs to my Groceries list in Reminders.
+The agent searches for flights, fills in the dates and airports, and compares the results. Give it the airports, dates, and number of passengers, and say whether to stop at the results or go on to book.
 
-> When is my next meeting with Bob? Check my calendar.
+> In Safari, go to Google Flights and search for round-trip flights from Orlando to Denver, leaving next Friday and returning Sunday. Find the cheapest option and show me the results.
 
-> Set a timer for two minutes, check that it's running, then cancel it.
+## Book a haircut
 
-> Check my battery health and tell me the maximum capacity.
+Salon booking apps such as Booksy, Vagaro, and Fresha all follow the same steps: pick a service, a place, a stylist, and a time. Name the service and time you want, and tell the agent how to pick a stylist so it doesn't stop to ask.
 
-> Find the note called Packing List and summarize it.
+> Open Booksy and book a men's haircut for Saturday at 2pm. Pick the closest barbershop with availability and book with whoever is free.
 
-## Testing apps
+## Order dinner
 
-Write a test as a list of steps, with what should be on screen after each one.
+The agent finds a restaurant in a delivery app, adds items to the cart, and checks out. List exactly what to order, and include a tip amount if you care about it. The app needs a saved address and payment method before the agent can place the order.
+
+> Open Uber Eats and order a pepperoni pizza and a Caesar salad from the highest-rated Italian restaurant nearby. Use my saved address and payment method.
+
+## Dating apps
+
+The agent reads each profile, likes or passes based on what you tell it to look for, and can write opening messages to matches. Set a limit on how many profiles to review so it doesn't run indefinitely.
+
+> Open Hinge and look at 10 profiles. Like people who seem active and outdoorsy, and pass on profiles without a bio. If we match with someone, send a friendly opening message that mentions something from their profile.
+
+## QA testing
+
+The agent can run a test script on a real iPhone, against your own app or anyone else's, without test IDs or XCUITest. Write the test as a series of steps, each with what should be on screen afterwards, and ask for a pass or fail on each step.
 
 > Open Safari and go to example.com. Check that the page shows the heading "Example Domain". Tap "More information...". Check that a new page loads, and report whether each step passed.
 
-## Writing better prompts
+## Writing prompts
 
-Name the app you want the agent to use, so it doesn't have to guess. Give specific dates, names, and amounts instead of asking for "a cheap one". Say whether the agent may send, post, or pay, or should check with you first.
-
-Sign in to apps before you hand them to an agent. Agents can't get past Face ID or CAPTCHAs, and won't type a password you haven't given them. Agents also can't type emoji or accented letters, because each typing action takes up to 100 US-ASCII characters.
+Name the app, and give specific dates, names, and amounts rather than "a cheap one". Say whether the agent may send, post, or pay, or should check with you first. Each typing action takes up to 100 US-ASCII characters, so agents can't type emoji or accented letters.
