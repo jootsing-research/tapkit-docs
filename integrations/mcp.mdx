@@ -1,19 +1,19 @@
 ---
 title: MCP
-description: Connect any MCP-compatible tool to TapKit
+description: Connect any MCP client to TapKit
 ---
 
-For anything that doesn't have an official TapKit plugin, you can connect directly using our MCP server. This works with Cursor, Windsurf, custom agents, and any other tool that supports the Model Context Protocol.
-
-## MCP server URL
+TapKit runs a hosted MCP server. Any client that supports remote MCP servers with OAuth can connect to it. The only thing you run locally is the [Mac app](/setup).
 
 ```
 https://mcp.tapkit.ai/mcp
 ```
 
-## Adding the MCP to your client
+The server uses the Streamable HTTP transport.
 
-Most MCP clients accept a JSON configuration like this:
+## Connect
+
+Most clients accept a config like this:
 
 ```json
 {
@@ -26,61 +26,40 @@ Most MCP clients accept a JSON configuration like this:
 }
 ```
 
-Where you add this depends on your client:
+Point your MCP client at the URL. The client must support OAuth 2.1 with PKCE and dynamic client registration. The server publishes its OAuth metadata at `/.well-known/oauth-protected-resource/mcp`.
 
-- **Cursor** — add to your MCP settings in Cursor's configuration
-- **Windsurf** — add to the MCP configuration file
-- **Custom clients** — point your MCP client at the URL above
+## Sign in
 
-## Authentication
+The first time your client connects, it opens TapKit in your browser. Sign in with Google, then click **Allow access** to let the client view and interact with your connected iPhones.
 
-<Tabs>
-  <Tab title="OAuth">
-    When your client first connects to the TapKit MCP server, you'll be prompted to authenticate via your browser. Sign in with your TapKit account and the token will be cached for future sessions.
-  </Tab>
-  <Tab title="API Key">
-    You can also authenticate with an API key by passing it as a bearer token. Generate one from the [TapKit dashboard](https://tapkit.ai/dashboard).
+The MCP server only accepts OAuth. [API keys](/web-app#api-keys) are for the [REST API](/api-reference/introduction).
 
-    ```json
-    {
-      "mcpServers": {
-        "tapkit": {
-          "type": "http",
-          "url": "https://mcp.tapkit.ai/mcp",
-          "headers": {
-            "Authorization": "Bearer your-api-key"
-          }
-        }
-      }
-    }
-    ```
-  </Tab>
-</Tabs>
+## Tools
 
-## How it works
+Start with `list_phones`. Every other tool takes the `phone_id` it returns.
 
-The MCP server runs as a hosted endpoint at `mcp.tapkit.ai`. You don't need to run anything locally beyond the [TapKit Mac app](/setup/mac-app) with a connected iPhone.
+| Tool | Parameters | Description |
+|---|---|---|
+| `list_phones` | None | List phones with their IDs, status, and screen size |
+| `get_phone_status` | `phone_id` | Connection status and screen size of one phone |
+| `screenshot` | `phone_id` | Capture the screen as an image |
+| `tap` | `phone_id`, `x`, `y` | Tap a point |
+| `double_tap` | `phone_id`, `x`, `y` | Double tap, for zooming or selecting a word |
+| `triple_tap` | `phone_id`, `x`, `y` | Triple tap, for selecting a line or paragraph |
+| `long_press` | `phone_id`, `x`, `y`, `duration`? | Press and hold, for context menus. `duration` is in ms, default 1000 |
+| `flick` | `phone_id`, `x`, `y`, `direction` | Quick swipe `up`, `down`, `left`, or `right` from a point |
+| `drag` | `phone_id`, `from_x`, `from_y`, `to_x`, `to_y`, `speed`? | Press, move, and release. `speed` is `slow`, `medium`, or `fast`, default `medium` |
+| `hold_and_drag` | `phone_id`, `from_x`, `from_y`, `to_x`, `to_y`, `hold_duration_ms`?, `speed`? | Long press, then drag, for moving items. Hold defaults to 500 ms |
+| `type_text` | `phone_id`, `text` | Type into the focused field. US-ASCII only, up to 100 characters |
+| `press_key` | `phone_id`, `key`, `modifiers`?, `repeat`? | Press `enter`, `escape`, `backspace`, or an arrow key, optionally holding `control`, `shift`, `alternate`, or `command` |
+| `press_home` | `phone_id` | Go to the Home Screen |
 
-Your MCP client connects to the server, which routes commands to the Mac app, which executes them on the phone. Screenshots are returned through the same channel.
+## Coordinates
 
-## Available tools
+Screenshots are JPEGs scaled so the long edge is at most 1344 pixels. Tool coordinates are pixels in that image, measured from the top-left corner. The server converts them to the phone's native resolution.
 
-Call `list_phones` first to discover available phones. Every other tool requires a `phone_id` returned by `list_phones`.
+Action tools don't return a screenshot. Call `screenshot` after an action to see the result.
 
-Once connected, your client has access to these TapKit tools:
+## Limits
 
-| Tool | Description |
-|------|-------------|
-| `list_phones` | List available phones |
-| `screenshot(phone_id)` | Capture the current phone screen |
-| `tap(phone_id, x, y)` | Single tap at coordinates |
-| `type_text(phone_id, text)` | Type text into the focused field |
-| `press_home(phone_id)` | Go to the home screen |
-| `swipe(phone_id, x, y, direction)` | Swipe up, down, left, or right |
-| `drag(phone_id, from_x, from_y, to_x, to_y)` | Drag between points |
-| `hold_and_drag(phone_id, from_x, from_y, to_x, to_y, hold_duration_ms?)` | Long press then drag |
-| `double_tap(phone_id, x, y)` | Double tap at coordinates |
-| `long_press(phone_id, x, y, duration?)` | Press and hold at coordinates |
-| `lock(phone_id)` | Lock the phone |
-| `unlock(phone_id)` | Unlock the phone |
-| `get_phone_status(phone_id)` | Get connection and device status |
+Each connection can make 300 requests per minute. Agents can only control phones that are online and active on your subscription.

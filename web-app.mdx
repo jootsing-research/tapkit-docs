@@ -1,0 +1,50 @@
+---
+title: Web app
+description: Manage phones, API keys, your team, and billing at tapkit.ai
+---
+
+Use the [TapKit web app](https://tapkit.ai/dashboard) to manage your organization. Sign in with the same account you use in the Mac app.
+
+<img src="/images/web-app-overview.png" alt="TapKit web app showing a phone's live stream" />
+
+## Phones
+
+The Phones page lists every phone your organization has connected. For each phone it shows the status, the Mac it's connected to, and whether it's active.
+
+A phone's status is **Online** when it's connected and selected on its Mac, **Available** when it's connected to a Mac but not selected, and **Offline** otherwise.
+
+Agents can only control active phones. Your plan sets how many phones can be active at once. Click **Activate** or **Deactivate** to choose which ones.
+
+To rename a phone, click the pencil next to its name. Agents see this name. To remove a phone you no longer use, click **Edit**.
+
+### Live stream
+
+Click **View Stream** to watch a phone's screen in real time and tap, flick, and drag on it from your browser. The phone's Mac must be online, and each Mac can stream one phone at a time.
+
+## API keys
+
+API keys authenticate requests to the [REST API](/api-reference/introduction).
+
+To create a key, click **Create API Key** and give it a name. Copy the key right away. It starts with `tk_`, and you can't view it again after you close the dialog.
+
+The list shows each key's prefix, when it was created, and when it was last used. Click **Revoke** to disable a key immediately.
+
+## Sessions
+
+The Sessions page shows how much streaming and viewing time your organization has used this billing period. Its history lists each live stream with its phone, start time, length, and viewers.
+
+## Team
+
+Invite people to your organization by email as a **Member** or **Admin**. Admins can remove members and revoke pending invitations. Everyone in the organization shares its phones and API keys.
+
+## Settings
+
+Set your display name, which other people see when you watch a stream, and your organization's name.
+
+## Billing
+
+You pay for your subscription per phone. Subscribe or change how many phones you pay for on the Billing page.
+
+Added phones are available immediately, and you pay a prorated amount for the rest of the billing period. Removed phones stay active until the period ends. You can choose which phones to deactivate then, or TapKit deactivates the oldest ones.
+
+Click **Manage Payment & Invoices** to update your card, download invoices, or cancel in Stripe.

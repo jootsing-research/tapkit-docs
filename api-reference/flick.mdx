@@ -1,0 +1,50 @@
+---
+title: Flick
+description: Quick swipe from a point
+api: POST /phones/{phone_id}/flick
+---
+
+Swipe quickly from a point in one direction. Flicks scroll lists, turn pages, and dismiss sheets. To move further down a list, flick `up`.
+
+<ParamField path="phone_id" type="string" required>
+  The phone's ID, from [List phones](/api-reference/list-phones).
+</ParamField>
+
+<ParamField query="async" type="boolean" default="false">
+  Return `{"job_id": ...}` immediately instead of waiting for the action. See [Jobs](/api-reference/introduction#jobs).
+</ParamField>
+
+## Body
+
+<ParamField body="x" type="integer" required>
+  Horizontal position in pixels from the left edge.
+</ParamField>
+
+<ParamField body="y" type="integer" required>
+  Vertical position in pixels from the top edge.
+</ParamField>
+
+<ParamField body="direction" type="string" required>
+  `up`, `down`, `left`, or `right`.
+</ParamField>
+
+<RequestExample>
+```bash cURL
+curl -X POST https://api.tapkit.ai/v1/phones/$PHONE_ID/flick \
+  -H "X-API-Key: $TAPKIT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"x": 585, "y": 1500, "direction": "up"}'
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200
+{
+  "id": "5d2c9a0e-7f7b-4c1e-9d1a-2f4b8e0c3a61",
+  "status": "completed",
+  "result": {},
+  "created_at": "2026-09-23T18:30:00Z",
+  "completed_at": "2026-09-23T18:30:01Z"
+}
+```
+</ResponseExample>

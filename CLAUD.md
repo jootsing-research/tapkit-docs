@@ -62,5 +62,4 @@ TapKit documentation for the iPhone automation platform. Covers:
 - Include untested code examples
 - Make assumptions - always ask for clarification
 - Document features that don't exist yet
-- Present Switch Control or Apple Shortcuts as setup requirements or public capabilities
 - Expose internal control or typing methods; describe user-facing actions instead

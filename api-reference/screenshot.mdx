@@ -1,0 +1,27 @@
+---
+title: Screenshot
+description: Capture a phone's screen
+api: GET /phones/{phone_id}/screenshot
+---
+
+Returns a PNG of the phone's screen at full resolution. Pixel positions in the image are the coordinates gesture endpoints expect.
+
+<ParamField path="phone_id" type="string" required>
+  The phone's ID, from [List phones](/api-reference/list-phones).
+</ParamField>
+
+<ParamField query="async" type="boolean" default="false">
+  Return `{"job_id": ...}` immediately. Fetch the image with [Download screenshot](/api-reference/download-screenshot) once the [job](/api-reference/get-job) completes.
+</ParamField>
+
+## Response
+
+`image/png` bytes. If the screenshot doesn't arrive within 60 seconds, the request fails with `408 TIMEOUT`.
+
+<RequestExample>
+```bash cURL
+curl https://api.tapkit.ai/v1/phones/$PHONE_ID/screenshot \
+  -H "X-API-Key: $TAPKIT_API_KEY" \
+  -o screen.png
+```
+</RequestExample>

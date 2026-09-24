@@ -1,0 +1,46 @@
+---
+title: Get apps
+description: List the apps installed on a phone
+api: GET /phones/{phone_id}/apps
+---
+
+Returns the phone's installed apps and Apple's built-in apps. TapKit saves the list the first time you request it. Call [Refresh apps](/api-reference/refresh-apps) after you install or remove apps.
+
+<ParamField path="phone_id" type="string" required>
+  The phone's ID, from [List phones](/api-reference/list-phones).
+</ParamField>
+
+## Response
+
+<ResponseField name="apps" type="object[]">
+  Each app's `name` and `bundle_id`.
+</ResponseField>
+
+<ResponseField name="app_count" type="integer">
+  Number of apps.
+</ResponseField>
+
+<ResponseField name="updated_at" type="string">
+  When the list was last fetched from the phone. Absent if it was fetched for this request.
+</ResponseField>
+
+<RequestExample>
+```bash cURL
+curl https://api.tapkit.ai/v1/phones/$PHONE_ID/apps \
+  -H "X-API-Key: $TAPKIT_API_KEY"
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200
+{
+  "apps": [
+    { "name": "Safari", "bundle_id": "com.apple.mobilesafari" },
+    { "name": "Settings", "bundle_id": "com.apple.Preferences" }
+  ],
+  "app_count": 2,
+  "updated_at": "2026-09-23T18:30:00Z",
+  "source": "database"
+}
+```
+</ResponseExample>

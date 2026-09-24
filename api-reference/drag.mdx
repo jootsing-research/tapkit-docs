@@ -1,0 +1,58 @@
+---
+title: Drag
+description: Press, move, and release
+api: POST /phones/{phone_id}/drag
+---
+
+Press at one point, move to another, and release. Use a drag to move a slider, scroll an exact distance, or pull to refresh.
+
+<ParamField path="phone_id" type="string" required>
+  The phone's ID, from [List phones](/api-reference/list-phones).
+</ParamField>
+
+<ParamField query="async" type="boolean" default="false">
+  Return `{"job_id": ...}` immediately instead of waiting for the action. See [Jobs](/api-reference/introduction#jobs).
+</ParamField>
+
+## Body
+
+<ParamField body="from_x" type="integer" required>
+  Start position, pixels from the left edge.
+</ParamField>
+
+<ParamField body="from_y" type="integer" required>
+  Start position, pixels from the top edge.
+</ParamField>
+
+<ParamField body="to_x" type="integer" required>
+  End position, pixels from the left edge.
+</ParamField>
+
+<ParamField body="to_y" type="integer" required>
+  End position, pixels from the top edge.
+</ParamField>
+
+<ParamField body="speed" type="string" default="medium">
+  How fast to move: `slow`, `medium`, or `fast`.
+</ParamField>
+
+<RequestExample>
+```bash cURL
+curl -X POST https://api.tapkit.ai/v1/phones/$PHONE_ID/drag \
+  -H "X-API-Key: $TAPKIT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"from_x": 585, "from_y": 600, "to_x": 585, "to_y": 1400, "speed": "medium"}'
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200
+{
+  "id": "5d2c9a0e-7f7b-4c1e-9d1a-2f4b8e0c3a61",
+  "status": "completed",
+  "result": {},
+  "created_at": "2026-09-23T18:30:00Z",
+  "completed_at": "2026-09-23T18:30:01Z"
+}
+```
+</ResponseExample>

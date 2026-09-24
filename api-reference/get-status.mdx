@@ -1,0 +1,52 @@
+---
+title: Get phone status
+description: Check whether a phone is connected
+api: GET /phones/{phone_id}/status
+---
+
+<ParamField path="phone_id" type="string" required>
+  The phone's ID, from [List phones](/api-reference/list-phones).
+</ParamField>
+
+## Response
+
+<ResponseField name="phone_id" type="string">
+  The phone's ID.
+</ResponseField>
+
+<ResponseField name="phone_name" type="string">
+  The phone's TapKit name, or the name it reports if you haven't renamed it.
+</ResponseField>
+
+<ResponseField name="connection_status" type="string">
+  `online`, `available`, or `offline`. See [List phones](/api-reference/list-phones).
+</ResponseField>
+
+<ResponseField name="width" type="integer | null">
+  Screen width in pixels.
+</ResponseField>
+
+<ResponseField name="height" type="integer | null">
+  Screen height in pixels.
+</ResponseField>
+
+The response has other fields that aren't part of the API. Don't rely on them.
+
+<RequestExample>
+```bash cURL
+curl https://api.tapkit.ai/v1/phones/$PHONE_ID/status \
+  -H "X-API-Key: $TAPKIT_API_KEY"
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200
+{
+  "phone_id": "d9fb00a7-1c7a-44dc-88f6-d06ba5061fdd",
+  "phone_name": "Test phone",
+  "connection_status": "online",
+  "width": 1170,
+  "height": 2532
+}
+```
+</ResponseExample>

@@ -1,56 +1,20 @@
 ---
 title: Skills
-description: Install TapKit skills to teach any AI agent how to use iPhone apps
+description: Teach agents how to use TapKit and navigate iOS
 ---
 
-If the agent you're using doesn't have an official TapKit plugin, **skills are how you bring TapKit knowledge in**. Skills are Markdown files that teach AI agents how to use apps on your phone — they follow the open [Agent Skills](https://agentskills.io) standard and work with any agent that supports them.
+Skills are Markdown instructions that an agent loads when it needs them. They follow the open [Agent Skills](https://agentskills.io) standard. TapKit's skills teach an agent how to control an iPhone through TapKit and where to find things in iOS and Apple's apps. The skills' source is [on GitHub](https://github.com/jootsing-research/skills).
 
-Use skills alongside TapKit's [MCP server](/integrations/mcp). Skills tell the agent *what to do*; the MCP server gives it *the ability to do it*.
+The [Claude](/integrations/claude-code) and [Codex](/integrations/codex-cli) plugins include these skills. Install them separately only for other agents.
 
-## Install skills
+## Install
 
 ```bash
 npx skills add jootsing-research/skills
 ```
 
-Choose your agent when prompted, then select the core `tapkit` skill and any app skills you need.
+Choose your agent when prompted. Skills don't give an agent access to your phone, so connect the agent to the [MCP server](/integrations/mcp) too.
 
 ## Available skills
 
-### TapKit (core)
-
-The core `tapkit` skill teaches the agent how to use TapKit itself — the coordinate system, screenshot loop, gesture types, and how to chain actions together. **Always install this one.**
-
-### App skills
-
-App skills map out a specific iOS app's UI — tabs, buttons, navigation patterns, and gotchas. They tell the agent what it's looking at when it sees a screenshot.
-
-| Skill | App | What it covers |
-|-------|-----|----------------|
-| `clock` | Clock | Alarms, stopwatch, timers, and world clocks |
-| `craigslist` | Craigslist | Listing search, filters, saved searches, replies, and posting drafts |
-| `facebook` | Facebook | Feed, Reels, Marketplace, groups, messaging, and stories |
-| `hinge` | Hinge | Profiles, likes, roses, messaging, and preferences |
-| `instagram` | Instagram | Feed, Reels, stories, direct messages, Explore, and profiles |
-| `linkedin` | LinkedIn | Feed, networking, jobs, reactions, and messaging |
-| `mail` | Apple Mail | Email search, composing, and drafts |
-| `reddit` | Reddit | Feeds, communities, posts, comments, voting, search, and chat |
-| `telegram` | Telegram | Chats, reactions, search, bots, groups, and channels |
-| `tiktok` | TikTok | Feed navigation, video actions, inbox, and creator pages |
-| `twitter` | Twitter / X | Feed, posts, direct messages, search, and interactions |
-| `uber-eats` | Uber Eats | Restaurant search, ordering, checkout, and reorders |
-| `weather` | Weather | Forecasts, maps, air quality, and detailed conditions |
-| `whatsapp` | WhatsApp | Chats, search, calls, statuses, and channels |
-
-Install the core skill plus whichever app skills match your use case.
-
-## Use skills with MCP
-
-Skills on their own don't give the agent access to your phone — they teach it how apps work. Connect the agent to TapKit's [MCP server](/integrations/mcp) so it can execute taps, swipes, screenshots, and other actions.
-
-You can also build your own integration on top of the [API](/api-reference/introduction).
-
-## Links
-
-- [Skills repository on GitHub](https://github.com/Jootsing-Research/skills)
-- [Agent Skills standard](https://agentskills.io)
+The core `tapkit` skill teaches an agent how to use TapKit's tools. The rest include a few skills for getting around iOS, such as finding apps and editing text, and several skills for specific Apple apps.

@@ -1,9 +1,9 @@
 ---
-title: API Overview
-description: TapKit REST API documentation
+title: API overview
+description: Control connected iPhones over HTTP
 ---
 
-The TapKit REST API gives you programmatic control over real iPhones. Everything in TapKit happens inside a **session** — a complete agent-controlled phone interaction.
+The REST API sends touch and keyboard input to your iPhones and takes screenshots. It has the same actions that agents get through [MCP](/integrations/mcp), for code that doesn't use an agent framework.
 
 ## Base URL
 
@@ -13,133 +13,67 @@ https://api.tapkit.ai/v1
 
 ## Authentication
 
-All API endpoints require an API key in the `X-API-Key` header:
+Send an API key in the `X-API-Key` header. Create keys in the [web app](/web-app#api-keys). Keys start with `tk_`.
 
 ```bash
 curl https://api.tapkit.ai/v1/phones \
-  -H "X-API-Key: joot_your_api_key"
+  -H "X-API-Key: $TAPKIT_API_KEY"
 ```
 
-Get your API key from the [TapKit dashboard](https://tapkit.ai/dashboard). Keys start with `joot_` followed by a random string.
+A key has access to every phone in your organization. Keep it out of source control and client-side code.
 
-<Warning>
-  API keys are sensitive credentials. Never commit them to version control or expose them in client-side code. Use environment variables instead.
-</Warning>
+## Before you call an action
 
-## Response format
+A phone accepts actions when its Mac app is open and signed in, the phone is connected, unlocked, and set up in the Mac app, and the phone is active on your subscription.
 
-All responses are JSON. Successful responses return the requested data:
+[List phones](/api-reference/list-phones) returns each phone's ID and `connection_status`.
+
+## Coordinates
+
+Coordinates are integer pixels on the phone's screen, measured from the top-left corner. They match the pixels of a [screenshot](/api-reference/screenshot). [List phones](/api-reference/list-phones) reports each screen's `width` and `height`.
+
+## Jobs
+
+Every action runs as a job on the phone's Mac. By default, a request waits up to 60 seconds for the job to finish and then returns it:
 
 ```json
 {
-  "id": "abc123",
-  "name": "iPhone 15 Pro",
-  "width": 1170,
-  "height": 2532
-}
-```
-
-## Error responses
-
-Errors return a consistent format:
-
-```json
-{
-  "error": "ERROR_CODE",
-  "message": "Human readable description",
-  "context": {}
-}
-```
-
-| Code | HTTP Status | Description |
-|------|-------------|-------------|
-| `INVALID_API_KEY` | 401 | API key is invalid or revoked |
-| `AUTH_REQUIRED` | 401 | No authentication provided |
-| `SUBSCRIPTION_REQUIRED` | 402 | No active subscription |
-| `PHONE_NOT_FOUND` | 404 | Phone ID doesn't exist |
-| `SESSION_NOT_FOUND` | 404 | Session ID doesn't exist |
-| `PHONE_NOT_CONNECTED` | 400 | Phone not connected to any Mac |
-| `MAC_APP_NOT_RUNNING` | 400 | Mac companion app is offline |
-| `TASK_ALREADY_RUNNING` | 409 | Agent task already running on phone |
-| `TIMEOUT` | 408 | Operation timed out |
-| `SCREENSHOT_FAILED` | 500 | Screenshot capture failed |
-| `EMPTY_BODY` | 400 | Required request body missing |
-
-## Endpoint categories
-
-Phone endpoints fall into a few different categories. Use **Inspection** for endpoints that ask the Mac app to report something from the connected phone, such as a screenshot or installed app list.
-
-| Category | Purpose | Examples |
-|----------|---------|----------|
-| Devices | Register, select, and configure connected phones | `GET /phones`, `GET /phones/{id}/status` |
-| Inspection | Read state or data from the connected phone through the Mac app | `GET /phones/{id}/screenshot`, `GET /phones/{id}/apps` |
-| Gestures | Send touch input to the phone | `POST /phones/{id}/tap`, `POST /phones/{id}/drag` |
-| Device commands | Press system controls or open system surfaces | `POST /phones/{id}/home`, `POST /phones/{id}/lock` |
-| Apps | Launch installed apps | `POST /phones/{id}/open-app` |
-
-## Sync vs async mode
-
-Most state-changing endpoints support both synchronous and asynchronous execution. Inspection endpoints may return data directly, such as PNG image bytes for screenshots.
-
-### Synchronous (default)
-
-Request blocks until the action completes:
-
-```bash
-curl -X POST https://api.tapkit.ai/v1/phones/{phone_id}/tap \
-  -H "X-API-Key: joot_..." \
-  -H "Content-Type: application/json" \
-  -d '{"x": 100, "y": 200}'
-```
-
-```json
-{
-  "id": "job_abc123",
+  "id": "5d2c9a0e-7f7b-4c1e-9d1a-2f4b8e0c3a61",
   "status": "completed",
   "result": {},
-  "created_at": "2024-01-15T10:30:00Z",
-  "completed_at": "2024-01-15T10:30:01Z"
+  "created_at": "2026-09-23T18:30:00Z",
+  "completed_at": "2026-09-23T18:30:01Z"
 }
 ```
 
-### Asynchronous
+`status` is `pending`, `running`, `completed`, or `failed`. A failed action still returns HTTP 200, with the reason in `result.error`. If an action doesn't finish in 60 seconds, its job fails with `"error": "TIMEOUT"`.
 
-Add `?async=true` to return immediately with a job ID:
+Add `?async=true` to get the job ID back immediately, then poll [Get job](/api-reference/get-job):
 
-```bash
-curl -X POST "https://api.tapkit.ai/v1/phones/{phone_id}/tap?async=true" \
-  -H "X-API-Key: joot_..." \
-  -H "Content-Type: application/json" \
-  -d '{"x": 100, "y": 200}'
+```json
+{ "job_id": "5d2c9a0e-7f7b-4c1e-9d1a-2f4b8e0c3a61" }
 ```
+
+## Errors
+
+Other errors return an HTTP error status, with details under `detail`:
 
 ```json
 {
-  "job_id": "job_abc123"
+  "detail": {
+    "error": "PHONE_NOT_FOUND",
+    "message": "Phone not found",
+    "context": { "phone_id": "..." }
+  }
 }
 ```
 
-Poll `GET /v1/jobs/{job_id}` to check status.
-
-## What's next
-
-<CardGroup cols={2}>
-  <Card title="Sessions" icon="play" href="/api-reference/sessions">
-    Understand the core concept — how agent-controlled phone interactions work.
-  </Card>
-  <Card title="Phones" icon="mobile" href="/api-reference/phones-feature">
-    Learn what you can control on a phone via the API.
-  </Card>
-  <Card title="Devices" icon="list" href="/api-reference/phones/list-phones">
-    List and manage connected phones.
-  </Card>
-  <Card title="Inspection" icon="eye" href="/api-reference/phones/screenshot">
-    Read screenshots, app lists, and live phone state.
-  </Card>
-  <Card title="Gestures" icon="hand-pointer" href="/api-reference/phones/tap">
-    Send touch input to the phone.
-  </Card>
-  <Card title="Device Commands" icon="mobile-button" href="/api-reference/phones/home">
-    Press Home, lock, unlock, and open system surfaces.
-  </Card>
-</CardGroup>
+| Status | `error` | Meaning |
+|---|---|---|
+| 401 | `AUTH_REQUIRED` | No `X-API-Key` header |
+| 401 | `INVALID_API_KEY` | The key is wrong or revoked |
+| 402 | `SUBSCRIPTION_REQUIRED` | Your organization has no active subscription |
+| 404 | `PHONE_NOT_FOUND` | No phone with that ID in your organization |
+| 409 | `PHONE_INACTIVE` | The phone isn't active on your subscription. Activate it in the [web app](/web-app#phones). |
+| 400 | `MAC_APP_NOT_RUNNING` | The phone's Mac app isn't connected |
+| 408 | `TIMEOUT` | A screenshot didn't arrive in time |

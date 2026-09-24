@@ -1,55 +1,45 @@
 ---
-title: Security & Privacy
-description: How TapKit handles your devices and data
+title: Security and privacy
+description: What TapKit can access and where your data goes
 ---
 
-TapKit is designed to give you control over real iPhones while being transparent about how everything works. This page covers the architecture, permissions, data handling, and security model.
+## What's on the iPhone
 
-## How it works
+TapKit installs nothing on the iPhone and doesn't need a jailbreak or developer mode. The Mac app can only reach a phone that is plugged into the Mac, trusts it, and is paired with it over Bluetooth.
 
-TapKit uses the Mac app as a local host for your iPhone:
+TapKit can't get past the passcode, Face ID, or anything else that would stop a person holding the phone. To cut off TapKit, unplug the phone, quit the Mac app, or forget the Mac in **Settings > Bluetooth**.
 
-1. The **Mac app** connects to the selected iPhone over USB and a Bluetooth pairing.
-2. It **receives the phone's screen** so AI agents can see what's happening.
-3. AI agents send commands such as tap, swipe, and type to the Mac app.
-4. The Mac app executes each action on the phone and returns the updated screen.
+## Mac permissions
 
-No jailbreaking, modified iOS, developer mode, or sideloaded iPhone app is required.
+| Permission | Used for | Not used for |
+|---|---|---|
+| Camera | Seeing the iPhone's screen | Your Mac's webcam |
+| Bluetooth | Pairing with the iPhone and sending it actions | Any other Bluetooth device |
 
-{/* TODO: Architecture diagram — Mac ↔ Phone ↔ TapKit servers ↔ AI provider */}
+## Where screenshots and actions go
 
-## Why we need each permission
+**Built-in agent.** The Mac app captures screenshots and sends them through TapKit's servers to a hosted language model, which picks the next action. The Mac app sends actions straight to the phone.
 
-The Mac app requests two macOS permissions during setup. Here's what each one is used for.
+**MCP and REST API.** Your agent's commands go through TapKit's servers to your Mac. Screenshots come back the same way, and TapKit stores them. Your agent's provider, such as Anthropic or OpenAI, receives every screenshot your agent requests.
 
-### Camera
+**Live streaming.** When you watch a phone in the web app, Agora streams its screen to your browser.
 
-| | |
-|---|---|
-| **Used for** | Capturing the phone's screen via the screencast stream |
-| **Not used for** | Your Mac's webcam, microphone, or any other camera input |
+The Mac app shows each phone's screen on the Mac. It only sends the screen elsewhere when an agent takes a screenshot or someone opens a live stream.
 
-### Bluetooth
+## Access control
 
-| | |
-|---|---|
-| **Used for** | Pairing the selected iPhone with the host Mac and sending phone actions |
-| **Not used for** | Connecting to accessories that aren't part of your TapKit setup |
+The Mac app signs in through tapkit.ai and keeps its session in the macOS Keychain.
 
-## Local device data
+MCP clients sign in with OAuth, and you approve each one on a consent screen. Access tokens expire after an hour, and clients refresh them automatically.
 
-If you choose to save an iPhone passcode in the Mac app, TapKit stores it locally in the macOS Keychain. The passcode is not uploaded to the TapKit server.
+The REST API uses API keys from the [web app](/web-app#api-keys). TapKit stores only a hash of each key, and a revoked key stops working immediately.
 
-## Your phone's safety
+Everyone in your organization can use its phones.
 
-- **No jailbreaking** or iOS modifications required
-- Phone can be **disconnected at any time** — unplug the USB cable or close the Mac app
-- Bluetooth pairing can be removed from either device's Bluetooth settings
-- TapKit **cannot access** your phone when the Mac app isn't running
+## Agent safety
 
-## Legal and compliance
+TapKit's skills tell agents to check typed text and stop before submitting it unless you've asked them to. They also tell agents not to type passwords you haven't given them. These rules reduce risk but don't remove it, because an agent with your phone can do anything you can. Use a phone and accounts you're comfortable handing to an agent.
 
-- [Privacy Policy](https://tapkit.ai/privacy)
-- [Terms of Service](https://tapkit.ai/terms)
-- Security questions: [security@tapkit.ai](mailto:security@tapkit.ai)
-- General support: [support@tapkit.ai](mailto:support@tapkit.ai)
+## Legal
+
+Read the [Privacy Policy](https://tapkit.ai/privacy), [Terms of Service](https://tapkit.ai/terms), and [list of subprocessors](https://tapkit.ai/subprocessors). Report security issues to [security@tapkit.ai](mailto:security@tapkit.ai).

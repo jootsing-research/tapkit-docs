@@ -1,0 +1,28 @@
+---
+title: Rename phone
+description: Change the name TapKit and agents use for a phone
+api: PATCH /phones/{phone_id}/settings
+---
+
+<ParamField path="phone_id" type="string" required>
+  The phone's ID, from [List phones](/api-reference/list-phones).
+</ParamField>
+
+## Body
+
+<ParamField body="display_name" type="string" required>
+  The new name.
+</ParamField>
+
+## Response
+
+The updated phone, in the same shape as [List phones](/api-reference/list-phones).
+
+<RequestExample>
+```bash cURL
+curl -X PATCH https://api.tapkit.ai/v1/phones/$PHONE_ID/settings \
+  -H "X-API-Key: $TAPKIT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"display_name": "Test phone"}'
+```
+</RequestExample>
